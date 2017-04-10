@@ -14,6 +14,8 @@ public class CarMotor : MonoBehaviour {
     float maxTorque;
     [SerializeField]
     float breakTorque;
+    [SerializeField]
+    float dragNotInteracting;
 
     [Header("Wheels Details")]
     [SerializeField]
@@ -37,8 +39,7 @@ public class CarMotor : MonoBehaviour {
             wheelsGraphics[i].Rotate(0, -wheelsColliders[i].rpm / 60 * 360 * Time.deltaTime, 0);
             if( i > 1) {
                 wheelsGraphics[i].localEulerAngles = new Vector3(wheelsGraphics[i].localEulerAngles.x, wheelsColliders[i].steerAngle - wheelsGraphics[i].localEulerAngles.z + 90, wheelsGraphics[i].localEulerAngles.z);                
-            }
-            
+            }            
         }
     }
 
@@ -48,14 +49,31 @@ public class CarMotor : MonoBehaviour {
         wheelsColliders[2].steerAngle = finalSteer;
         wheelsColliders[3].steerAngle = finalSteer;        
     }
-
-    internal void AcelerateCar(float acelerate) {
-        var torque = maxTorque * acelerate;        
-
-        wheelsColliders[0].motorTorque = torque;
-        wheelsColliders[1].motorTorque = torque;        
+    internal void Reset() {
+        rb.drag = 0f;
+        wheelsColliders[0].brakeTorque = 0f;
+        wheelsColliders[1].brakeTorque = 0f;
     }
 
+
+    internal void AcelerateCar(float acelerate) {        
+        var torque = maxTorque * acelerate;
+                
+        wheelsColliders[0].motorTorque = torque;
+        wheelsColliders[1].motorTorque = torque;
+    }
+    internal void BackCar(float acelerate) {
+        var torque = maxTorque * acelerate;
+
+        wheelsColliders[0].motorTorque = torque;
+        wheelsColliders[1].motorTorque = torque;
+
+    }
+
+    internal void ActiveTrackDrag() {
+        rb.drag = dragNotInteracting;
+    }
+   
     internal void Break() {
         wheelsColliders[0].brakeTorque = rb.mass * breakTorque;
         wheelsColliders[1].brakeTorque = rb.mass * breakTorque;
@@ -69,8 +87,5 @@ public class CarMotor : MonoBehaviour {
 
     }
 
-    internal void Reset() {
-        wheelsColliders[0].brakeTorque = 0f;
-        wheelsColliders[1].brakeTorque = 0f;
-    }
+    
 }
