@@ -12,7 +12,9 @@ public class CarMotor : MonoBehaviour {
     [Header("Controller values")]
     [SerializeField]
     float maxTorque;
-    
+    [SerializeField]
+    float breakTorque;
+
     [Header("Wheels Details")]
     [SerializeField]
     WheelCollider[] wheelsColliders = new WheelCollider[4];
@@ -33,6 +35,10 @@ public class CarMotor : MonoBehaviour {
     void UpdateWheelsGraphic() {
         for (int i = 0; i < wheelsColliders.Length; i++) {
             wheelsGraphics[i].Rotate(0, -wheelsColliders[i].rpm / 60 * 360 * Time.deltaTime, 0);
+            if( i > 1) {
+                wheelsGraphics[i].localEulerAngles = new Vector3(wheelsGraphics[i].localEulerAngles.x, wheelsColliders[i].steerAngle - wheelsGraphics[i].localEulerAngles.z + 90, wheelsGraphics[i].localEulerAngles.z);                
+            }
+            
         }
     }
 
@@ -40,7 +46,7 @@ public class CarMotor : MonoBehaviour {
         var finalSteer = steer * 45f;
 
         wheelsColliders[2].steerAngle = finalSteer;
-        wheelsColliders[3].steerAngle = finalSteer;                
+        wheelsColliders[3].steerAngle = finalSteer;        
     }
 
     internal void AcelerateCar(float acelerate) {
@@ -48,5 +54,23 @@ public class CarMotor : MonoBehaviour {
 
         wheelsColliders[0].motorTorque = torque;
         wheelsColliders[1].motorTorque = torque;        
+    }
+
+    internal void Break() {
+        wheelsColliders[0].brakeTorque = rb.mass * breakTorque;
+        wheelsColliders[1].brakeTorque = rb.mass * breakTorque;
+        
+        wheelsColliders[0].motorTorque = 0.0f;
+        wheelsColliders[1].motorTorque = 0.0f;
+
+        for (int i = 0; i < wheelsColliders.Length; i++) {
+            wheelsGraphics[i].Rotate(0, 0, 0);            
+        }
+
+    }
+
+    internal void Reset() {
+        wheelsColliders[0].brakeTorque = 0f;
+        wheelsColliders[1].brakeTorque = 0f;
     }
 }
