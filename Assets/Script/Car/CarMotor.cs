@@ -8,6 +8,8 @@ public class CarMotor : MonoBehaviour {
     [Header("Object balacing")]
     [SerializeField]
     Transform centerMass;
+    [SerializeField]
+    float backValue;
 
     [Header("Controller values")]
     [SerializeField]
@@ -24,13 +26,15 @@ public class CarMotor : MonoBehaviour {
     Transform[] wheelsGraphics = new Transform[4];
 
     Rigidbody rb;
+    bool backActive;
 
     void Awake() {
+        backActive = false;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerMass.localPosition;
     }
 
-    void Update() {
+    void Update() {             
         UpdateWheelsGraphic();
     }   
 
@@ -49,24 +53,37 @@ public class CarMotor : MonoBehaviour {
         wheelsColliders[2].steerAngle = finalSteer;
         wheelsColliders[3].steerAngle = finalSteer;        
     }
+
     internal void Reset() {
         rb.drag = 0f;
         wheelsColliders[0].brakeTorque = 0f;
         wheelsColliders[1].brakeTorque = 0f;
     }
 
-
-    internal void AcelerateCar(float acelerate) {        
+    internal void AcelerateCar(float acelerate) {
+        backActive = false;
         var torque = maxTorque * acelerate;
                 
         wheelsColliders[0].motorTorque = torque;
         wheelsColliders[1].motorTorque = torque;
     }
+
     internal void BackCar(float acelerate) {
         var torque = maxTorque * acelerate;
 
-        wheelsColliders[0].motorTorque = torque;
-        wheelsColliders[1].motorTorque = torque;
+        if (backActive) {
+            Reset();
+            wheelsColliders[0].motorTorque = torque;
+            wheelsColliders[1].motorTorque = torque;
+            return;
+        }
+
+
+        if(rb.velocity.sqrMagnitude < backValue) {
+            backActive = true;
+        } else{
+            Break();
+        }
 
     }
 

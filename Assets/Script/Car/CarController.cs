@@ -11,25 +11,19 @@ public class CarController : MonoBehaviour {
     }    
 
     void FixedUpdate() {
-        float steer = Input.GetAxis("Horizontal");
-        float backCar = Input.GetAxis("Back");
+        float steer = Input.GetAxis("Horizontal");        
         float breakCar = Input.GetAxis("Break");
         float acelerateCar = Input.GetAxis("Acelerate");
         
         if (breakCar > 0) {
-            carMotor.Break();            
+            carMotor.BackCar(-breakCar);            
         } else {
             if (acelerateCar > 0) {
                 carMotor.Reset();
                 carMotor.AcelerateCar(acelerateCar);
-            }
+            }            
 
-            if (backCar < 0) {
-                carMotor.Reset();
-                carMotor.BackCar(backCar);
-            }
-
-            if (backCar == 0 && acelerateCar == 0) {
+            if (acelerateCar == 0) {
                 carMotor.ActiveTrackDrag();
             }
         }                            

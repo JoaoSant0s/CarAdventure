@@ -6,8 +6,12 @@ public class CharacterManager : MonoBehaviour {
 
     [SerializeField]
     Character characterPrefab;
+    [SerializeField]
+    int numberCharacters;
 
     List<Character> currentCharacters;
+
+    Dictionary<Character, Character> opa;
     
     private static CharacterManager instance;
     public static CharacterManager Instance {
@@ -20,10 +24,12 @@ public class CharacterManager : MonoBehaviour {
 
     public List<Character> InitCharacters(List<Vector3> positions) {
         currentCharacters = new List<Character>();
-        foreach (var pos in positions) {
-            var character = Instantiate(characterPrefab, pos, Quaternion.identity);
+
+        for (int i = 0; i < numberCharacters; i++) {
+            var character = Instantiate(characterPrefab, positions[i], Quaternion.identity);
             currentCharacters.Add(character);
-        }        
+        }
+                
         return currentCharacters;
     }
 }
