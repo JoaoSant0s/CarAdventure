@@ -10,7 +10,6 @@ public class PathController : MonoBehaviour {
     [SerializeField]
     List<SavePath> savePaths;
 
-
     void Awake() {
         for (int i = 0; i < savePaths.Count; i++) {
             savePaths[i].Index = i;
@@ -30,7 +29,5 @@ public class PathController : MonoBehaviour {
             return savePointList;
         }
     } 
-     
-
-
+        
 }

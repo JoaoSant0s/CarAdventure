@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+public class Character {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    Inventory inventory;
+
+    Score score;
+
+    void Awake() {
+        inventory = new Inventory();
+        score = new Score();
+    }
+
+    public Character(string name) {
+
+    }
+    
+    	
 }

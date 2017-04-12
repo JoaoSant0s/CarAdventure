@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SavePath : MonoBehaviour {
 
-    public delegate void SavePoint (Character character, int index, bool save);
+    public delegate void SavePoint (Car character, int index, bool save);
     public static event SavePoint OnSavePoint;
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class SavePath : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider collider) {        
-        var character = collider.gameObject.GetComponentInParent<Character>();
+        var character = collider.gameObject.GetComponentInParent<Car>();
         
         if (character == null) return;        
 
@@ -25,7 +25,7 @@ public class SavePath : MonoBehaviour {
 
     void OnTriggerExit(Collider collider) {
         
-        var character = collider.gameObject.GetComponentInParent<Character>();
+        var character = collider.gameObject.GetComponentInParent<Car>();
         if (character == null) return;
 
         if (OnSavePoint != null) OnSavePoint(character, index, true);
