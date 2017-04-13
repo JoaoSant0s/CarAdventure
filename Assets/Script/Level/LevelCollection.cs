@@ -8,18 +8,5 @@ public class LevelCollection : ScriptableObject {
 
     public Level[] Levels {
         get { return levels; }
-    }
-
-    #if UNITY_EDITOR
-
-    public static class CreateScriptableObjectMenu {
-
-        [UnityEditor.MenuItem("Tools/Create ScriptableObject/LevelCollection")]
-        public static void CreateAsset() {
-            var ex = ScriptableObject.CreateInstance<LevelCollection>();
-            UnityEditor.AssetDatabase.CreateAsset(ex, UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/Modules/Levels/LevelCollection.asset"));
-        }
-    }
-
-    #endif
+    }   
 }
