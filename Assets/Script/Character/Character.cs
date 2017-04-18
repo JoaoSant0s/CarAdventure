@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Character {
 
-
-    Inventory inventory;
-
-    Score score;
+    Inventory inventory;    
 
     void Awake() {
-        inventory = new Inventory();
-        score = new Score();
+        inventory = new Inventory();        
     }
 
     public Character(string name) {
 
     }
-    
-    	
+   
 }

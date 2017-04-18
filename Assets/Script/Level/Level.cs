@@ -6,34 +6,10 @@ using UnityEngine;
 public class Level{
 
     [SerializeField]
-    PathController pathDefinition;
-
-    [SerializeField]
-    List<CollectableMap> currentCollectables;
+    PathController pathDefinition;    
 
     public PathController PathDefinition() {
         return pathDefinition;
-    }
-
-    public List<CollectableMap> CurrentCollectables() {
-        return currentCollectables;
-    }
-
-    [System.Serializable]
-    public class CollectableMap {
-        [SerializeField]
-        Collectable collectablePrefab;
-
-        [SerializeField]
-        int collectableCount;
-
-        public Collectable CollectablePrefab() {
-            return collectablePrefab;
-        }
-
-        public int CollectableCount() {
-            return collectableCount;
-        }
-
-    }
+    }    
+    
 }

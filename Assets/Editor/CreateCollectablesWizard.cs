@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class CreateCollectablesWizard : ScriptableWizard {
-
-    public enum CollectableType {
-        GoldCollectable
-    }
+public class CreateCollectablesWizard : ScriptableWizard {    
 
     [SerializeField]
-    CollectableType type;
+    Collectable.CollectableType type;
 
     [SerializeField]
     List<Vector3> positionsCollectables;

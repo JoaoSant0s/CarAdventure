@@ -5,7 +5,9 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour {
 
     [SerializeField]
-    Car characterPrefab;        
+    Car characterPrefab;
+    [SerializeField]
+    Transform carDestiny;
 
     Dictionary<string, Character> characters;
     Dictionary<Character, Car> cars;
@@ -36,9 +38,12 @@ public class CharacterManager : MonoBehaviour {
     }
 
     internal void InitCars(List<Vector3> positions) {
+        ObjectManipulation.RemoveChilds(carDestiny);
+
         int i = 0;
         foreach (var character in characters.Values) {
             cars[character] = Instantiate(characterPrefab, positions[i], Quaternion.identity);
+            cars[character].transform.SetParent(carDestiny);
             cars[character].CurrentCharacter = character;
             i++;
         }                     

@@ -10,6 +10,9 @@ public class PathController : MonoBehaviour {
     [SerializeField]
     List<SavePath> savePaths;
 
+    [SerializeField]
+    GameObject collectablesParent;
+
     void Awake() {
         for (int i = 0; i < savePaths.Count; i++) {
             savePaths[i].Index = i;
@@ -29,5 +32,9 @@ public class PathController : MonoBehaviour {
             return savePointList;
         }
     } 
+
+    public bool IsEmptyCollectables() {
+        return collectablesParent.transform.childCount == 0;
+    }
         
 }

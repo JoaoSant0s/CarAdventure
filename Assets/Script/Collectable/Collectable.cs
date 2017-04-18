@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour {
 
-    [SerializeField]
-    Transform portalSpawn;
+    public delegate void CheckCollectable(Transform agent);
+    public static event CheckCollectable OnCheckCollectable;
 
+    public enum CollectableType {
+        GoldCollectable
+    }
+
+    
+    [SerializeField]
+    CollectableType type;
+           
     bool destroyed;
 
     Animator animationCollected;
@@ -22,26 +30,20 @@ public class Collectable : MonoBehaviour {
         if (character == null || destroyed) return;
         destroyed = true;
 
-        StartCoroutine(StartAnimation());
-        //(character.transform);
+        StartCoroutine(StartAnimation(character.transform));        
     }
 
-    IEnumerator StartAnimation() {
+    IEnumerator StartAnimation(Transform agent) {
         animationCollected.enabled = true;
 
         do {
             yield return null;
-        } while (animationCollected.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1 || animationCollected.IsInTransition(0));
-               
-        DestroyObject(gameObject);
+        } while (animationCollected.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9);
+                      
+        if (OnCheckCollectable != null) OnCheckCollectable(agent);
 
+        animationCollected.enabled = false;
+        DestroyObject(gameObject);        
     }
-
-    void SpawnBlock(Transform character) {
-        //character.position;
-        //character.forward;
-        Debug.Log(character.forward);
-        Instantiate(portalSpawn, transform.position + character.forward * 20, Quaternion.identity);        
-    }
-
+  
 }

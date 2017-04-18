@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathManager : MonoBehaviour {            
+public class PathManager : MonoBehaviour {
+
+    [SerializeField]
+    Transform pathDestiny;
 
     PathController currentPath;
     Dictionary<Car, List<SavePoint>> characterSavePoinst;
@@ -23,9 +26,12 @@ public class PathManager : MonoBehaviour {
     void OnDestroy() {
         SavePath.OnSavePoint -= SavePoint;
     }
-
+  
     internal void LoadPath(PathController pathDefinition) {
-        currentPath = Instantiate(pathDefinition, new Vector3(0, 2, 0), new Quaternion(0, 1, 0, 1));
+        ObjectManipulation.RemoveChilds(pathDestiny);
+               
+        currentPath = Instantiate(pathDefinition, new Vector3(0, 2, 0), Quaternion.identity);
+        currentPath.transform.SetParent(pathDestiny);
 
         CharacterManager.Instance.InitCars(currentPath.InitialCharacterPosition);
         var characters = CharacterManager.Instance.Cars;
