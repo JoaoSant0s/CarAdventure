@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Character {
 
-    Inventory inventory;    
-
-    void Awake() {
-        inventory = new Inventory();        
-    }
+    private Inventory inventory;
+    private string name;     
 
     public Character(string name) {
-
+        this.name = name;
+        inventory = new Inventory();
     }
-   
+
+    internal void UpdateGold(int number) {
+        inventory.UpdateGold(number);
+    }    
+
 }

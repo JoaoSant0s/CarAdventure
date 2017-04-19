@@ -8,20 +8,17 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     int currentLevelIndex;
     [SerializeField]
-    LevelCollection levelCollection;
-
-    [SerializeField]
-    Transform portalSpawn;
+    LevelCollection levelCollection;    
 
     Level currentLevel;
 
     void Awake() {
         instance = this;
-        Collectable.OnCheckCollectable += FinishGoal;
+        Collectable.OnCheckCollectable += CollectedItem;
     }
 
     void OnDestroy() {
-        Collectable.OnCheckCollectable -= FinishGoal;
+        Collectable.OnCheckCollectable -= CollectedItem;
     }
 
     private static LevelManager instance;
@@ -35,10 +32,7 @@ public class LevelManager : MonoBehaviour {
         PathManager.Instance.LoadPath(currentLevel.PathDefinition());        
     }
 
-    void FinishGoal(Transform character) {
-        var pathController = currentLevel.PathDefinition();
-        if (!pathController.IsEmptyCollectables()) return;
-        Instantiate(portalSpawn, transform.position + character.forward * 20, Quaternion.identity);
+    void CollectedItem(Collectable collectable) {                
     }    
 
 }

@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SavePath : MonoBehaviour {
-
-    public delegate void SavePoint (Car character, int index, bool save);
-    public static event SavePoint OnSavePoint;
+public class SavePath : MonoBehaviour {    
 
     [SerializeField]
     int index;
@@ -18,17 +15,13 @@ public class SavePath : MonoBehaviour {
     void OnTriggerEnter(Collider collider) {        
         var character = collider.gameObject.GetComponentInParent<Car>();
         
-        if (character == null) return;        
-
-        if (OnSavePoint != null) OnSavePoint(character, index, false);        
+        if (character == null) return;                      
     }
 
     void OnTriggerExit(Collider collider) {
         
         var character = collider.gameObject.GetComponentInParent<Car>();
-        if (character == null) return;
-
-        if (OnSavePoint != null) OnSavePoint(character, index, true);
+        if (character == null) return;        
     }
 
 }

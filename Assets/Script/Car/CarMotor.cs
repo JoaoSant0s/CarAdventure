@@ -25,11 +25,9 @@ public class CarMotor : MonoBehaviour {
     [SerializeField]
     Transform[] wheelsGraphics = new Transform[4];
 
-    Rigidbody rb;
-    bool backActive;
+    Rigidbody rb;    
 
-    void Awake() {
-        backActive = false;
+    void Awake() {        
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerMass.localPosition;
     }
@@ -55,15 +53,13 @@ public class CarMotor : MonoBehaviour {
     }
 
     internal void Reset() {
-        rb.drag = 0f;
-        wheelsColliders[0].brakeTorque = 0f;
-        wheelsColliders[1].brakeTorque = 0f;
+        rb.drag = 0f;        
     }
 
-    internal void AcelerateCar(float acelerate) {
-        backActive = false;
+    internal void AcelerateCar(float acelerate) {       
         var torque = maxTorque * acelerate;
-                
+
+        Reset();
         wheelsColliders[0].motorTorque = torque;
         wheelsColliders[1].motorTorque = torque;
     }
@@ -71,38 +67,13 @@ public class CarMotor : MonoBehaviour {
     internal void BackCar(float acelerate) {
         var torque = maxTorque * acelerate;
 
-        if (backActive) {
-            Reset();
-            wheelsColliders[0].motorTorque = torque;
-            wheelsColliders[1].motorTorque = torque;
-            return;
-        }
-
-
-        if(rb.velocity.sqrMagnitude < backValue) {
-            backActive = true;
-        } else{
-            Break();
-        }
-
+        Reset();
+        wheelsColliders[0].motorTorque = torque;
+        wheelsColliders[1].motorTorque = torque;
     }
 
     internal void ActiveTrackDrag() {
         rb.drag = dragNotInteracting;
     }
    
-    internal void Break() {
-        wheelsColliders[0].brakeTorque = rb.mass * breakTorque;
-        wheelsColliders[1].brakeTorque = rb.mass * breakTorque;
-        
-        wheelsColliders[0].motorTorque = 0.0f;
-        wheelsColliders[1].motorTorque = 0.0f;
-
-        for (int i = 0; i < wheelsColliders.Length; i++) {
-            wheelsGraphics[i].Rotate(0, 0, 0);            
-        }
-
-    }
-
-    
 }

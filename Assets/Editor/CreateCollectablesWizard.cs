@@ -3,33 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class CreateCollectablesWizard : ScriptableWizard {    
+public class CreateCollectablesWizard : ScriptableWizard {       
 
+    [Header("Add Collectables")]
     [SerializeField]
     Collectable.CollectableType type;
-
     [SerializeField]
-    List<Vector3> positionsCollectables;
-
+    int numberNewCollectables;
 
     private static Transform collectableContent;
-    private string path = "Assets/Prefab/";    
+    private static PathController currentPath;
+    private string path = "Assets/Prefab/";
+    private string description = "Total de coletáveis ";   
+
+    private static int totalCollectable;
 
     [MenuItem("Tools/Create Collectable")]
     static void CreateWizard() {
-        collectableContent = GameObject.FindGameObjectWithTag("CollectableContent").transform;
-        DisplayWizard<CreateCollectablesWizard>("Create Collectable", "Create");
+        currentPath = FindObjectOfType<PathController>();               
+        collectableContent = currentPath.CollectableContent().transform;
+        totalCollectable = collectableContent.childCount;        
+
+        DisplayWizard<CreateCollectablesWizard>("Create Collectable", "Create Collectables", "Delete Collectable");             
+    }
+
+    void OnWizardUpdate() {
+        currentPath.UpdateTotalCollectables(totalCollectable);
+        helpString = description + totalCollectable;
     }
 
     void OnWizardCreate() {
         var finalPath = path + type.ToString() + ".prefab";
 
         var collectablePrefab = AssetDatabase.LoadAssetAtPath(finalPath, typeof(Collectable)) as Collectable;
-
-        foreach (var position in positionsCollectables) {
-            var newCollectable = Instantiate(collectablePrefab, position, Quaternion.identity);
+        
+        for (int i = 0; i < numberNewCollectables; i++) {
+            var newCollectable = Instantiate(collectablePrefab, Vector3.zero, Quaternion.identity);
             newCollectable.transform.SetParent(collectableContent);
         }
+
+        totalCollectable += numberNewCollectables;        
+        OnWizardUpdate();
+    }
+
+    void OnWizardOtherButton() {
+        var selectedTransform = Selection.activeTransform;
         
+        if (selectedTransform == null) return;
+      
+        if (selectedTransform.GetComponent<Collectable>() != null) {             
+            DestroyImmediate(selectedTransform.gameObject);
+            totalCollectable += -1;            
+        }
+        
+        OnWizardUpdate();
     }
 }

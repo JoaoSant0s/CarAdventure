@@ -5,18 +5,18 @@ using UnityEngine;
 public class PathController : MonoBehaviour {
 
     [SerializeField]
-    List<Transform> initialCharacterPosition;
-
-    [SerializeField]
-    List<SavePath> savePaths;
-
+    List<Transform> initialCharacterPosition;    
     [SerializeField]
     GameObject collectablesParent;
 
-    void Awake() {
-        for (int i = 0; i < savePaths.Count; i++) {
-            savePaths[i].Index = i;
-        }
+    private int totalCollectables;
+
+    public GameObject CollectableContent() {
+        return collectablesParent;
+    }
+
+    void Awake() {       
+        UpdateTotalCollectables(collectablesParent.transform.childCount);        
     }
 
     public List<Vector3> InitialCharacterPosition {
@@ -25,16 +25,18 @@ public class PathController : MonoBehaviour {
             return positionList;
         }
     } 
-    
-    public List<SavePoint> SavePoints {
-        get {
-            var savePointList = savePaths.ConvertAll<SavePoint>(x => new SavePoint(x.Index));
-            return savePointList;
-        }
+            
+    public void UpdateTotalCollectables(int number) {
+        totalCollectables = number;
     } 
 
-    public bool IsEmptyCollectables() {
-        return collectablesParent.transform.childCount == 0;
+    //Editor, not in game;
+    internal void AddingCollectables(int number) {
+        totalCollectables += number;
     }
-        
+
+    internal void RemoveCollectables() {
+        totalCollectables -= 1;
+    }
+
 }

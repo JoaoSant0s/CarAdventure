@@ -19,7 +19,6 @@ public class CarController : MonoBehaviour {
             carMotor.BackCar(-breakCar);            
         } else {
             if (acelerateCar > 0) {
-                carMotor.Reset();
                 carMotor.AcelerateCar(acelerateCar);
             }            
 

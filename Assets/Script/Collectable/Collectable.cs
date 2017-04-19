@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour {
 
-    public delegate void CheckCollectable(Transform agent);
+    public delegate void CheckCollectable(Collectable collectable);
     public static event CheckCollectable OnCheckCollectable;
 
     public enum CollectableType {
         GoldCollectable
     }
 
-    
     [SerializeField]
     CollectableType type;
+    [SerializeField]
+    int valueCollectable = 1;
            
     bool destroyed;
+
+    public int ValueCollectable {
+        get { return valueCollectable; }
+    }
 
     Animator animationCollected;
     void Awake() {
@@ -40,7 +45,7 @@ public class Collectable : MonoBehaviour {
             yield return null;
         } while (animationCollected.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9);
                       
-        if (OnCheckCollectable != null) OnCheckCollectable(agent);
+        if (OnCheckCollectable != null) OnCheckCollectable(this);
 
         animationCollected.enabled = false;
         DestroyObject(gameObject);        

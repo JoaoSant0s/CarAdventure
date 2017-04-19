@@ -9,4 +9,17 @@ public class Car : MonoBehaviour {
         get { return currentCharacter; }
         set { currentCharacter = value; }
     }
+
+    void Awake() {
+        Collectable.OnCheckCollectable += UpdateInventory;        
+    }
+
+    void OnDestroy() {
+        Collectable.OnCheckCollectable -= UpdateInventory;
+    }
+
+    void UpdateInventory(Collectable collectable) {
+        currentCharacter.UpdateGold(collectable.ValueCollectable);        
+    }
+
 }
