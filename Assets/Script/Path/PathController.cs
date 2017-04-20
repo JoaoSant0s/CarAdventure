@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathController : MonoBehaviour {
 
     [SerializeField]
-    List<Transform> initialCharacterPosition;    
+    Transform initialCharacterPosition;    
     [SerializeField]
     GameObject collectablesParent;
 
@@ -19,11 +19,8 @@ public class PathController : MonoBehaviour {
         UpdateTotalCollectables(collectablesParent.transform.childCount);        
     }
 
-    public List<Vector3> InitialCharacterPosition {
-        get {
-            var positionList = initialCharacterPosition.ConvertAll<Vector3>(x => x.position);
-            return positionList;
-        }
+    public Vector3 InitialCharacterPosition {
+        get { return initialCharacterPosition.position; }
     } 
             
     public void UpdateTotalCollectables(int number) {

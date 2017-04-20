@@ -24,7 +24,6 @@ public class PathManager : MonoBehaviour {
         currentPath = Instantiate(pathDefinition, new Vector3(0, 2, 0), Quaternion.identity);
         currentPath.transform.SetParent(pathDestiny);
 
-        CharacterManager.Instance.InitCars(currentPath.InitialCharacterPosition);
-        var characters = CharacterManager.Instance.Cars;       
+        CharacterManager.Instance.InitCar(currentPath.InitialCharacterPosition);             
     }     
 }

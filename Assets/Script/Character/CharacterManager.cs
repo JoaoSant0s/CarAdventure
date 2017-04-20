@@ -4,48 +4,41 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour {
 
+    public delegate void SetCarCamera();
+    public static event SetCarCamera OnSetCarCamera;
+
     [SerializeField]
     Car characterPrefab;
     [SerializeField]
     Transform carDestiny;
-
-    Dictionary<string, Character> characters;
-    Dictionary<Character, Car> cars;
+        
+    Character character;
+    Car car;
 
     private static CharacterManager instance;
     public static CharacterManager Instance {
         get { return instance; }
     }
 
+    public Car CurrentCar {
+        get { return car; }
+    }
+
     void Awake () {
-        instance = this;
-        characters = new Dictionary<string, Character>();
-        cars = new Dictionary<Character, Car>();
+        instance = this;                
+    }    
+
+    internal void InitializeCharacters(string name) {
+        character = new Character(name);        
     }
 
-    internal Dictionary<string, Character>.ValueCollection Characters {
-        get { return characters.Values; }
-    }
-
-    internal Dictionary<Character, Car>.ValueCollection Cars {
-        get { return cars.Values; }
-    }
-
-    internal void InitializeCharacters(string[] charactersName) {
-        foreach (var name in charactersName) {
-            characters[name] = new Character(name);
-        }     
-    }
-
-    internal void InitCars(List<Vector3> positions) {
+    internal void InitCar(Vector3 position) {
         ObjectManipulation.RemoveChilds(carDestiny);
 
-        int i = 0;
-        foreach (var character in characters.Values) {
-            cars[character] = Instantiate(characterPrefab, positions[i], Quaternion.identity);
-            cars[character].transform.SetParent(carDestiny);
-            cars[character].CurrentCharacter = character;
-            i++;
-        }                     
+        car = Instantiate(characterPrefab, position, Quaternion.identity);
+        car.transform.SetParent(carDestiny);
+        car.CurrentCharacter = character;        
+
+        if (OnSetCarCamera != null) OnSetCarCamera();
     }
 }

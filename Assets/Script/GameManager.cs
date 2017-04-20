@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [SerializeField]
-    string[] charactersName;
+    string charactersName;
 
     [SerializeField]
     CharacterManager characterManager;    
