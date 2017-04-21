@@ -3,14 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour {
-
-    [SerializeField]
-    int currentLevelIndex;
-    [SerializeField]
-    LevelCollection levelCollection;    
-
-    Level currentLevel;
+public class LevelManager : MonoBehaviour {        
 
     void Awake() {
         instance = this;
@@ -24,13 +17,7 @@ public class LevelManager : MonoBehaviour {
     private static LevelManager instance;
     public static LevelManager Instance {
         get { return instance; }
-    }
-
-    internal void NextLevel() {
-        currentLevel =  levelCollection.Levels[currentLevelIndex];        
-
-        PathManager.Instance.LoadPath(currentLevel.PathDefinition());        
-    }
+    }    
 
     void CollectedItem(Collectable collectable) {                
     }    

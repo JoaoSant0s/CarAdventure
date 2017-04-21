@@ -20,12 +20,6 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
-    }
-
-    void Start () {
-        characterManager.InitializeCharacters(charactersName);
-
-        levelManager.NextLevel();
-    }
+    }    
 		
 }

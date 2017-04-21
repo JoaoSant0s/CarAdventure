@@ -8,7 +8,7 @@ public class Car : MonoBehaviour {
     float life = 10f;
  
     Character currentCharacter;
-    const float maxLife = 10f;
+    const float maxLife = 10f;    
 
     public Character CurrentCharacter {
         get { return currentCharacter; }
@@ -29,7 +29,8 @@ public class Car : MonoBehaviour {
     }
 
     void Awake() {
-        Collectable.OnCheckCollectable += UpdateInventory;        
+        Collectable.OnCheckCollectable += UpdateInventory;
+        currentCharacter = new Character("Player");
     }
 
     void OnDestroy() {

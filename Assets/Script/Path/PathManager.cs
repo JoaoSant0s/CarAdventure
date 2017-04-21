@@ -3,10 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathManager : MonoBehaviour {
-
-    [SerializeField]
-    Transform pathDestiny;
+public class PathManager : MonoBehaviour {    
 
     private PathController currentPath;    
     private static PathManager instance;
@@ -18,12 +15,6 @@ public class PathManager : MonoBehaviour {
         instance = this;        
     }    
   
-    internal void LoadPath(PathController pathDefinition) {
-        ObjectManipulation.RemoveChilds(pathDestiny);
-               
-        currentPath = Instantiate(pathDefinition, new Vector3(0, 2, 0), Quaternion.identity);
-        currentPath.transform.SetParent(pathDestiny);
-
-        CharacterManager.Instance.InitCar(currentPath.InitialCharacterPosition);             
+    internal void LoadPath(PathController pathDefinition) {                 
     }     
 }
