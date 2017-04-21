@@ -48,12 +48,14 @@ public class AttackEnemy : Enemy {
 
 
     void Attack(Car car) {
+        
         attacking = true;
         if (lastAttackTime >= Time.timeSinceLevelLoad) return;
-                
+
+        transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);
         lastAttackTime = Time.timeSinceLevelLoad + cooldown;
 
-        Debug.Log(transform.forward);
+        car.ReduceLife(damage);          
     }
   
 }

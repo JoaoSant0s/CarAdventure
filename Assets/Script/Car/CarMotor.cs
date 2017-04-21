@@ -7,15 +7,11 @@ public class CarMotor : MonoBehaviour {
 
     [Header("Object balacing")]
     [SerializeField]
-    Transform centerMass;
-    [SerializeField]
-    float backValue;
+    Transform centerMass;    
 
     [Header("Controller values")]
     [SerializeField]
-    float maxTorque;
-    [SerializeField]
-    float breakTorque;
+    float maxTorque;    
     [SerializeField]
     float dragNotInteracting;
 
@@ -66,7 +62,7 @@ public class CarMotor : MonoBehaviour {
 
     internal void BackCar(float acelerate) {
         var torque = maxTorque * acelerate;
-
+                            
         Reset();
         wheelsColliders[0].motorTorque = torque;
         wheelsColliders[1].motorTorque = torque;

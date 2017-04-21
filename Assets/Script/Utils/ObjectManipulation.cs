@@ -10,4 +10,8 @@ public static class ObjectManipulation {
         }
     }
 
+    public static Vector3 ForwardNormalized(Vector3 startPoint, Vector3 target) {
+        return (target - startPoint).normalized;
+    }
+
 }
