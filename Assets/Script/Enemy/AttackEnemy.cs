@@ -45,8 +45,6 @@ public class AttackEnemy : Enemy {
 
         attacking = false;        
     }
-
-
     void Attack(Car car) {
         
         attacking = true;

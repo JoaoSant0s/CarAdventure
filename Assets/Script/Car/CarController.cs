@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour {
 
+    public delegate void ChangeCamera();
+    public static event ChangeCamera OnChangeCamera;
+
     CarMotor carMotor;
 
     void Start() {
@@ -14,7 +17,13 @@ public class CarController : MonoBehaviour {
         float steer = Input.GetAxis("Horizontal");        
         float breakCar = Input.GetAxis("Break");
         float acelerateCar = Input.GetAxis("Acelerate");
-        
+        var changeCamera = Input.GetButtonDown("ChangeCamera");
+
+        if (changeCamera) {
+            if (OnChangeCamera != null)
+                OnChangeCamera();
+        }
+
         if (breakCar > 0) {
             carMotor.BackCar(-breakCar);            
         } else {
@@ -25,9 +34,10 @@ public class CarController : MonoBehaviour {
             if (acelerateCar == 0) {
                 carMotor.ActiveTrackDrag();
             }
-        }                            
-
+        }
+                  
         carMotor.RotateFrontWheels(steer);
+        
     }
  
 }

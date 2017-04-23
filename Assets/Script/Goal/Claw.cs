@@ -7,34 +7,43 @@ public class Claw : MonoBehaviour {
 
     [SerializeField]
     Transform clawPoint;
-
+        
     [SerializeField]
-    float sphereRadius = 10;
+    Vector3 sizeGetGoal;
 
     bool usingClaw;
     bool goalCapured;
-    SphereCollider sphereCollider;
+    Goal currentGoal;
+    BoxCollider boxCollider;
 
     void Awake() {
         usingClaw = false;
         goalCapured = false;
-        sphereCollider = gameObject.GetComponent<SphereCollider>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     void OnTriggerEnter(Collider collider) {              
-
         if(!usingClaw) UsingClaw(collider);
+        if (usingClaw && !goalCapured) CaptureGoal(collider);        
+    }
 
-        if (usingClaw && !goalCapured) CaptureGoal(collider);
+    public Goal ReleaseGoal() {
+        if (!goalCapured) return null;
         
+        goalCapured = false;
+        
+        return currentGoal;
     }
 
     void CaptureGoal(Collider collider) {
-        var goal = collider.gameObject.GetComponentInParent<Goal>();
-        if (goal == null) return;
+        currentGoal = collider.gameObject.GetComponent<Goal>();
+                
+        if (currentGoal == null) return;
+        if (currentGoal.Active) return;
 
-        goal.transform.SetParent(clawPoint.transform);
-        goal.transform.localPosition = Vector3.zero;
+        currentGoal.transform.SetParent(clawPoint.transform);
+        currentGoal.transform.localScale = new Vector3(3f, 3f, 3f);
+        currentGoal.transform.localPosition = Vector3.zero;
         goalCapured = true;
     }
 
@@ -42,11 +51,12 @@ public class Claw : MonoBehaviour {
         var character = collider.gameObject.GetComponentInParent<Car>();
         if (character == null) return;
 
+        character.Claw = this;
         transform.SetParent(character.transform);
         transform.localPosition = new Vector3(0.1f, 0f, 0f);
         transform.rotation = new Quaternion(0, 0, 0, 0);
         usingClaw = true;
-        sphereCollider.radius = sphereRadius;
+        boxCollider.size = sizeGetGoal;
     }
 
 }

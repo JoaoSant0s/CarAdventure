@@ -5,21 +5,38 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [SerializeField]
-    string charactersName;
-
+    private Camera firstPersonCamera;
     [SerializeField]
-    CharacterManager characterManager;    
+    private Camera overheadCamera;
 
-    [SerializeField]
-    LevelManager levelManager;
-
-    private static GameManager instance;
-    public static GameManager Instance {
-        get { return instance; }
-    }
+    bool topCamera;
 
     void Awake() {
-        instance = this;
-    }    
+        ShowFirstPersonView();
+        topCamera = false;
+
+        CarController.OnChangeCamera += CameraController;
+    }
+
+    void CameraController() {
+
+        if (topCamera) {
+            ShowOverheadView();
+            topCamera = false;
+        } else {
+            ShowFirstPersonView();
+            topCamera = true;
+        }
+    }
+
+    void ShowOverheadView() {
+        firstPersonCamera.enabled = false;
+        overheadCamera.enabled = true;
+    }
+    void ShowFirstPersonView() {
+        firstPersonCamera.enabled = true;
+        overheadCamera.enabled = false;
+    }
+     
 		
 }

@@ -46,11 +46,7 @@ public class CarMotor : MonoBehaviour {
 
         wheelsColliders[2].steerAngle = finalSteer;
         wheelsColliders[3].steerAngle = finalSteer;        
-    }
-
-    internal void Reset() {
-        rb.drag = 0f;        
-    }
+    }    
 
     internal void AcelerateCar(float acelerate) {       
         var torque = maxTorque * acelerate;
@@ -62,10 +58,14 @@ public class CarMotor : MonoBehaviour {
 
     internal void BackCar(float acelerate) {
         var torque = maxTorque * acelerate;
-                            
-        Reset();
+
+        ActiveTrackDrag();        
         wheelsColliders[0].motorTorque = torque;
         wheelsColliders[1].motorTorque = torque;
+    }
+
+    internal void Reset() {
+        rb.drag = 0f;
     }
 
     internal void ActiveTrackDrag() {
