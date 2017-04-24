@@ -15,7 +15,7 @@ public class CarController : MonoBehaviour {
 
     void FixedUpdate() {
         float steer = Input.GetAxis("Horizontal");        
-        float breakCar = Input.GetAxis("Break");
+        float backCar = Input.GetAxis("Back");
         float acelerateCar = Input.GetAxis("Acelerate");
         var changeCamera = Input.GetButtonDown("ChangeCamera");
 
@@ -24,8 +24,8 @@ public class CarController : MonoBehaviour {
                 OnChangeCamera();
         }
 
-        if (breakCar > 0) {
-            carMotor.BackCar(-breakCar);            
+        if (backCar > 0) {
+            carMotor.BackCar(-backCar);            
         } else {
             if (acelerateCar > 0) {
                 carMotor.AcelerateCar(acelerateCar);
