@@ -19,12 +19,13 @@ public class WaterEnd : MonoBehaviour {
         if (character == null || destroyObject) return;
         destroyObject = true;
 
-        StartCoroutine(DestroyCar(character.gameObject));
+        StartCoroutine(DestroyCar(character));
     }
 
-    IEnumerator DestroyCar(GameObject ob) {
+    IEnumerator DestroyCar(Car car) {
         yield return new WaitForSeconds(timeToDestroy);
-        DestroyObject(ob);
+        car.Destroy();
+        
     }
 
 }

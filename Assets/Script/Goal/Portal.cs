@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour {
 
+    public delegate void ActivePortalCam();
+    public static event ActivePortalCam OnActivePortalCam;
+
     [SerializeField]
     GameObject prefabBlack;
     [SerializeField]
     float spawnTime = 2f;
+    [SerializeField]
+    float camTime = 1.5f;
     [SerializeField]
     Transform finalPosition;
 
@@ -44,6 +49,17 @@ public class Portal : MonoBehaviour {
         if (!result) return;
         complete = true;
 
+        ActivePortal();
+
+    }
+
+    void ActivePortal() {
+        if (OnActivePortalCam != null) OnActivePortalCam();
+        StartCoroutine(ActivePortalCoroutine());
+    }
+
+    IEnumerator ActivePortalCoroutine() {
+        yield return new WaitForSeconds(camTime);
         foreach (var goal in goals) {
             DestroyObject(goal.gameObject);
         }
@@ -51,7 +67,7 @@ public class Portal : MonoBehaviour {
 
         GenerateNewCube();
     }
-    void GenerateNewCube() {        
+    void GenerateNewCube() {               
         StartCoroutine(GenerateNewCubeCoroutine());
     }
 
@@ -63,6 +79,7 @@ public class Portal : MonoBehaviour {
         finalBlock.transform.SetParent(transform);
         finalBlock.transform.position = finalPosition.position;
         finalBlock.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        Time.timeScale = 0f;
     }    
 
 }

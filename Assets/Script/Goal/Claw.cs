@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Claw : MonoBehaviour {
+    public delegate void CatchClaw();
+    public static event CatchClaw OnCatchClaw;
 
     [SerializeField]
     Transform clawPoint;
@@ -51,11 +53,17 @@ public class Claw : MonoBehaviour {
         var character = collider.gameObject.GetComponentInParent<Car>();
         if (character == null) return;
 
+        SetCarClaw(character);       
+
+        if (OnCatchClaw != null) OnCatchClaw();
+    }
+
+    internal void SetCarClaw(Car character) {
+        usingClaw = true;
         character.Claw = this;
         transform.SetParent(character.transform);
         transform.localPosition = new Vector3(0.1f, 0f, 0f);
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-        usingClaw = true;
+        transform.rotation = new Quaternion(0, 0, 0, 0);        
         boxCollider.size = sizeGetGoal;
     }
 

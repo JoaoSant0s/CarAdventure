@@ -1,8 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Car : MonoBehaviour {
+
+    public delegate void DestroyCar();
+    public static event DestroyCar OnDestroyCar;
+
+    public delegate void UpdateHUD(float newLife);
+    public static event UpdateHUD OnUpdateHUD;
 
     [SerializeField]
     float life = 10f;
@@ -30,14 +37,26 @@ public class Car : MonoBehaviour {
         life += addiction;
         life = Mathf.Min(life, maxLife);
     }
+
     internal void ReduceLife(float damage) {
         life -= damage;
         life = Mathf.Max(life, 0f);
-        Debug.Log(life);
+        if (OnUpdateHUD != null) OnUpdateHUD(life);
+
+        if (life == 0f) Destroy();
+                
+    }    
+
+    internal void Destroy() {
+        if (OnDestroyCar != null) OnDestroyCar();
+        UIController.Instance.DeadState();
+        DestroyObject(gameObject);
     }
+
 
     void Awake() {        
         currentCharacter = new Character("Player");
+        if (OnUpdateHUD != null) OnUpdateHUD(life);
     }    
 
 }

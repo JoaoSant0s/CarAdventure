@@ -20,8 +20,7 @@ public class CarController : MonoBehaviour {
         var changeCamera = Input.GetButtonDown("ChangeCamera");
 
         if (changeCamera) {
-            if (OnChangeCamera != null)
-                OnChangeCamera();
+            if (OnChangeCamera != null) OnChangeCamera();
         }
 
         if (backCar > 0) {

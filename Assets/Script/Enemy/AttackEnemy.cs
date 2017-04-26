@@ -15,6 +15,7 @@ public class AttackEnemy : Enemy {
     void Awake() {
         lastAttackTime = 0f;
         TargetCharacter.OnCheckTarget += CheckTarget;
+        DeathController.OnUpdateGameState += ResetState;        
     }
 
     void OnDestroy() {
@@ -45,6 +46,12 @@ public class AttackEnemy : Enemy {
 
         attacking = false;        
     }
+
+    void ResetState() {
+        attacking = false;
+        Motor.Move(StartPosition);
+    }
+
     void Attack(Car car) {
         
         attacking = true;

@@ -12,10 +12,18 @@ public class FollowCar : MonoBehaviour {
         offset = currentCar.transform.position - transform.position;
 	}
 
+    bool CheckCar() {
+        if (currentCar == null) {
+            currentCar = FindObjectOfType<Car>();
+        }
+        return currentCar == null;
+    }
+
     void FixedUpdate() {
+        if (CheckCar()) return;
+
         var newPosition = currentCar.transform.position + offset;
         transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
-
     }
 	
 }
