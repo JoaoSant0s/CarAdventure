@@ -58,6 +58,12 @@ public class Claw : MonoBehaviour {
         if (OnCatchClaw != null) OnCatchClaw();
     }
 
+    internal void ResetGoal() {
+        if (currentGoal == null) return;
+        currentGoal.Reset();
+        goalCapured = false;
+    }
+
     internal void SetCarClaw(Car character) {
         usingClaw = true;
         character.Claw = this;

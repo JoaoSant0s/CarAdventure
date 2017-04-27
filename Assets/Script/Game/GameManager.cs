@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
         Car.OnDestroyCar += Died;
         DeathController.OnSpawnCar += SpawnCar;
         Claw.OnCatchClaw += UsingClaw;
+        EndController.OnNumberDeads += NumberDeads;
+        EndController.OnFinalTime += FinalTime;
     }
     
     float FinalTime() {

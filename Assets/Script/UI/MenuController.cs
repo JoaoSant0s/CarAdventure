@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
+
+    public delegate void ActiveControlPopup();
+    public static event ActiveControlPopup OnActiveControlPopup;
 
     [SerializeField]
     GameObject menuObject;
@@ -22,6 +24,6 @@ public class MenuController : MonoBehaviour {
     }    
 
     public void OpenControls() {
-
+        if (OnActiveControlPopup != null) OnActiveControlPopup();
     }
 }

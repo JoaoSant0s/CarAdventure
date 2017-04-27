@@ -29,8 +29,10 @@ public class UIController : MonoBehaviour {
 
     private UIState uiState;
     private static UIController instance;
+    bool blockScreens;
 
-    void Start() {
+    void Awake() {
+        //DontDestroyOnLoad(gameObject);
         instance = this;
         uiState = UIState.menu;
         Time.timeScale = 0f;
@@ -41,8 +43,20 @@ public class UIController : MonoBehaviour {
         get { return instance; }
     }
 
+    public void MenuState() {
+        uiState = UIState.menu;
+        Time.timeScale = 0f;
+        DefyingScreen();
+    }
+
     public void DeadState() {
         uiState = UIState.dead;
+        Time.timeScale = 0f;
+        DefyingScreen();
+    }
+
+    public void EndState() {
+        uiState = UIState.end;
         Time.timeScale = 0f;
         DefyingScreen();
     }
@@ -54,14 +68,15 @@ public class UIController : MonoBehaviour {
     }
 
     void DefyingScreen() {
+        if (blockScreens) return;
 
         if (OnActiveMenuScreen != null) OnActiveMenuScreen(uiState == UIState.menu);
         if (OnActivePauseScreen != null) OnActivePauseScreen(uiState == UIState.pause);
         if (OnActiveHUDScreen != null) OnActiveHUDScreen(uiState == UIState.hud);
-
-        if (OnActiveEndtScreen != null) OnActiveEndtScreen(uiState == UIState.end);
         if (OnActiveDeathScreen != null) OnActiveDeathScreen(uiState == UIState.dead);
+        if (OnActiveEndtScreen != null) OnActiveEndtScreen(uiState == UIState.end);
 
+        blockScreens = uiState == UIState.end;
     }
 
     void Update () {
@@ -74,7 +89,6 @@ public class UIController : MonoBehaviour {
                 Time.timeScale = 0f;
                 uiState = UIState.pause;
             }            
-            
             DefyingScreen();
         }	
 	}

@@ -6,7 +6,7 @@ using System.Collections;
 public class EnemyMotor : MonoBehaviour {    
 
     Rigidbody body;
-    NavMeshAgent pathFinder;
+    NavMeshAgent pathFinder;    
 
     float smoothDirection;
     float smoothDirectionVelocity;
@@ -14,8 +14,7 @@ public class EnemyMotor : MonoBehaviour {
     void Start() {
         pathFinder = GetComponent<NavMeshAgent>();
 
-        body = GetComponent<Rigidbody>();
-       
+        body = GetComponent<Rigidbody>();        
     }   
 
     public void Move(Vector3 targetDestiny) {

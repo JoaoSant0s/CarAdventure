@@ -10,7 +10,7 @@ public class HUDController : MonoBehaviour {
     [SerializeField]
     Text lifeText;
 
-    string lifes = "Vidas = {0}";
+    string lifes = "{0}";
 
     void Awake() {
         UIController.OnActiveHUDScreen += ActiveHUD;

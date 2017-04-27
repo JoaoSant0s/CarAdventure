@@ -13,11 +13,17 @@ public class Car : MonoBehaviour {
 
     [SerializeField]
     float life = 10f;
- 
+    [SerializeField]
+    Transform bodyGraphic;
+
+    const float maxLife = 10f;
     Character currentCharacter;
     Claw claw;
-    const float maxLife = 10f;    
-
+    MeshRenderer bodyBottom;
+    MeshRenderer bodyTop;
+    Color bodyColor;
+    bool imortality;
+        
     public Character CurrentCharacter {
         get { return currentCharacter; }
         set { currentCharacter = value; }
@@ -33,29 +39,58 @@ public class Car : MonoBehaviour {
         set { claw = value; }
     }
 
-    internal void IncrementLife(float addiction) {
+    internal void IncrementLife(float addiction) {        
         life += addiction;
         life = Mathf.Min(life, maxLife);
     }
 
     internal void ReduceLife(float damage) {
+        if (imortality) return;
+
         life -= damage;
         life = Mathf.Max(life, 0f);
         if (OnUpdateHUD != null) OnUpdateHUD(life);
-
-        if (life == 0f) Destroy();
-                
+        if (life != 0f) {
+            StartCoroutine(ImortalityCoroutine());
+        }else {
+            Destroy();
+        }
     }    
+
+    IEnumerator ImortalityCoroutine() {
+        imortality = true;
+
+        bodyTop.material.color = Color.black;
+        bodyBottom.material.color = Color.black;                
+        yield return new WaitForSeconds(0.5f);
+        bodyTop.material.color = bodyColor;
+        bodyBottom.material.color = bodyColor;
+
+        yield return new WaitForSeconds(0.5f);
+        bodyTop.material.color = Color.black;
+        bodyBottom.material.color = Color.black;
+
+        yield return new WaitForSeconds(0.5f);
+        bodyTop.material.color = bodyColor;
+        bodyBottom.material.color = bodyColor;
+
+        imortality = false;        
+    }
 
     internal void Destroy() {
         if (OnDestroyCar != null) OnDestroyCar();
+        if (claw != null) claw.ResetGoal();
+
         UIController.Instance.DeadState();
         DestroyObject(gameObject);
     }
 
-
     void Awake() {        
+        bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
+        bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
+        bodyColor = bodyBottom.material.color;
         currentCharacter = new Character("Player");
+        imortality = false;
         if (OnUpdateHUD != null) OnUpdateHUD(life);
     }    
 

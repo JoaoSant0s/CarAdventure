@@ -11,11 +11,17 @@ public class AttackEnemy : Enemy {
 
     float lastAttackTime;
     bool attacking;
+    Animator animator;
 
     void Awake() {
-        lastAttackTime = 0f;
+
         TargetCharacter.OnCheckTarget += CheckTarget;
-        DeathController.OnUpdateGameState += ResetState;        
+        DeathController.OnUpdateGameState += ResetState;
+
+        lastAttackTime = 0f;
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+     
     }
 
     void OnDestroy() {
@@ -27,8 +33,10 @@ public class AttackEnemy : Enemy {
         if (attacking) return;
 
         if (moveToTarget) {
+            animator.enabled = true;
             Motor.Move(targetDestiny);
         } else {
+            animator.enabled = false;
             Motor.Move(StartPosition);
         }
 
@@ -49,12 +57,13 @@ public class AttackEnemy : Enemy {
 
     void ResetState() {
         attacking = false;
+        animator.enabled = false;
         Motor.Move(StartPosition);
     }
 
-    void Attack(Car car) {
-        
+    void Attack(Car car) {        
         attacking = true;
+        Motor.Stop();
         if (lastAttackTime >= Time.timeSinceLevelLoad) return;
 
         transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);

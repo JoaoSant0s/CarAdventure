@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour {
     [SerializeField]
     GameObject prefabBlack;
     [SerializeField]
-    float spawnTime = 2f;
+    float timeController = 2f;
     [SerializeField]
     float camTime = 1.5f;
     [SerializeField]
@@ -72,14 +72,19 @@ public class Portal : MonoBehaviour {
     }
 
     IEnumerator GenerateNewCubeCoroutine() {
-        yield return new WaitForSeconds(spawnTime);
+        yield return new WaitForSeconds(timeController);
 
         var finalBlock = Instantiate(prefabBlack, transform.position, Quaternion.identity);
-
         finalBlock.transform.SetParent(transform);
         finalBlock.transform.position = finalPosition.position;
-        finalBlock.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        Time.timeScale = 0f;
+        finalBlock.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);        
+
+        StartCoroutine(EndUICoroutine());
     }    
+
+    IEnumerator EndUICoroutine() {
+        yield return new WaitForSeconds(timeController / 2);
+        UIController.Instance.EndState();
+    }
 
 }
