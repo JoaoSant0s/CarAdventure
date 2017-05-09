@@ -3,43 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Claw : MonoBehaviour {
+public class ClawCamera : MonoBehaviour {
 
     [SerializeField]
-    private float lookSensitivity = 3f;
-    [SerializeField]
-    private float cameraRotationLimitX = 85f;
+    private float lookSensitivity = 3f;    
     [SerializeField]
     private float cameraRotationLimitY = 45f;
     [SerializeField]
     private Transform center;
+
+    private const float fixedRotation = -90f;
 
     private Vector3 v;
     private float cameraRotationX = 0f;
     private float cameraRotationY = 0f;
     private float currentCameraRotationX = 0f;
     private float currentCameraRotationY = 0f;
-
+    
     void Start() {
+        Cursor.visible = false;        
         v = (transform.position - center.position);
     }
 
-    void Update() {        
+    void Update() {
         RotationCamera();
-    }
-
-    void RotationCamera() {
-        float xRot = Input.GetAxisRaw("Mouse X");
-        float rotationCameraX = xRot * lookSensitivity;
-
-        float yRot = Input.GetAxisRaw("Mouse Y");
-        float rotationCameraY = yRot * lookSensitivity;        
-        RotationCamera(rotationCameraX, rotationCameraY);
-    }
-
-    void FixedUpdate() {        
         PerformRotationCamera();
     }
+
+    void RotationCamera() {        
+        float xRot = Input.GetAxis("Mouse X");
+        float rotationCameraX = xRot * lookSensitivity;
+
+        float yRot = Input.GetAxis("Mouse Y");
+        float rotationCameraY = yRot * lookSensitivity;        
+          
+        RotationCamera(rotationCameraX, rotationCameraY);        
+    }    
 
     void PerformRotation() {        
         PerformRotationCamera();
@@ -51,15 +50,15 @@ public class Claw : MonoBehaviour {
     }
 
     void PerformRotationCamera() {
-        currentCameraRotationX -= cameraRotationX;
-        currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimitX, cameraRotationLimitX);
+        currentCameraRotationX -= cameraRotationX;        
 
         currentCameraRotationY -= cameraRotationY;
-        currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);
-        var rotation = new Vector3(currentCameraRotationY, -currentCameraRotationX, 0f);
-        transform.localEulerAngles = rotation;
+        currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);               
 
-        transform.position = center.position + Quaternion.Euler(rotation) * v;
+        var rotation = Quaternion.Euler(currentCameraRotationY, -currentCameraRotationX + fixedRotation, 0);
+
+        transform.rotation = rotation;
+        transform.position = center.position + rotation * v;
     }
 
 }

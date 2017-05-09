@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     Car carPrefab;
     [SerializeField]
-    Claw clawPrefab;
+    ClawCamera clawPrefab;
 
     int numberDeads;           
 
