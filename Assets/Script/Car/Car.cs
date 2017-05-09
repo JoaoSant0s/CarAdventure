@@ -17,8 +17,7 @@ public class Car : MonoBehaviour {
     Transform bodyGraphic;
 
     const float maxLife = 10f;
-    Character currentCharacter;
-    Claw claw;
+    Character currentCharacter;    
     MeshRenderer bodyBottom;
     MeshRenderer bodyTop;
     Color bodyColor;
@@ -32,12 +31,7 @@ public class Car : MonoBehaviour {
     internal float Life {
         get { return life; }
         set { life = value; }
-    }
-
-    public Claw Claw {
-        get { return claw; }
-        set { claw = value; }
-    }
+    }    
 
     internal void IncrementLife(float addiction) {        
         life += addiction;
@@ -78,8 +72,7 @@ public class Car : MonoBehaviour {
     }
 
     internal void Destroy() {
-        if (OnDestroyCar != null) OnDestroyCar();
-        if (claw != null) claw.ResetGoal();
+        if (OnDestroyCar != null) OnDestroyCar();        
 
         UIController.Instance.DeadState();
         DestroyObject(gameObject);

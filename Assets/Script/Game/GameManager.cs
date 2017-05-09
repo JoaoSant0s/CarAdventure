@@ -11,14 +11,12 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     Claw clawPrefab;
 
-    int numberDeads;
-    bool haveClaw;         
+    int numberDeads;           
 
     void Awake() {
         numberDeads = 0;
         Car.OnDestroyCar += Died;
-        DeathController.OnSpawnCar += SpawnCar;
-        Claw.OnCatchClaw += UsingClaw;
+        DeathController.OnSpawnCar += SpawnCar;        
         EndController.OnNumberDeads += NumberDeads;
         EndController.OnFinalTime += FinalTime;
     }
@@ -33,20 +31,11 @@ public class GameManager : MonoBehaviour {
 
     void Died() {
         numberDeads++;
-    }
-
-    void UsingClaw() {
-        haveClaw = true;
-    }
+    }   
 
     void SpawnCar() {        
 
-        var currentCar = Instantiate(carPrefab, spawnPosition.position, Quaternion.identity);
-        
-        if (haveClaw) {
-            var currentClaw = Instantiate(clawPrefab);
-            currentClaw.SetCarClaw(currentCar);
-        }            
+        var currentCar = Instantiate(carPrefab, spawnPosition.position, Quaternion.identity);               
 
         currentCar.transform.SetParent(spawnPosition.parent);
     }

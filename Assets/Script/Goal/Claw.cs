@@ -4,73 +4,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Claw : MonoBehaviour {
-    public delegate void CatchClaw();
-    public static event CatchClaw OnCatchClaw;
 
     [SerializeField]
-    Transform clawPoint;
-        
+    private float lookSensitivity = 3f;
     [SerializeField]
-    Vector3 sizeGetGoal;
+    private float cameraRotationLimitX = 85f;
+    [SerializeField]
+    private float cameraRotationLimitY = 45f;
+    [SerializeField]
+    private Transform center;
 
-    bool usingClaw;
-    bool goalCapured;
-    Goal currentGoal;
-    BoxCollider boxCollider;
+    private Vector3 v;
+    private float cameraRotationX = 0f;
+    private float cameraRotationY = 0f;
+    private float currentCameraRotationX = 0f;
+    private float currentCameraRotationY = 0f;
 
-    void Awake() {
-        usingClaw = false;
-        goalCapured = false;
-        boxCollider = GetComponent<BoxCollider>();
+    void Start() {
+        v = (transform.position - center.position);
     }
 
-    void OnTriggerEnter(Collider collider) {              
-        if(!usingClaw) UsingClaw(collider);
-        if (usingClaw && !goalCapured) CaptureGoal(collider);        
+    void Update() {        
+        RotationCamera();
     }
 
-    public Goal ReleaseGoal() {
-        if (!goalCapured) return null;
-        
-        goalCapured = false;
-        
-        return currentGoal;
+    void RotationCamera() {
+        float xRot = Input.GetAxisRaw("Mouse X");
+        float rotationCameraX = xRot * lookSensitivity;
+
+        float yRot = Input.GetAxisRaw("Mouse Y");
+        float rotationCameraY = yRot * lookSensitivity;        
+        RotationCamera(rotationCameraX, rotationCameraY);
     }
 
-    void CaptureGoal(Collider collider) {
-        currentGoal = collider.gameObject.GetComponent<Goal>();
-                
-        if (currentGoal == null) return;
-        if (currentGoal.Active) return;
-
-        currentGoal.transform.SetParent(clawPoint.transform);
-        currentGoal.transform.localScale = new Vector3(3f, 3f, 3f);
-        currentGoal.transform.localPosition = Vector3.zero;
-        goalCapured = true;
+    void FixedUpdate() {        
+        PerformRotationCamera();
     }
 
-    void UsingClaw(Collider collider) {
-        var character = collider.gameObject.GetComponentInParent<Car>();
-        if (character == null) return;
-
-        SetCarClaw(character);       
-
-        if (OnCatchClaw != null) OnCatchClaw();
+    void PerformRotation() {        
+        PerformRotationCamera();
     }
 
-    internal void ResetGoal() {
-        if (currentGoal == null) return;
-        currentGoal.Reset();
-        goalCapured = false;
+    public void RotationCamera(float _cameraRotationX, float _cameraRotationY) {
+        cameraRotationX = _cameraRotationX;
+        cameraRotationY = _cameraRotationY;
     }
 
-    internal void SetCarClaw(Car character) {
-        usingClaw = true;
-        character.Claw = this;
-        transform.SetParent(character.transform);
-        transform.localPosition = new Vector3(0.1f, 0f, 0f);
-        transform.rotation = new Quaternion(0, 0, 0, 0);        
-        boxCollider.size = sizeGetGoal;
+    void PerformRotationCamera() {
+        currentCameraRotationX -= cameraRotationX;
+        currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimitX, cameraRotationLimitX);
+
+        currentCameraRotationY -= cameraRotationY;
+        currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);
+        var rotation = new Vector3(currentCameraRotationY, -currentCameraRotationX, 0f);
+        transform.localEulerAngles = rotation;
+
+        transform.position = center.position + Quaternion.Euler(rotation) * v;
     }
 
 }
