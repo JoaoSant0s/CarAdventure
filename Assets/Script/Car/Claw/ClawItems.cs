@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class ClawItems : MonoBehaviour {
 
-    [SerializeField]
-    private int selectedItem = 0;
+    public delegate void SelectedItem(ItemList.ItemType itemId);
+    public static event SelectedItem OnSelectedItem;
+
+    public delegate void UpdateItems(List<ItemList.ItemType> list);
+    public static event UpdateItems OnUpdateItems;
 
     [SerializeField]
-    private Transform targetDirection;
+    int selectedItem = 0;
+    [SerializeField]
+    List<ItemList.ItemType> items = new List<ItemList.ItemType>();
+    [SerializeField]
+    Transform targetDirection;    
 
-    private List<int> items = new List<int>(new int[] {1, 2, 3});
-    private LineRenderer line;
-    private Ray ray;
+    LineRenderer line;
+    Ray ray;
 
-    void Start() {                
-        SelectItem();
+    void Start() {
         line = GetComponent<LineRenderer>();
-        
-    }
+        if (OnUpdateItems != null) OnUpdateItems(items);
+
+        SelectItem();                  
+    }    
 
     void Update() {
 
         RaycastHit hit;
-
         ray = new Ray(targetDirection.position, targetDirection.forward);
         line.SetPosition(0, ray.origin);
 
@@ -76,15 +82,12 @@ public class ClawItems : MonoBehaviour {
             if(Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
                 Debug.Log(hit.transform.name);
             }
-
-            
         }
     }
 
     void SelectItem () {
+        if (OnSelectedItem != null) OnSelectedItem(items[selectedItem]);
         Debug.Log(selectedItem);
     }                             
-
-
 
 }

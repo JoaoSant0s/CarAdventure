@@ -1,29 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FollowCar : MonoBehaviour {
 
     [SerializeField]
-    Car currentCar;
+    Transform targetedUnit;
+    [SerializeField]
+    Color colorPoint;
 
-    Vector3 offset;	
-	void Awake () {
-        offset = currentCar.transform.position - transform.position;
-	}
+    RectTransform rectTransform;
+    Image rawImage;
+    Camera cam;  
 
-    bool CheckCar() {
-        if (currentCar == null) {
-            currentCar = FindObjectOfType<Car>();
-        }
-        return currentCar == null;
+	void Start () {
+        InitGlobalVariables();
+
+        rawImage.color = new Color(colorPoint.r, colorPoint.g, colorPoint.b);
     }
 
-    void FixedUpdate() {
-        if (CheckCar()) return;
-
-        var newPosition = currentCar.transform.position + offset;
-        transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
+    void InitGlobalVariables() {
+        rectTransform = (RectTransform)transform;
+        cam = GameObject.FindGameObjectWithTag("MiniMapCamera").GetComponent<Camera>();
+        rawImage = GetComponent<Image>();
     }
-	
+
+    void Update() {
+        Vector3 screenPos = cam.WorldToViewportPoint(targetedUnit.position);                
+        rectTransform.anchorMin = screenPos;
+        rectTransform.anchorMax = screenPos;       
+    }
+
 }
