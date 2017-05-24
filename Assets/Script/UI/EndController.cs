@@ -1,46 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class EndController : MonoBehaviour {
+namespace CarAdventure.Controller.UI {
+    public class EndController : MonoBehaviour {
 
-    public delegate float FinalTime();
-    public static event FinalTime OnFinalTime;
+        public delegate float FinalTime();
+        public static event FinalTime OnFinalTime;
 
-    public delegate float NumberDeads();
-    public static event NumberDeads OnNumberDeads;
+        public delegate float NumberDeads();
+        public static event NumberDeads OnNumberDeads;
 
-    [SerializeField]
-    GameObject endObject;
+        [SerializeField]
+        GameObject endObject;
 
-    [SerializeField]
-    Text lifeTime;
-    [SerializeField]
-    Text deathsNumbers;
+        [SerializeField]
+        Text lifeTime;
+        [SerializeField]
+        Text deathsNumbers;
 
-    string lifeText = "Tempo de vida: {0} min";
-    string deathsText = "Número de mortes: {0}";
+        string lifeText = "Tempo de vida: {0} min";
+        string deathsText = "Número de mortes: {0}";
 
-    void Awake() {
-       UIController.OnActiveEndtScreen += ActiveEnd;
-    }
-
-    void ActiveEnd(bool active) {
-        if (OnFinalTime != null) {
-            lifeTime.text = string.Format(lifeText, (int) OnFinalTime());
+        void Awake() {
+            UIController.OnActiveEndtScreen += ActiveEnd;
         }
 
-        if (OnNumberDeads != null) {
-            deathsNumbers.text = string.Format(deathsText, OnNumberDeads());            
-        }        
+        void ActiveEnd(bool active) {
+            if (OnFinalTime != null) {
+                lifeTime.text = string.Format(lifeText, (int)OnFinalTime());
+            }
 
-        endObject.SetActive(active);
+            if (OnNumberDeads != null) {
+                deathsNumbers.text = string.Format(deathsText, OnNumberDeads());
+            }
+
+            endObject.SetActive(active);
+        }
+
+        public void ButtonQuit() {
+            Application.Quit();
+        }
+
     }
-
-    public void ButtonQuit() {
-        Application.Quit();
-    }
-
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections;		
- using System.Collections.Generic;		
- using UnityEngine;		
- 		
+﻿
+using UnityEngine;
+using CarAdventure.Entity.Component;
+
  public class ScriptableObjectEditor : ScriptableObject {		
  		
      #if UNITY_EDITOR		

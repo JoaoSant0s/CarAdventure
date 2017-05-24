@@ -1,25 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using CarAdventure.Entity;
 
-public class TargetCharacter : MonoBehaviour {
+namespace CarAdventure.Entity.Component { 
 
-    public delegate void CheckTarget(Vector3 targetDestiny, bool attack);
-    public static event CheckTarget OnCheckTarget;
+    public class TargetCharacter : MonoBehaviour {
 
-    private string targetTag = "Player";   
+        public delegate void CheckTarget(Vector3 targetDestiny, bool attack);
+        public static event CheckTarget OnCheckTarget;
 
-    void OnTriggerStay(Collider collider){
-        var character = collider.gameObject.GetComponentInParent<Car>();                
-        if (character == null) return;
+        private string targetTag = "Player";   
 
-        if (OnCheckTarget != null) OnCheckTarget(character.transform.position, true);
+        void OnTriggerStay(Collider collider){
+            var character = collider.gameObject.GetComponentInParent<Car>();                
+            if (character == null) return;
+
+            if (OnCheckTarget != null) OnCheckTarget(character.transform.position, true);
+        }
+
+        void OnTriggerExit(Collider collider) {
+            var character = collider.gameObject.GetComponentInParent<Car>();
+            if (character == null) return;
+
+            if (OnCheckTarget != null) OnCheckTarget(character.transform.position, false);
+        }
     }
 
-    void OnTriggerExit(Collider collider) {
-        var character = collider.gameObject.GetComponentInParent<Car>();
-        if (character == null) return;
-
-        if (OnCheckTarget != null) OnCheckTarget(character.transform.position, false);
-    }
 }

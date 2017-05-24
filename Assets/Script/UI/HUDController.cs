@@ -1,28 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
+using CarAdventure.Entity;
 
-public class HUDController : MonoBehaviour {
+namespace CarAdventure.Controller.UI { 
 
-    [SerializeField]
-    GameObject hudObject;
-    [SerializeField]
-    Text lifeText;
+    public class HUDController : MonoBehaviour {
 
-    string lifes = "{0}";
+        [SerializeField]
+        GameObject hudObject;
+        [SerializeField]
+        Text lifeText;
 
-    void Awake() {
-        UIController.OnActiveHUDScreen += ActiveHUD;
-        Car.OnUpdateHUD += UpdateLife;
-    }
+        string lifes = "{0}";
 
-    void UpdateLife(float number) {
-        lifeText.text = string.Format(lifes, number);
-    }
+        void Awake() {
+            UIController.OnActiveHUDScreen += ActiveHUD;
+            Car.OnUpdateHUD += UpdateLife;
+        }
 
-    void ActiveHUD(bool active) {
-        hudObject.SetActive(active);
-    }
+        void UpdateLife(float number) {
+            lifeText.text = string.Format(lifes, number);
+        }
+
+        void ActiveHUD(bool active) {
+            hudObject.SetActive(active);
+        }
     
+    }
 }

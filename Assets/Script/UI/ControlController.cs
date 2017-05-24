@@ -1,23 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class ControlController : MonoBehaviour {
+namespace CarAdventure.Controller.UI {
 
-    [SerializeField]
-    GameObject controlObject;
+    public class ControlController : MonoBehaviour {
 
-    void Awake() {
-        PauseController.OnActiveControlPopup += ActiveControl;
-        MenuController.OnActiveControlPopup += ActiveControl;
+        [SerializeField]
+        GameObject controlObject;
+
+        void Awake() {
+            PauseController.OnActiveControlPopup += ActiveControl;
+            MenuController.OnActiveControlPopup += ActiveControl;
+        }
+
+        void ActiveControl() {
+            controlObject.SetActive(true);
+        }
+
+        public void CloseScreen() {
+            controlObject.SetActive(false);
+        }
+
     }
-
-    void ActiveControl() {
-        controlObject.SetActive(true);
-    }
-
-    public void CloseScreen() {
-        controlObject.SetActive(false);
-    }
-
 }

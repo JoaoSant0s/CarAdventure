@@ -1,65 +1,65 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class ClawCamera : MonoBehaviour {
+namespace CarAdventure.Entity.Component {
+    public class ClawCamera : MonoBehaviour {
 
-    [SerializeField]
-    private float lookSensitivity = 3f;    
-    [SerializeField]
-    private float cameraRotationLimitY = 45f;
-    [SerializeField]
-    private Transform center;
+        [SerializeField]
+        private float lookSensitivity = 3f;
+        [SerializeField]
+        private float cameraRotationLimitY = 45f;
+        [SerializeField]
+        private Transform center;
 
-    private const float fixedRotation = -90f;
+        private const float fixedRotation = -90f;
 
-    private Vector3 v;
-    private float cameraRotationX = 0f;
-    private float cameraRotationY = 0f;
-    private float currentCameraRotationX = 0f;
-    private float currentCameraRotationY = 0f;
-    
-    void Start() {
-        Cursor.visible = false;        
-        v = (transform.position - center.position);
-    }
+        private Vector3 v;
+        private float cameraRotationX = 0f;
+        private float cameraRotationY = 0f;
+        private float currentCameraRotationX = 0f;
+        private float currentCameraRotationY = 0f;
 
-    void Update() {
-        RotationCamera();
-        PerformRotationCamera();
-    }
+        void Start() {
+            Cursor.visible = false;
+            v = (transform.position - center.position);
+        }
 
-    void RotationCamera() {        
-        float xRot = Input.GetAxis("Mouse X");
-        float rotationCameraX = xRot * lookSensitivity;
+        void Update() {
+            RotationCamera();
+            PerformRotationCamera();
+        }
 
-        float yRot = Input.GetAxis("Mouse Y");
-        float rotationCameraY = yRot * lookSensitivity;        
-          
-        RotationCamera(rotationCameraX, rotationCameraY);        
-    }    
+        void RotationCamera() {
+            float xRot = Input.GetAxis("Mouse X");
+            float rotationCameraX = xRot * lookSensitivity;
 
-    void PerformRotation() {        
-        PerformRotationCamera();
-    }
+            float yRot = Input.GetAxis("Mouse Y");
+            float rotationCameraY = yRot * lookSensitivity;
 
-    public void RotationCamera(float _cameraRotationX, float _cameraRotationY) {
-        cameraRotationX = _cameraRotationX;
-        cameraRotationY = _cameraRotationY;
-    }
+            RotationCamera(rotationCameraX, rotationCameraY);
+        }
 
-    void PerformRotationCamera() {
-        currentCameraRotationX -= cameraRotationX;        
+        void PerformRotation() {
+            PerformRotationCamera();
+        }
 
-        currentCameraRotationY -= cameraRotationY;
-        currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);               
+        public void RotationCamera(float _cameraRotationX, float _cameraRotationY) {
+            cameraRotationX = _cameraRotationX;
+            cameraRotationY = _cameraRotationY;
+        }
 
-        var rotation = Quaternion.Euler(currentCameraRotationY, -currentCameraRotationX + fixedRotation, 0);
+        void PerformRotationCamera() {
+            currentCameraRotationX -= cameraRotationX;
 
-        transform.rotation = rotation;
-        transform.position = center.position + rotation * v;
+            currentCameraRotationY -= cameraRotationY;
+            currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);
+
+            var rotation = Quaternion.Euler(currentCameraRotationY, -currentCameraRotationX + fixedRotation, 0);
+
+            transform.rotation = rotation;
+            transform.position = center.position + rotation * v;
+        }
+
     }
 
 }
-    

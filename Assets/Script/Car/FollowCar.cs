@@ -1,35 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FollowCar : MonoBehaviour {
+namespace CarAdventure.Entity.Component {
 
-    [SerializeField]
-    Transform targetedUnit;
-    [SerializeField]
-    Color colorPoint;
+    public class FollowCar : MonoBehaviour {
 
-    RectTransform rectTransform;
-    Image rawImage;
-    Camera cam;  
+        [SerializeField]
+        Transform targetedUnit;
+        [SerializeField]
+        Color colorPoint;
 
-	void Start () {
-        InitGlobalVariables();
+        RectTransform rectTransform;
+        Image rawImage;
+        Camera cam;
 
-        rawImage.color = new Color(colorPoint.r, colorPoint.g, colorPoint.b);
+        void Start() {
+            InitGlobalVariables();
+
+            rawImage.color = new Color(colorPoint.r, colorPoint.g, colorPoint.b);
+        }
+
+        void InitGlobalVariables() {
+            rectTransform = (RectTransform)transform;
+            cam = GameObject.FindGameObjectWithTag("MiniMapCamera").GetComponent<Camera>();
+            rawImage = GetComponent<Image>();
+        }
+
+        void Update() {
+            Vector3 screenPos = cam.WorldToViewportPoint(targetedUnit.position);
+            rectTransform.anchorMin = screenPos;
+            rectTransform.anchorMax = screenPos;
+        }
+
     }
-
-    void InitGlobalVariables() {
-        rectTransform = (RectTransform)transform;
-        cam = GameObject.FindGameObjectWithTag("MiniMapCamera").GetComponent<Camera>();
-        rawImage = GetComponent<Image>();
-    }
-
-    void Update() {
-        Vector3 screenPos = cam.WorldToViewportPoint(targetedUnit.position);                
-        rectTransform.anchorMin = screenPos;
-        rectTransform.anchorMax = screenPos;       
-    }
-
 }

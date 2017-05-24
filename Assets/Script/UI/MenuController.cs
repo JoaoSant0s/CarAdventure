@@ -1,29 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class MenuController : MonoBehaviour {
+namespace CarAdventure.Controller.UI {
+    public class MenuController : MonoBehaviour {
 
-    public delegate void ActiveControlPopup();
-    public static event ActiveControlPopup OnActiveControlPopup;
+        public delegate void ActiveControlPopup();
+        public static event ActiveControlPopup OnActiveControlPopup;
 
-    [SerializeField]
-    GameObject menuObject;
-    	
-    void Awake() {
-        UIController.OnActiveMenuScreen += ActiveMenu;
-    }
+        [SerializeField]
+        GameObject menuObject;
 
-    void ActiveMenu(bool active) {        
-        menuObject.SetActive(active);
-    }
+        void Awake() {
+            UIController.OnActiveMenuScreen += ActiveMenu;
+        }
 
-    public void StartGame() {        
-        menuObject.SetActive(false);
-        UIController.Instance.HUDState();
-    }    
+        void ActiveMenu(bool active) {
+            menuObject.SetActive(active);
+        }
 
-    public void OpenControls() {
-        if (OnActiveControlPopup != null) OnActiveControlPopup();
+        public void StartGame() {
+            menuObject.SetActive(false);
+            UIController.Instance.HUDState();
+        }
+
+        public void OpenControls() {
+            if (OnActiveControlPopup != null)
+                OnActiveControlPopup();
+        }
     }
 }

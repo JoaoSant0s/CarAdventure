@@ -1,75 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using CarAdventure.Common;
+using CarAdventure.Controller.UI;
 
-public class AttackEnemy : Enemy {
+namespace CarAdventure.Entity.Component { 
 
-    [SerializeField]
-    float damage = 1f;
-    [SerializeField]
-    float cooldown = 2f;
+    public class AttackEnemy : Enemy {
 
-    float lastAttackTime;
-    bool attacking;
-    Animator animator;
+        [SerializeField]
+        float damage = 1f;
+        [SerializeField]
+        float cooldown = 2f;
 
-    void Awake() {
+        float lastAttackTime;
+        bool attacking;
+        Animator animator;
 
-        TargetCharacter.OnCheckTarget += CheckTarget;
-        DeathController.OnUpdateGameState += ResetState;
+        void Awake() {
 
-        lastAttackTime = 0f;
-        animator = GetComponent<Animator>();
-        animator.enabled = false;
+            TargetCharacter.OnCheckTarget += CheckTarget;
+            DeathController.OnUpdateGameState += ResetState;
+
+            lastAttackTime = 0f;
+            animator = GetComponent<Animator>();
+            animator.enabled = false;
      
-    }
+        }
 
-    void OnDestroy() {
-        TargetCharacter.OnCheckTarget -= CheckTarget;
-    }
+        void OnDestroy() {
+            TargetCharacter.OnCheckTarget -= CheckTarget;
+        }
 
 
-    void CheckTarget(Vector3 targetDestiny, bool moveToTarget) {
-        if (attacking) return;
+        void CheckTarget(Vector3 targetDestiny, bool moveToTarget) {
+            if (attacking) return;
 
-        if (moveToTarget) {
-            animator.enabled = true;
-            Motor.Move(targetDestiny);
-        } else {
+            if (moveToTarget) {
+                animator.enabled = true;
+                Motor.Move(targetDestiny);
+            } else {
+                animator.enabled = false;
+                Motor.Move(StartPosition);
+            }
+
+        }
+
+        void OnTriggerStay(Collider collider) {
+            var car = collider.gameObject.GetComponentInParent<Car>();
+            if (car == null) return;
+               
+            Attack(car);              
+        }
+        void OnTriggerExit(Collider collider) {
+            var car = collider.gameObject.GetComponentInParent<Car>();
+            if (car == null) return;
+
+            attacking = false;        
+        }
+
+        void ResetState() {
+            attacking = false;
             animator.enabled = false;
             Motor.Move(StartPosition);
         }
 
-    }
+        void Attack(Car car) {        
+            attacking = true;
+            Motor.Stop();
+            if (lastAttackTime >= Time.timeSinceLevelLoad) return;
 
-    void OnTriggerStay(Collider collider) {
-        var car = collider.gameObject.GetComponentInParent<Car>();
-        if (car == null) return;
-               
-        Attack(car);              
-    }
-    void OnTriggerExit(Collider collider) {
-        var car = collider.gameObject.GetComponentInParent<Car>();
-        if (car == null) return;
+            transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);
+            lastAttackTime = Time.timeSinceLevelLoad + cooldown;
 
-        attacking = false;        
-    }
-
-    void ResetState() {
-        attacking = false;
-        animator.enabled = false;
-        Motor.Move(StartPosition);
-    }
-
-    void Attack(Car car) {        
-        attacking = true;
-        Motor.Stop();
-        if (lastAttackTime >= Time.timeSinceLevelLoad) return;
-
-        transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);
-        lastAttackTime = Time.timeSinceLevelLoad + cooldown;
-
-        car.ReduceLife(damage);          
-    }
+            car.ReduceLife(damage);          
+        }
   
+    }
+
 }

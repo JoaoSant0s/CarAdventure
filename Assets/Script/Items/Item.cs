@@ -1,16 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class Item : MonoBehaviour {
+namespace CarAdventure.Environment { 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public class Item : MonoBehaviour {
+
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
 }

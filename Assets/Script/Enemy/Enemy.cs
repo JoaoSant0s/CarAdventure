@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using CarAdventure.Entity.Component;
 
-public class Enemy : MonoBehaviour {
+namespace CarAdventure.Entity { 
 
-    EnemyMotor motor;
-    Vector3 startPosition;
+    public class Enemy : MonoBehaviour {
 
-    void Start() {
-        motor = GetComponent<EnemyMotor>();
-        startPosition = transform.position;
-    }
-    public Vector3 StartPosition {
-        get { return startPosition; }
-    }
+        EnemyMotor motor;
+        Vector3 startPosition;
+
+        void Start() {
+            motor = GetComponent<EnemyMotor>();
+            startPosition = transform.position;
+        }
+        public Vector3 StartPosition {
+            get { return startPosition; }
+        }
 
 
-    public EnemyMotor Motor {
-        get { return motor; }
-    }
+        public EnemyMotor Motor {
+            get { return motor; }
+        }
            
+    }
 }

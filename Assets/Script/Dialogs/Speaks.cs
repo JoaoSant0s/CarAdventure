@@ -1,30 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-[System.Serializable]
-public class Speaks {
+namespace CarAdventure.Entity { 
 
-    [SerializeField]
-    string speakerName;
+    [System.Serializable]
+    public class Speaks {
 
-    [SerializeField]
-    [Multiline]
-    string speakString;
+        [SerializeField]
+        string speakerName;
 
-    [SerializeField]
-    string audioType;
+        [SerializeField]
+        [Multiline]
+        string speakString;
 
-    internal string SpeakerName() {
-        return speakerName;
-    }
+        [SerializeField]
+        string audioType;
 
-    internal string SpeakString() {
-        return speakString;
-    }
+        internal string SpeakerName() {
+            return speakerName;
+        }
 
-    internal string AudioType() {
-        return audioType;
+        internal string SpeakString() {
+            return speakString;
+        }
+
+        internal string AudioType() {
+            return audioType;
+        }
+
     }
 
 }

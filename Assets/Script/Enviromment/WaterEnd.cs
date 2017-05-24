@@ -1,31 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using System.Collections;
 using UnityEngine;
+using CarAdventure.Entity;
 
-public class WaterEnd : MonoBehaviour {
+namespace CarAdventure.Environment {
 
-    [SerializeField]
-    float timeToDestroy = 3f;
+    public class WaterEnd : MonoBehaviour {
 
-    bool destroyObject;
+        [SerializeField]
+        float timeToDestroy = 3f;
 
-    void Start() {
-        destroyObject = false;
-    }
+        bool destroyObject;
 
-    void OnTriggerEnter(Collider collider) {
-        var character = collider.gameObject.GetComponentInParent<Car>();        
+        void Start() {
+            destroyObject = false;
+        }
 
-        if (character == null || destroyObject) return;
-        destroyObject = true;
+        void OnTriggerEnter(Collider collider) {
+            var character = collider.gameObject.GetComponentInParent<Car>();        
 
-        StartCoroutine(DestroyCar(character));
-    }
+            if (character == null || destroyObject) return;
+            destroyObject = true;
 
-    IEnumerator DestroyCar(Car car) {
-        yield return new WaitForSeconds(timeToDestroy);
-        car.Destroy();
+            StartCoroutine(DestroyCar(character));
+        }
+
+        IEnumerator DestroyCar(Car car) {
+            yield return new WaitForSeconds(timeToDestroy);
+            car.Destroy();
         
+        }
+
     }
 
 }

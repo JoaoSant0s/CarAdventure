@@ -1,77 +1,83 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CarAdventure.Controller.UI;
 
-public class Portal : MonoBehaviour {
+namespace CarAdventure.Environment { 
 
-    public delegate void ActivePortalCam();
-    public static event ActivePortalCam OnActivePortalCam;
+    public class Portal : MonoBehaviour {
 
-    [SerializeField]
-    GameObject prefabBlack;
-    [SerializeField]
-    float timeController = 2f;
-    [SerializeField]
-    float camTime = 1.5f;
-    [SerializeField]
-    Transform finalPosition;
+        public delegate void ActivePortalCam();
+        public static event ActivePortalCam OnActivePortalCam;
 
-    List<Goal> goals;
+        [SerializeField]
+        GameObject prefabBlack;
+        [SerializeField]
+        float timeController = 2f;
+        [SerializeField]
+        float camTime = 1.5f;
+        [SerializeField]
+        Transform finalPosition;
 
-    bool complete;
-    void Awake() {
-        complete = false;
-    }
+        List<Goal> goals;
 
-    void Update() {
-        if (goals == null) { goals = new List<Goal>(GameObject.FindObjectsOfType<Goal>()); }
-    }
-
-    void CheckAllActives() {
-        if (complete) return;
-
-        var result = true;
-        goals.ForEach(goal => result &= (goal.Active));        
-
-        if (!result) return;
-        complete = true;
-
-        ActivePortal();
-
-    }
-
-    void ActivePortal() {
-        if (OnActivePortalCam != null) OnActivePortalCam();
-        StartCoroutine(ActivePortalCoroutine());
-    }
-
-    IEnumerator ActivePortalCoroutine() {
-        yield return new WaitForSeconds(camTime);
-        foreach (var goal in goals) {
-            DestroyObject(goal.gameObject);
+        bool complete;
+        void Awake() {
+            complete = false;
         }
-        goals.Clear();
 
-        GenerateNewCube();
-    }
-    void GenerateNewCube() {               
-        StartCoroutine(GenerateNewCubeCoroutine());
-    }
+        void Update() {
+            if (goals == null) { goals = new List<Goal>(GameObject.FindObjectsOfType<Goal>()); }
+        }
 
-    IEnumerator GenerateNewCubeCoroutine() {
-        yield return new WaitForSeconds(timeController);
+        void CheckAllActives() {
+            if (complete) return;
 
-        var finalBlock = Instantiate(prefabBlack, transform.position, Quaternion.identity);
-        finalBlock.transform.SetParent(transform);
-        finalBlock.transform.position = finalPosition.position;
-        finalBlock.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);        
+            var result = true;
+            goals.ForEach(goal => result &= (goal.Active));        
 
-        StartCoroutine(EndUICoroutine());
-    }    
+            if (!result) return;
+            complete = true;
 
-    IEnumerator EndUICoroutine() {
-        yield return new WaitForSeconds(timeController / 2);
-        UIController.Instance.EndState();
+            ActivePortal();
+
+        }
+
+        void ActivePortal() {
+            if (OnActivePortalCam != null) OnActivePortalCam();
+            StartCoroutine(ActivePortalCoroutine());
+        }
+
+        IEnumerator ActivePortalCoroutine() {
+            yield return new WaitForSeconds(camTime);
+            foreach (var goal in goals) {
+                DestroyObject(goal.gameObject);
+            }
+            goals.Clear();
+
+            GenerateNewCube();
+        }
+        void GenerateNewCube() {               
+            StartCoroutine(GenerateNewCubeCoroutine());
+        }
+
+        IEnumerator GenerateNewCubeCoroutine() {
+            yield return new WaitForSeconds(timeController);
+
+            var finalBlock = Instantiate(prefabBlack, transform.position, Quaternion.identity);
+            finalBlock.transform.SetParent(transform);
+            finalBlock.transform.position = finalPosition.position;
+            finalBlock.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);        
+
+            StartCoroutine(EndUICoroutine());
+        }    
+
+        IEnumerator EndUICoroutine() {
+            yield return new WaitForSeconds(timeController / 2);
+            UIController.Instance.EndState();
+        }
+
     }
 
 }

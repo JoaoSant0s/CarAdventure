@@ -2,29 +2,30 @@
 using UnityEngine.AI;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMotor : MonoBehaviour {    
+namespace CarAdventure.Entity.Component {
 
-    Rigidbody body;
-    NavMeshAgent pathFinder;    
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class EnemyMotor : MonoBehaviour {    
 
-    float smoothDirection;
-    float smoothDirectionVelocity;
+        Rigidbody body;
+        NavMeshAgent pathFinder;    
+
+        float smoothDirection;
+        float smoothDirectionVelocity;
   
-    void Start() {
-        pathFinder = GetComponent<NavMeshAgent>();
+        void Start() {
+            pathFinder = GetComponent<NavMeshAgent>();
 
-        body = GetComponent<Rigidbody>();        
-    }   
+            body = GetComponent<Rigidbody>();        
+        }   
 
-    public void Move(Vector3 targetDestiny) {
-        pathFinder.SetDestination(targetDestiny);
+        public void Move(Vector3 targetDestiny) {
+            pathFinder.SetDestination(targetDestiny);
+        }
+
+        public void Stop() {
+            pathFinder.ResetPath();
+        }
     }
-
-    public void Stop() {
-        pathFinder.ResetPath();
-    }
-
-
 
 }

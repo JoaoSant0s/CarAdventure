@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
 
-public class Character {
+namespace CarAdventure.Entity {
 
-    private Inventory inventory;
-    private string name;     
+    public class Character {
 
-    public Character(string name) {
-        this.name = name;
-        inventory = new Inventory();
+        private Inventory inventory;
+        private string name;
+
+        public Character(string name) {
+            this.name = name;
+            inventory = new Inventory();
+        }
+
+        internal void UpdateGold(int number) {
+            inventory.UpdateGold(number);
+        }
+
     }
-
-    internal void UpdateGold(int number) {
-        inventory.UpdateGold(number);
-    }    
-
 }

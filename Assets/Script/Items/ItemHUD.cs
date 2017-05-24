@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.UI;
+using CarAdventure.Entity.Component;
 
-public class ItemHUD : MonoBehaviour {
+namespace CarAdventure.Controller.UI{
 
-    [SerializeField]
-    ItemList.ItemType type;        
+    public class ItemHUD : MonoBehaviour {
 
-    [SerializeField]
-    GameObject opacity;
+        [SerializeField]
+        ItemList.ItemType type;        
+
+        [SerializeField]
+        GameObject opacity;
     
-    public void SetSelection(bool selection) {
-        opacity.SetActive(!selection);
-    } 
+        public void SetSelection(bool selection) {
+            opacity.SetActive(!selection);
+        } 
     
-    public ItemList.ItemType Type {
-        get {return type;}        
-    }   
+        public ItemList.ItemType Type {
+            get {return type;}        
+        }   
 
+    }
 }
