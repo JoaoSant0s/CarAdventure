@@ -15,6 +15,8 @@ namespace CarAdventure.Controller {
         Transform dialogContent;
         [SerializeField]
         Text dialogText;
+        [SerializeField]
+        Text nameText;
 
         [Header("Dialogs Configs")]
 
@@ -51,6 +53,8 @@ namespace CarAdventure.Controller {
             startedDialog = true;
 
             currentSpeaks = dialogsModule.GetDialog(countTextDialog);
+
+            nameText.text = currentSpeaks.SpeakerName();
             currentCoroutine = StartCoroutine(ShowText());
 
             countTextDialog++;
