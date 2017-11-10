@@ -17,7 +17,6 @@ namespace CarAdventure.Entity.Component {
 
         void Start() {
             InitGlobalVariables();
-
             rawImage.color = new Color(colorPoint.r, colorPoint.g, colorPoint.b);
         }
 
@@ -28,6 +27,7 @@ namespace CarAdventure.Entity.Component {
         }
 
         void Update() {
+            if(targetedUnit == null) return;
             Vector3 screenPos = cam.WorldToViewportPoint(targetedUnit.position);
             rectTransform.anchorMin = screenPos;
             rectTransform.anchorMax = screenPos;
