@@ -6,7 +6,7 @@ using CarAdventure.Environment;
 namespace CarAdventure.Controller { 
 
     public class GameController : MonoBehaviour {    
-
+        
         [SerializeField]
         private Camera firstPersonCamera;
         [SerializeField]

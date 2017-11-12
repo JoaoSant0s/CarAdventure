@@ -8,7 +8,7 @@ namespace CarAdventure.Controller.UI{
 
         [SerializeField]
         ItemList.ItemType type;        
-
+        
         [SerializeField]
         GameObject opacity;
     

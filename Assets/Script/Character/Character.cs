@@ -11,7 +11,7 @@ namespace CarAdventure.Entity {
             this.name = name;
             inventory = new Inventory();
         }
-
+        
         internal void UpdateGold(int number) {
             inventory.UpdateGold(number);
         }

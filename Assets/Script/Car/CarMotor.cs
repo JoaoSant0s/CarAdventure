@@ -1,9 +1,16 @@
 ﻿
+using System.Collections;
 using UnityEngine;
 
 namespace CarAdventure.Entity.Component {
 
     public class CarMotor : MonoBehaviour {
+
+        public enum CarState{
+            idle,
+            back,
+            acelerate
+        }
 
         [Header("Object balacing")]
         [SerializeField]
@@ -11,7 +18,9 @@ namespace CarAdventure.Entity.Component {
 
         [Header("Controller values")]
         [SerializeField]
-        float maxTorque;
+        float maxTorque;     
+        [SerializeField]
+        float dragTimeChange;    
         [SerializeField]
         float dragNotInteracting;
 
@@ -22,17 +31,23 @@ namespace CarAdventure.Entity.Component {
         Transform[] wheelsGraphics = new Transform[4];
 
         Rigidbody rb;
+        bool checkDragReducing;
+        CarState carState;
 
-        void Awake() {
+        void Awake() 
+        {
             rb = GetComponent<Rigidbody>();
             rb.centerOfMass = centerMass.localPosition;
+            carState = CarState.idle;            
         }
 
-        void Update() {
+        void Update() 
+        {
             UpdateWheelsGraphic();
         }
 
-        void UpdateWheelsGraphic() {
+        void UpdateWheelsGraphic() 
+        {
             for (int i = 0; i < wheelsColliders.Length; i++) {
                 wheelsGraphics[i].Rotate(0, -wheelsColliders[i].rpm / 60 * 360 * Time.deltaTime, 0);
                 if (i > 1) {
@@ -41,35 +56,67 @@ namespace CarAdventure.Entity.Component {
             }
         }
 
-        internal void RotateFrontWheels(float steer) {
+        internal void RotateFrontWheels(float steer) 
+        {
             var finalSteer = steer * 45f;
 
             wheelsColliders[2].steerAngle = finalSteer;
             wheelsColliders[3].steerAngle = finalSteer;
         }
 
-        internal void AcelerateCar(float acelerate) {
+        internal void AcelerateCar(float acelerate) 
+        {
+            changeState(CarState.acelerate);            
             var torque = maxTorque * acelerate;
 
-            Reset();
             wheelsColliders[0].motorTorque = torque;
             wheelsColliders[1].motorTorque = torque;
         }
 
-        internal void BackCar(float acelerate) {
+        internal void BackCar(float acelerate) 
+        {
+            changeState(CarState.back);
             var torque = maxTorque * acelerate;
 
-            ActiveTrackDrag();
             wheelsColliders[0].motorTorque = torque;
             wheelsColliders[1].motorTorque = torque;
         }
 
-        internal void Reset() {
+        internal void ResetDrag() 
+        {
             rb.drag = 0f;
         }
 
-        internal void ActiveTrackDrag() {
-            rb.drag = dragNotInteracting;
+        internal void changeState(CarState newSituation)
+        {
+            if(newSituation == carState) return;
+            carState = newSituation;
+
+            if(newSituation == CarState.acelerate || newSituation == CarState.back)
+            {                
+                ChangingGears();                
+            }else
+            {                                
+                Drag();
+            }               
+        }
+
+        void ChangingGears() 
+        {                               
+            StopCoroutine(DragCoroutine());            
+            Drag();
+            StartCoroutine(DragCoroutine());
+        }
+
+        internal void Drag()
+        {
+            rb.drag = dragNotInteracting; 
+        }
+        
+        IEnumerator DragCoroutine()
+        {
+            yield return new WaitForSeconds(dragTimeChange);            
+            ResetDrag();
         }
 
     }

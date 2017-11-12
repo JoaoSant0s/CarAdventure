@@ -47,7 +47,7 @@ namespace CarAdventure.Entity.Component {
             cameraRotationX = _cameraRotationX;
             cameraRotationY = _cameraRotationY;
         }
-
+        
         void PerformRotationCamera() {
             currentCameraRotationX -= cameraRotationX;
 

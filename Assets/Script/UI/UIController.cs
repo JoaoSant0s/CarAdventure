@@ -19,7 +19,7 @@ namespace CarAdventure.Controller.UI {
 
         public delegate void ActiveHUDScreen(bool active);
         public static event ActiveHUDScreen OnActiveHUDScreen;
-
+        
         public enum UIState {
             menu,
             end,

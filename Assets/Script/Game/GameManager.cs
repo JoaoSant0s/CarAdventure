@@ -6,7 +6,7 @@ using CarAdventure.Controller.UI;
 
 namespace CarAdventure.Manager { 
     public class GameManager : MonoBehaviour {
-
+        
         [SerializeField]
         Transform spawnPosition;
         [SerializeField]

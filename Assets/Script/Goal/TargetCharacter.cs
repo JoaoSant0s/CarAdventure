@@ -2,7 +2,7 @@
 using UnityEngine;
 using CarAdventure.Entity;
 
-namespace CarAdventure.Entity.Component { 
+namespace CarAdventure.Entity { 
 
     public class TargetCharacter : MonoBehaviour {
 
@@ -10,7 +10,7 @@ namespace CarAdventure.Entity.Component {
         public static event CheckTarget OnCheckTarget;
 
         private string targetTag = "Player";   
-
+        
         void OnTriggerStay(Collider collider){
             var character = collider.gameObject.GetComponentInParent<Car>();                
             if (character == null) return;

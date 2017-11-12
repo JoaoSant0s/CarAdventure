@@ -17,7 +17,7 @@ namespace CarAdventure.Controller.UI {
         void ActivePause(bool active) {
             pauseObject.SetActive(active);
         }
-
+        
         public void QuitButton() {
             Application.Quit();
         }

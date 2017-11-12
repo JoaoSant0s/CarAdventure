@@ -13,7 +13,7 @@ namespace CarAdventure.Controller.UI {
         void Awake() {
             UIController.OnActiveMenuScreen += ActiveMenu;
         }
-
+        
         void ActiveMenu(bool active) {
             menuObject.SetActive(active);
         }

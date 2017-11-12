@@ -51,7 +51,7 @@ namespace CarAdventure.Entity {
                 Destroy();
             }
         }    
-
+        
         IEnumerator ImortalityCoroutine() {
             imortality = true;
 

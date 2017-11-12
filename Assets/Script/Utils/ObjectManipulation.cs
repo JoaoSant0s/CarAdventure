@@ -9,9 +9,13 @@ namespace CarAdventure.Common {
                 GameObject.DestroyObject(parent.GetChild(i).gameObject);
             }
         }
-
+        
         public static Vector3 ForwardNormalized(Vector3 startPoint, Vector3 target) {
-            return (target - startPoint).normalized;
+            return (vectorYzero(target) - vectorYzero(startPoint)).normalized;
+        }
+
+        private static Vector3 vectorYzero(Vector3 vector){
+            return new Vector3(vector.x, vector.y, vector.z);
         }
 
     }

@@ -7,7 +7,7 @@ using CarAdventure.Controller.UI;
 namespace CarAdventure.Entity.Component {
 
     public class ItemList : ScriptableObject {
-
+        
         public enum ItemType {
              hook = 0,
              gun = 1,

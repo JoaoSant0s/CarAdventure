@@ -14,7 +14,7 @@ namespace CarAdventure.Controller.UI {
         Transform content;
 
         List<ItemHUD> itens;
-
+        
 	    void Awake () {
             ClawItems.OnSelectedItem += SelectedItem;
             ClawItems.OnUpdateItems += UpdateItems;

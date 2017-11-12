@@ -7,7 +7,7 @@ public class DialogsModule : ScriptableObject {
 
     [SerializeField]
     List<Speaks> dialogs;
-
+    
     internal List<Speaks> GetDialogs() {
         return dialogs;
     }

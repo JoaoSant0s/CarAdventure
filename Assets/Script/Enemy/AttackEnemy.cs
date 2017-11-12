@@ -3,68 +3,42 @@ using UnityEngine;
 using CarAdventure.Common;
 using CarAdventure.Controller.UI;
 
-namespace CarAdventure.Entity.Component { 
+namespace CarAdventure.Entity { 
 
     public class AttackEnemy : Enemy {
-
-        [SerializeField]
-        float damage = 1f;
-        [SerializeField]
-        float cooldown = 2f;
-
+                
         float lastAttackTime;
         bool attacking;
         Animator animator;
 
-        void Awake() {
-
-            TargetCharacter.OnCheckTarget += CheckTarget;
+        void Awake() {            
             DeathController.OnUpdateGameState += ResetState;
 
             lastAttackTime = 0f;
             animator = GetComponent<Animator>();
             animator.enabled = false;
-     
-        }
+        }        
 
-        void OnDestroy() {
-            TargetCharacter.OnCheckTarget -= CheckTarget;
-        }
-
-
-        void CheckTarget(Vector3 targetDestiny, bool moveToTarget) {
+        internal void CheckTarget(Vector3 targetDestiny, bool moveToTarget) {
             if (attacking) return;
 
             if (moveToTarget) {
-                animator.enabled = true;
-                Motor.Move(targetDestiny);
+                animator.enabled = true;                
             } else {
-                animator.enabled = false;
-                Motor.Move(StartPosition);
-            }
-
-        }
-
-        void OnTriggerStay(Collider collider) {
-            var car = collider.gameObject.GetComponentInParent<Car>();
-            if (car == null) return;
-               
-            Attack(car);              
-        }
-        void OnTriggerExit(Collider collider) {
-            var car = collider.gameObject.GetComponentInParent<Car>();
-            if (car == null) return;
-
-            attacking = false;        
+                animator.enabled = false;                
+            }            
+            Motor.Move(targetDestiny);
         }
 
         void ResetState() {
             attacking = false;
-            animator.enabled = false;
-            Motor.Move(StartPosition);
+            animator.enabled = false;            
         }
 
-        void Attack(Car car) {        
+        internal void NotAttack(){
+            attacking = false;
+        }
+        internal void Attack(Car car) {        
             attacking = true;
             Motor.Stop();
             if (lastAttackTime >= Time.timeSinceLevelLoad) return;
@@ -72,9 +46,7 @@ namespace CarAdventure.Entity.Component {
             transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);
             lastAttackTime = Time.timeSinceLevelLoad + cooldown;
 
-            car.ReduceLife(damage);          
+            car.ReduceLife(attack);          
         }
-  
     }
-
 }

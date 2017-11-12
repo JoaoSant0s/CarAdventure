@@ -10,7 +10,7 @@ namespace CarAdventure.Environment {
 
         public delegate void ActivePortalCam();
         public static event ActivePortalCam OnActivePortalCam;
-
+        
         [SerializeField]
         GameObject prefabBlack;
         [SerializeField]

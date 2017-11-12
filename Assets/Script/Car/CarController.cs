@@ -40,7 +40,7 @@ namespace CarAdventure.Controller {
 
                 if (acelerateCar == 0) {
                     StopAceleration();
-                    carMotor.ActiveTrackDrag();
+                    carMotor.changeState(CarMotor.CarState.idle);                    
                 }
             }
                   

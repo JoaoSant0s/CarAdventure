@@ -29,7 +29,7 @@ namespace CarAdventure.Entity.Component {
 
             SelectItem();
         }
-
+        
         void Update() {
 
             RaycastHit hit;

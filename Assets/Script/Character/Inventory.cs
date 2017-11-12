@@ -4,7 +4,7 @@ namespace CarAdventure.Entity {
     public class Inventory {
 
         int gold;
-
+        
         public Inventory() {
             gold = 0;
         }

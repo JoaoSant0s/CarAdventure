@@ -8,7 +8,7 @@ namespace CarAdventure.Controller {
     public class DialogController : MonoBehaviour {
 
         [Header("Dialogs Components")]
-
+        
         [SerializeField]
         DialogsModule dialogsModule;
         [SerializeField]

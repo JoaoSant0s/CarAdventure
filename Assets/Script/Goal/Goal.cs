@@ -10,7 +10,7 @@ namespace CarAdventure.Environment {
         Vector3 startPosition;
         Transform startParent;
         Vector3 startScale = new Vector3(10f, 10f, 10f);
-
+        
         void Awake() {
             active = false;     
         }

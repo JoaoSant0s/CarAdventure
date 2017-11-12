@@ -9,21 +9,28 @@ namespace CarAdventure.Entity.Component {
 
         Rigidbody body;
         NavMeshAgent pathFinder;    
-
         float smoothDirection;
         float smoothDirectionVelocity;
-  
-        void Start() {
+
+        internal NavMeshAgent PathFinder{
+            get{
+                return pathFinder;
+            }
+        }
+                
+        void Awake()
+        {
             pathFinder = GetComponent<NavMeshAgent>();
-
             body = GetComponent<Rigidbody>();        
-        }   
+        }
 
-        public void Move(Vector3 targetDestiny) {
+        internal void Move(Vector3 targetDestiny) 
+        {            
             pathFinder.SetDestination(targetDestiny);
         }
 
-        public void Stop() {
+        internal void Stop() 
+        {
             pathFinder.ResetPath();
         }
     }

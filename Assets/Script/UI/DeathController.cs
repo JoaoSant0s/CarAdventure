@@ -28,6 +28,6 @@ namespace CarAdventure.Controller.UI {
                 OnUpdateGameState();
             UIController.Instance.HUDState();
         }
-
+        
     }
 }

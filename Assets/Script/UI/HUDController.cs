@@ -13,7 +13,7 @@ namespace CarAdventure.Controller.UI {
         Text lifeText;
 
         string lifes = "{0}";
-
+        
         void Awake() {
             UIController.OnActiveHUDScreen += ActiveHUD;
             Car.OnUpdateHUD += UpdateLife;

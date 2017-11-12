@@ -7,7 +7,7 @@ namespace CarAdventure.Controller.UI {
 
         [SerializeField]
         GameObject controlObject;
-
+        
         void Awake() {
             PauseController.OnActiveControlPopup += ActiveControl;
             MenuController.OnActiveControlPopup += ActiveControl;
