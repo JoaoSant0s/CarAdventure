@@ -6,7 +6,7 @@ using CarAdventure.Entity.Component;
 namespace CarAdventure.Controller.UI { 
 
     public class ControllerItemHUD : MonoBehaviour {
-
+        
         [SerializeField]
         ItemList itemList;
 

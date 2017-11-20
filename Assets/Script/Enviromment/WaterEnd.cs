@@ -25,10 +25,10 @@ namespace CarAdventure.Environment {
             StartCoroutine(DestroyCar(character));
         }
 
-        IEnumerator DestroyCar(Car car) {
+        IEnumerator DestroyCar(Car car)
+        {
             yield return new WaitForSeconds(timeToDestroy);
             car.Destroy();
-        
         }
 
     }

@@ -7,7 +7,7 @@ namespace CarAdventure.Entity {
     public class Enemy : MonoBehaviour {
         [Header("Data")]
         [SerializeField]
-        internal int life;
+        internal float life;
         [SerializeField]
         internal float attack;
         [SerializeField]

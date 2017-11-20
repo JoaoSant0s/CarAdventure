@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +19,17 @@ namespace CarAdventure.Entity.Component {
         List<ItemList.ItemType> items = new List<ItemList.ItemType>();
         [SerializeField]
         Transform targetDirection;
+        [SerializeField]
+        float activeFloatCoolDown;
+        [SerializeField]
+        float attack;
 
+        bool activeItem;
         LineRenderer line;
         Ray ray;
 
-        void Start() {
+        void Start()
+        {
             line = GetComponent<LineRenderer>();
             if (OnUpdateItems != null)
                 OnUpdateItems(items);
@@ -30,11 +37,12 @@ namespace CarAdventure.Entity.Component {
             SelectItem();
         }
         
-        void Update() {
+        void Update()
+        {
 
             RaycastHit hit;
             ray = new Ray(targetDirection.position, targetDirection.forward);
-            line.SetPosition(0, ray.origin);
+            line.SetPosition(0, ray.origin);            
 
             if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
                 line.SetPosition(1, hit.point);
@@ -47,7 +55,8 @@ namespace CarAdventure.Entity.Component {
             UseSelectedItem();
         }
 
-        void MouseSelectItem() {
+        void MouseSelectItem()
+        {
             var previousSelectedItem = selectedItem;
 
             if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
@@ -79,18 +88,36 @@ namespace CarAdventure.Entity.Component {
             }
         }
 
-        void UseSelectedItem() {
-            if (Input.GetMouseButtonDown(0)) {
+        void UseSelectedItem()
+        {
+            if (activeItem) return;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                activeItem = true;
+                StartCoroutine(ActiveItemCoroutine());
+                line.material.color = Color.green;
+
                 RaycastHit hit;
                 if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
-                    Debug.Log(hit.transform.name);
+                    var enemy = hit.transform.GetComponentInParent<AttackEnemy>();
+                    if (enemy.Dying) return;
+                    line.material.color = Color.red;
+                    
+                    if (enemy) enemy.ReduceLife(attack);
                 }
             }
+        }    
+        
+        IEnumerator ActiveItemCoroutine()
+        {
+            yield return new WaitForSeconds(activeFloatCoolDown);
+            line.material.color = Color.white;
+            activeItem = false;
         }
 
         void SelectItem() {
-            if (OnSelectedItem != null)
-                OnSelectedItem(items[selectedItem]);
+            if (OnSelectedItem != null) OnSelectedItem(items[selectedItem]);
             Debug.Log(selectedItem);
         }
 

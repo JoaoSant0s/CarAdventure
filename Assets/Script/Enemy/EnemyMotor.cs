@@ -12,6 +12,9 @@ namespace CarAdventure.Entity.Component {
         float smoothDirection;
         float smoothDirectionVelocity;
 
+        Vector3 destinyPosition;
+        System.Func<bool> savedFunction;
+
         internal NavMeshAgent PathFinder{
             get{
                 return pathFinder;
@@ -24,9 +27,32 @@ namespace CarAdventure.Entity.Component {
             body = GetComponent<Rigidbody>();        
         }
 
-        internal void Move(Vector3 targetDestiny) 
-        {            
+        internal void Move(Vector3 targetDestiny, System.Func<bool> callback) 
+        {
+            destinyPosition = targetDestiny;
+            savedFunction = callback;
+            MoveExtention(destinyPosition, savedFunction);
+        }
+
+        internal void MoveExtention(Vector3 targetDestiny, System.Func<bool> callback)
+        {
             pathFinder.SetDestination(targetDestiny);
+            StartCoroutine(CheckMove(callback));
+        }
+
+        IEnumerator CheckMove(System.Func<bool> callback)
+        {
+            yield return new WaitUntil(() =>
+            {
+                return !pathFinder.pathPending;
+            });
+            callback();
+        }
+        
+        internal void Resume()
+        {
+            if (destinyPosition ==  null) return;
+            MoveExtention(destinyPosition, savedFunction);
         }
 
         internal void Stop() 

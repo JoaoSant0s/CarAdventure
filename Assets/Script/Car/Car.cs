@@ -34,12 +34,14 @@ namespace CarAdventure.Entity {
             set { life = value; }
         }    
 
-        internal void IncrementLife(float addiction) {        
+        internal void IncrementLife(float addiction)
+        {        
             life += addiction;
             life = Mathf.Min(life, maxLife);
         }
 
-        internal void ReduceLife(float damage) {
+        internal void ReduceLife(float damage)
+        {
             if (imortality) return;
 
             life -= damage;
@@ -52,7 +54,8 @@ namespace CarAdventure.Entity {
             }
         }    
         
-        IEnumerator ImortalityCoroutine() {
+        IEnumerator ImortalityCoroutine()
+        {
             imortality = true;
 
             bodyTop.material.color = Color.black;
@@ -72,14 +75,15 @@ namespace CarAdventure.Entity {
             imortality = false;        
         }
 
-        internal void Destroy() {
+        internal void Destroy()
+        {
             if (OnDestroyCar != null) OnDestroyCar();        
-
-            UIController.Instance.DeadState();
+            
             DestroyObject(gameObject);
         }
 
-        void Awake() {        
+        void Awake()
+        {        
             bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
             bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
             bodyColor = bodyBottom.material.color;

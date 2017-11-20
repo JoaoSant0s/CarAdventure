@@ -17,7 +17,8 @@ public class EnemyFollowZone : MonoBehaviour {
 	}
 
 	void Start(){
-		enemyController.CheckTarget(destiny.position, false);	
+        if (destiny == null) destiny = GameObject.FindGameObjectWithTag("Ship").transform;
+        enemyController.CheckTarget(destiny.position, false);	
 	}
 	void OnTriggerStay(Collider collider) {
 		followedEnemy = collider.gameObject.GetComponentInParent<Car>();

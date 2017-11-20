@@ -13,7 +13,7 @@ namespace CarAdventure.Manager {
         Car carPrefab;
         [SerializeField]
         ClawCamera clawPrefab;
-
+        
         int numberDeads;           
 
         void Awake() {

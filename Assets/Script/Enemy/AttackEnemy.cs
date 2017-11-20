@@ -2,6 +2,7 @@
 using UnityEngine;
 using CarAdventure.Common;
 using CarAdventure.Controller.UI;
+using System.Collections;
 
 namespace CarAdventure.Entity { 
 
@@ -9,44 +10,95 @@ namespace CarAdventure.Entity {
                 
         float lastAttackTime;
         bool attacking;
+        bool dying;
         Animator animator;
 
-        void Awake() {            
+        public bool Dying {
+            get { return dying; }
+        }
+
+        void Awake()
+        {            
             DeathController.OnUpdateGameState += ResetState;
 
             lastAttackTime = 0f;
-            animator = GetComponent<Animator>();
-            animator.enabled = false;
+            animator = GetComponent<Animator>();            
         }        
 
-        internal void CheckTarget(Vector3 targetDestiny, bool moveToTarget) {
-            if (attacking) return;
-
-            if (moveToTarget) {
-                animator.enabled = true;                
-            } else {
-                animator.enabled = false;                
-            }            
-            Motor.Move(targetDestiny);
+        internal void CheckTarget(Vector3 targetDestiny, bool moveToTarget)
+        {
+            if (attacking || dying) return;            
+            Motor.Move(targetDestiny, () => { animator.SetTrigger("walking"); return true; });
         }
 
-        void ResetState() {
+        void ResetState()
+        {
             attacking = false;
-            animator.enabled = false;            
+            animator.enabled = false;
         }
 
-        internal void NotAttack(){
+        internal void NotAttack()
+        {
+            animator.SetTrigger("idle");
             attacking = false;
         }
-        internal void Attack(Car car) {        
+
+        internal void Attack(Car car)
+        {
+            if (dying) return;
+            AttackingTime(car.transform.position);
+            car.ReduceLife(attack);          
+        }
+
+        internal void AttackShip(ShipController ship)
+        {
+            if (dying) return;
+            AttackingTime(ship.transform.position);
+            ship.ReduceLife(attack);
+        }
+
+        void AttackingTime(Vector3 relativePosition)
+        {
+            if (dying) return;
             attacking = true;
             Motor.Stop();
             if (lastAttackTime >= Time.timeSinceLevelLoad) return;
+            animator.SetTrigger("attacking");
 
-            transform.forward = ObjectManipulation.ForwardNormalized(transform.position, car.transform.position);
+            transform.forward = ObjectManipulation.ForwardNormalized(transform.position, relativePosition);
             lastAttackTime = Time.timeSinceLevelLoad + cooldown;
+        }
 
-            car.ReduceLife(attack);          
+        internal void ReduceLife(float damage)
+        {
+            life -= damage;
+            life = Mathf.Max(life, 0);
+            Motor.Stop();
+
+            if (life == 0)
+            {
+                dying = true;
+                animator.SetTrigger("dying");
+                StartCoroutine(DestroyCoroutine());
+            }
+            else
+            {
+                animator.SetTrigger("damage");
+                StartCoroutine(ResumeCoroutine());
+            }            
+        }        
+
+        IEnumerator ResumeCoroutine()
+        {            
+            yield return new WaitForSeconds(1f);
+
+            Motor.Resume();            
+        }
+
+        IEnumerator DestroyCoroutine()
+        {
+            yield return new WaitForSeconds(2f);            
+            DestroyObject(gameObject);
         }
     }
 }
