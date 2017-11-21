@@ -2,42 +2,108 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CarAdventure.Entity.Component;
+using CarAdventure.Entity;
 
 namespace CarAdventure.Controller.Manager 
 { 
 	public class SpawnController : MonoBehaviour 
 	{
+        public delegate void HorderCounter(int currenTime);
+        public static event HorderCounter OnHorderTimeCounter;
+
         [SerializeField]
         EnemyMotor[] enemiesPrefab;
 		[SerializeField]	
 		Transform [] spawnEnemiesPosition;                
         [SerializeField]
         float waitSpawnTime;
-		
-		void Start()
+
+        [SerializeField]
+        [Range(2f, 5f)]
+        int minEnemies;
+        [SerializeField]
+        [Range(6f, 10f)]
+        int maxEnemies;
+
+        [SerializeField]
+        int startSpawnTime;
+        [SerializeField]
+        int nextSpawnTime;
+
+        [SerializeField]
+        Transform miniMap;
+        [SerializeField]
+        FollowCar followPrefab;
+        
+        List<EnemyMotor> enemies;
+        List<FollowCar> followEnemies;
+
+        int currentNumberEnemies;
+
+        void Awake()
+        {
+            AttackEnemy.OnNextHorder += ReduceCount;
+        }
+
+        void OnDestroy()
+        {
+            AttackEnemy.OnNextHorder -= ReduceCount;
+        }
+
+        void Start()
 		{
-            StartCoroutine(SpawnEnemies());
+            StartCoroutine(SpawnEnemies(startSpawnTime));
 		}	
 
-        IEnumerator SpawnEnemies()
+        IEnumerator SpawnEnemies(int seconds)
         {
-            for (int i = 0; i < spawnEnemiesPosition.Length; i++)
+            for (int i = seconds - 1; i >= 0; i--)
             {
-                var position = spawnEnemiesPosition[i].position;
-                var colliderElement = spawnEnemiesPosition[i].GetComponent<BoxCollider>();
-                var offsetWidth = colliderElement.size.x / 2;
-                var offsetHeight = colliderElement.size.z / 2;
+                if (OnHorderTimeCounter != null) OnHorderTimeCounter(i);
+                yield return new WaitForSeconds(1f);
+            }
+            
+            enemies = new List<EnemyMotor>();
+            followEnemies = new List<FollowCar>();
 
-                for (int j = 0; j < enemiesPrefab.Length; j++)
-                {
-                    var x = Random.Range(-offsetWidth, offsetWidth);
-                    var z = Random.Range(-offsetHeight, offsetHeight);                    
-                    var instance = Instantiate(enemiesPrefab[j], spawnEnemiesPosition[i]);
-                    instance.transform.localPosition = new Vector3(x, 0, z);
+            var spawnGateNumber = Random.Range(0, spawnEnemiesPosition.Length);
+            var numberEnemies = Random.Range(minEnemies, maxEnemies);
 
-                    yield return new WaitForSeconds(waitSpawnTime);
-                }
+            var position = spawnEnemiesPosition[spawnGateNumber].position;
+            var colliderElement = spawnEnemiesPosition[spawnGateNumber].GetComponent<BoxCollider>();
+            var offsetWidth = colliderElement.size.x / 2;
+            var offsetHeight = colliderElement.size.z / 2;
+
+            currentNumberEnemies = numberEnemies;
+
+            for (int j = 0; j < numberEnemies; j++)
+            {
+                var currentPrefab = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
+                var x = Random.Range(-offsetWidth, offsetWidth);
+                var z = Random.Range(-offsetHeight, offsetHeight);                    
+                var enemy = Instantiate(currentPrefab, spawnEnemiesPosition[spawnGateNumber]);
+                enemy.transform.localPosition = new Vector3(x, 0, z);
+                var follow = Instantiate(followPrefab, miniMap);
+
+                enemies.Add(enemy);
+                follow.TargetUnity = enemy.transform;
+                followEnemies.Add(follow);
+
+                yield return new WaitForSeconds(waitSpawnTime);
             }
         }
-	}
+
+        void ReduceCount(EnemyMotor motor)
+        {
+            currentNumberEnemies--;
+            currentNumberEnemies = Mathf.Max(0, currentNumberEnemies);
+            var removedEnemy = enemies.IndexOf(motor);
+
+            enemies.Remove(motor);
+            DestroyObject(followEnemies[removedEnemy].gameObject);
+            followEnemies.RemoveAt(removedEnemy);
+            if (currentNumberEnemies == 0) StartCoroutine(SpawnEnemies(nextSpawnTime));
+        }
+
+    }
 }

@@ -3,11 +3,15 @@ using UnityEngine;
 using CarAdventure.Common;
 using CarAdventure.Controller.UI;
 using System.Collections;
+using CarAdventure.Entity.Component;
 
 namespace CarAdventure.Entity { 
 
     public class AttackEnemy : Enemy {
-                
+
+        public delegate void NextHorder(EnemyMotor motor);
+        public static event NextHorder OnNextHorder;
+
         float lastAttackTime;
         bool attacking;
         bool dying;
@@ -46,18 +50,16 @@ namespace CarAdventure.Entity {
         internal void Attack(Car car)
         {
             if (dying) return;
-            AttackingTime(car.transform.position);
-            car.ReduceLife(attack);          
+            AttackingTime(car.transform.position, () => { car.ReduceLife(attack); return true; });               
         }
 
         internal void AttackShip(ShipController ship)
         {
             if (dying) return;
-            AttackingTime(ship.transform.position);
-            ship.ReduceLife(attack);
+            AttackingTime(ship.transform.position, () => { ship.ReduceLife(attack); return true; });
         }
 
-        void AttackingTime(Vector3 relativePosition)
+        void AttackingTime(Vector3 relativePosition, System.Func<bool> callback)
         {
             if (dying) return;
             attacking = true;
@@ -67,6 +69,7 @@ namespace CarAdventure.Entity {
 
             transform.forward = ObjectManipulation.ForwardNormalized(transform.position, relativePosition);
             lastAttackTime = Time.timeSinceLevelLoad + cooldown;
+            callback();
         }
 
         internal void ReduceLife(float damage)
@@ -79,6 +82,7 @@ namespace CarAdventure.Entity {
             {
                 dying = true;
                 animator.SetTrigger("dying");
+                if (OnNextHorder != null) OnNextHorder(Motor);
                 StartCoroutine(DestroyCoroutine());
             }
             else

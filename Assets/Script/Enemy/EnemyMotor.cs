@@ -23,7 +23,7 @@ namespace CarAdventure.Entity.Component {
                 
         void Awake()
         {
-            pathFinder = GetComponent<NavMeshAgent>();
+            pathFinder = GetComponent<NavMeshAgent>();            
             body = GetComponent<Rigidbody>();        
         }
 
@@ -57,7 +57,8 @@ namespace CarAdventure.Entity.Component {
 
         internal void Stop() 
         {
-            pathFinder.ResetPath();
+            MoveExtention(transform.position, savedFunction);            
+            //pathFinder.ResetPath();
         }
     }
 

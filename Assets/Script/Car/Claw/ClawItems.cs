@@ -31,15 +31,12 @@ namespace CarAdventure.Entity.Component {
         void Start()
         {
             line = GetComponent<LineRenderer>();
-            if (OnUpdateItems != null)
-                OnUpdateItems(items);
-
-            SelectItem();
+            //if (OnUpdateItems != null) OnUpdateItems(items);
+            //SelectItem();
         }
         
         void Update()
         {
-
             RaycastHit hit;
             ray = new Ray(targetDirection.position, targetDirection.forward);
             line.SetPosition(0, ray.origin);            
@@ -50,11 +47,11 @@ namespace CarAdventure.Entity.Component {
                 line.SetPosition(1, ray.GetPoint(100f));
             }
 
-            MouseSelectItem();
+            //MouseSelectItem();
 
             UseSelectedItem();
         }
-
+        /*
         void MouseSelectItem()
         {
             var previousSelectedItem = selectedItem;
@@ -87,6 +84,7 @@ namespace CarAdventure.Entity.Component {
                 SelectItem();
             }
         }
+        */
 
         void UseSelectedItem()
         {
@@ -101,6 +99,7 @@ namespace CarAdventure.Entity.Component {
                 RaycastHit hit;
                 if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
                     var enemy = hit.transform.GetComponentInParent<AttackEnemy>();
+                    if (enemy == null) return;
                     if (enemy.Dying) return;
                     line.material.color = Color.red;
                     

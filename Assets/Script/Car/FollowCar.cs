@@ -26,6 +26,12 @@ namespace CarAdventure.Entity.Component {
             rawImage = GetComponent<Image>();
         }
 
+        internal Transform TargetUnity
+        {
+            set { targetedUnit = value; }
+            get { return targetedUnit; }
+        }
+
         void Update() {
             if(targetedUnit == null) return;
             Vector3 screenPos = cam.WorldToViewportPoint(targetedUnit.position);
