@@ -19,10 +19,10 @@ namespace CarAdventure.Controller.Manager
         float waitSpawnTime;
 
         [SerializeField]
-        [Range(2f, 5f)]
+        [Range(1f, 5f)]
         int minEnemies;
         [SerializeField]
-        [Range(6f, 10f)]
+        [Range(1f, 10f)]
         int maxEnemies;
 
         [SerializeField]

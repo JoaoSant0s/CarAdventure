@@ -23,7 +23,7 @@ namespace CarAdventure.Entity {
 
         void Awake()
         {            
-            DeathController.OnUpdateGameState += ResetState;
+            //DeathController.OnUpdateGameState += ResetState;
 
             lastAttackTime = 0f;
             animator = GetComponent<Animator>();            
@@ -31,32 +31,26 @@ namespace CarAdventure.Entity {
 
         internal void CheckTarget(Vector3 targetDestiny, bool moveToTarget)
         {
+            //Debug.Log(attacking + " "  + dying);
             if (attacking || dying) return;            
             Motor.Move(targetDestiny, () => { animator.SetTrigger("walking"); return true; });
-        }
-
-        void ResetState()
-        {
-            attacking = false;
-            animator.enabled = false;
-        }
+        }        
 
         internal void NotAttack()
-        {
-            animator.SetTrigger("idle");
+        {            
             attacking = false;
         }
 
         internal void Attack(Car car)
         {
             if (dying) return;
-            AttackingTime(car.transform.position, () => { car.ReduceLife(attack); return true; });               
+            AttackingTime(car.transform.position, () => { car.ReduceLife(attack); StartCoroutine(IdleCoroutine()); return true; });               
         }
 
         internal void AttackShip(ShipController ship)
         {
             if (dying) return;
-            AttackingTime(ship.transform.position, () => { ship.ReduceLife(attack); return true; });
+            AttackingTime(ship.transform.position, () => { ship.ReduceLife(attack); StartCoroutine(IdleCoroutine()); return true; });
         }
 
         void AttackingTime(Vector3 relativePosition, System.Func<bool> callback)
@@ -65,7 +59,7 @@ namespace CarAdventure.Entity {
             attacking = true;
             Motor.Stop();
             if (lastAttackTime >= Time.timeSinceLevelLoad) return;
-            animator.SetTrigger("attacking");
+            animator.SetTrigger("attacking");            
 
             transform.forward = ObjectManipulation.ForwardNormalized(transform.position, relativePosition);
             lastAttackTime = Time.timeSinceLevelLoad + cooldown;
@@ -90,7 +84,14 @@ namespace CarAdventure.Entity {
                 animator.SetTrigger("damage");
                 StartCoroutine(ResumeCoroutine());
             }            
-        }        
+        }
+
+        IEnumerator IdleCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+
+            animator.SetTrigger("idle");
+        }
 
         IEnumerator ResumeCoroutine()
         {            

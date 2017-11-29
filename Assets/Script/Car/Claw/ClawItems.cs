@@ -23,6 +23,10 @@ namespace CarAdventure.Entity.Component {
         float activeFloatCoolDown;
         [SerializeField]
         float attack;
+        [SerializeField]
+        GameObject bullet;
+        [SerializeField]
+        float constanteForce;
 
         bool activeItem;
         LineRenderer line;
@@ -30,9 +34,7 @@ namespace CarAdventure.Entity.Component {
 
         void Start()
         {
-            line = GetComponent<LineRenderer>();
-            //if (OnUpdateItems != null) OnUpdateItems(items);
-            //SelectItem();
+            line = GetComponent<LineRenderer>();            
         }
         
         void Update()
@@ -45,46 +47,10 @@ namespace CarAdventure.Entity.Component {
                 line.SetPosition(1, hit.point);
             } else {
                 line.SetPosition(1, ray.GetPoint(100f));
-            }
-
-            //MouseSelectItem();
+            }            
 
             UseSelectedItem();
-        }
-        /*
-        void MouseSelectItem()
-        {
-            var previousSelectedItem = selectedItem;
-
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
-                if (selectedItem >= items.Count - 1) {
-                    selectedItem = 0;
-                } else {
-                    selectedItem++;
-                }
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
-                if (selectedItem <= 0) {
-                    selectedItem = items.Count - 1;
-                } else {
-                    selectedItem--;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                selectedItem = 0;
-            } else if (Input.GetKeyDown(KeyCode.Alpha2) && items.Count > 1) {
-                selectedItem = 1;
-            } else if (Input.GetKeyDown(KeyCode.Alpha3) && items.Count > 2) {
-                selectedItem = 2;
-            }
-
-            if (previousSelectedItem != selectedItem) {
-                SelectItem();
-            }
-        }
-        */
+        }       
 
         void UseSelectedItem()
         {
@@ -92,19 +58,24 @@ namespace CarAdventure.Entity.Component {
 
             if (Input.GetMouseButtonDown(0))
             {
-                activeItem = true;
-                StartCoroutine(ActiveItemCoroutine());
-                line.material.color = Color.green;
 
-                RaycastHit hit;
-                if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
-                    var enemy = hit.transform.GetComponentInParent<AttackEnemy>();
-                    if (enemy == null) return;
-                    if (enemy.Dying) return;
-                    line.material.color = Color.red;
-                    
-                    if (enemy) enemy.ReduceLife(attack);
-                }
+                var currentBullet = Instantiate(bullet, targetDirection.position, Quaternion.identity);
+                currentBullet.GetComponent<Rigidbody>().AddForce(targetDirection.forward.normalized * constanteForce, ForceMode.Force);
+                //bullet
+                //targetDirection.forward
+                //activeItem = true;
+                //StartCoroutine(ActiveItemCoroutine());
+                //line.material.color = Color.green;
+
+                //RaycastHit hit;
+                //if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
+                //    var enemy = hit.transform.GetComponentInParent<AttackEnemy>();
+                //    if (enemy == null) return;
+                //    if (enemy.Dying) return;
+                //    line.material.color = Color.red;
+
+                //    if (enemy) enemy.ReduceLife(attack);
+                //}
             }
         }    
         

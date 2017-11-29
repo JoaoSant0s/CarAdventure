@@ -36,6 +36,7 @@ namespace CarAdventure.Entity.Component {
 
         internal void MoveExtention(Vector3 targetDestiny, System.Func<bool> callback)
         {
+            //Debug.Log(targetDestiny);
             pathFinder.SetDestination(targetDestiny);
             StartCoroutine(CheckMove(callback));
         }

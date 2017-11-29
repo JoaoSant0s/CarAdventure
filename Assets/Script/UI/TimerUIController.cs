@@ -21,8 +21,7 @@ public class TimerUIController : MonoBehaviour {
     }
 
     void UpdateText(int currentTime)
-    {
-        Debug.Log(currentTime);
+    {        
         label.text = string.Format(baseLabelFormation, currentTime);
     }
 
