@@ -5,56 +5,51 @@ namespace CarAdventure.Entity.Component {
     public class ClawCamera : MonoBehaviour {
 
         [SerializeField]
-        private float lookSensitivity = 3f;
-        [SerializeField]
-        private float cameraRotationLimitY = 45f;
+        private float lookSensitivity = 3f;        
         [SerializeField]
         private Transform center;
 
         private const float fixedRotation = -90f;
 
         private Vector3 v;
-        private float cameraRotationX = 0f;
-        private float cameraRotationY = 0f;
-        private float currentCameraRotationX = 0f;
-        private float currentCameraRotationY = 0f;
+        private float cameraRotationX = 0f;        
+        private float currentCameraRotationX = 0f;        
 
-        void Start() {
+        void Start()
+        {
             Cursor.visible = false;
             v = (transform.position - center.position);
         }
 
-        void Update() {
+        void Update()
+        {
             RotationCamera();
             PerformRotationCamera();
         }
 
-        void RotationCamera() {
+        void RotationCamera()
+        {
             float xRot = Input.GetAxis("Mouse X");
-            float rotationCameraX = xRot * lookSensitivity;
+            float rotationCameraX = xRot * lookSensitivity;            
 
-            float yRot = Input.GetAxis("Mouse Y");
-            float rotationCameraY = yRot * lookSensitivity;
-
-            RotationCamera(rotationCameraX, rotationCameraY);
+            RotationCamera(rotationCameraX);
         }
 
-        void PerformRotation() {
+        void PerformRotation()
+        {
             PerformRotationCamera();
         }
 
-        public void RotationCamera(float _cameraRotationX, float _cameraRotationY) {
+        public void RotationCamera(float _cameraRotationX)
+        {
             cameraRotationX = _cameraRotationX;
-            cameraRotationY = _cameraRotationY;
         }
         
-        void PerformRotationCamera() {
-            currentCameraRotationX -= cameraRotationX;
+        void PerformRotationCamera()
+        {
+            currentCameraRotationX -= cameraRotationX;            
 
-            currentCameraRotationY -= cameraRotationY;
-            currentCameraRotationY = Mathf.Clamp(currentCameraRotationY, -cameraRotationLimitY, cameraRotationLimitY);
-
-            var rotation = Quaternion.Euler(currentCameraRotationY, -currentCameraRotationX + fixedRotation, 0);
+            var rotation = Quaternion.Euler(0, -currentCameraRotationX + fixedRotation, 0);
 
             transform.rotation = rotation;
             transform.position = center.position + rotation * v;

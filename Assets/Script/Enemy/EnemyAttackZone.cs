@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using CarAdventure.Entity;
 
-public class EnemyAttackZone : MonoBehaviour {
-
-	[SerializeField]
-	AttackEnemy enemyController;
-	Car attackedEnemy;
-
-	internal bool IsAttackingEnemy{
-		get {return attackedEnemy != null;}
-	}
-
-	void OnTriggerStay(Collider collider)
+namespace CarAdventure.Entity.Component {
+    public class EnemyAttackZone : MonoBehaviour
     {        
-        if(collider.gameObject.tag == "Ship")
-        {            
-            enemyController.AttackShip(collider.GetComponent<ShipController>());
+        AttackEnemy enemyController;
+        Car attackedEnemy;
+
+        void Awake()
+        {
+            enemyController = GetComponent<AttackEnemy>();
         }
-        else
+
+        internal bool IsAttackingEnemy
+        {
+            get { return attackedEnemy != null; }
+        }
+
+        void OnTriggerStay(Collider collider)
+        {
+            if (collider.gameObject.tag == "Ship")
+            {
+                enemyController.AttackShip(collider.GetComponent<ShipController>());
+            }
+            else
+            {
+                attackedEnemy = collider.gameObject.GetComponentInParent<Car>();
+                if (IsAttackingEnemy)
+                    enemyController.Attack(attackedEnemy);
+            }
+        }
+
+        void OnTriggerExit(Collider collider)
         {
             attackedEnemy = collider.gameObject.GetComponentInParent<Car>();
-            if (IsAttackingEnemy) enemyController.Attack(attackedEnemy);
+            enemyController.NotAttack();
         }
-	}
-
-	void OnTriggerExit(Collider collider)
-    {
-		attackedEnemy = collider.gameObject.GetComponentInParent<Car>();
-		enemyController.NotAttack();				
-	}
+    }
 }

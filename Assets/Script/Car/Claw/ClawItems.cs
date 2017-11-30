@@ -18,77 +18,53 @@ namespace CarAdventure.Entity.Component {
         [SerializeField]
         List<ItemList.ItemType> items = new List<ItemList.ItemType>();
         [SerializeField]
-        Transform targetDirection;
+        Transform targetDirection;   
+        [Space]
+        [Header("Bullet Settings")]
         [SerializeField]
-        float activeFloatCoolDown;
-        [SerializeField]
-        float attack;
-        [SerializeField]
-        GameObject bullet;
+        Bullet bullet;
         [SerializeField]
         float constanteForce;
+        [SerializeField]
+        internal float cooldown = 2f;
 
-        bool activeItem;
+        float lastAttackTime;
         LineRenderer line;
         Ray ray;
 
         void Start()
         {
+            lastAttackTime = 0f;
             line = GetComponent<LineRenderer>();            
         }
         
         void Update()
-        {
-            RaycastHit hit;
+        {            
             ray = new Ray(targetDirection.position, targetDirection.forward);
-            line.SetPosition(0, ray.origin);            
-
-            if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
-                line.SetPosition(1, hit.point);
-            } else {
-                line.SetPosition(1, ray.GetPoint(100f));
-            }            
+            line.SetPosition(0, ray.origin);
+            line.SetPosition(1, ray.GetPoint(10f));            
 
             UseSelectedItem();
         }       
 
         void UseSelectedItem()
-        {
-            if (activeItem) return;
-
+        {         
             if (Input.GetMouseButtonDown(0))
             {
-
-                var currentBullet = Instantiate(bullet, targetDirection.position, Quaternion.identity);
-                currentBullet.GetComponent<Rigidbody>().AddForce(targetDirection.forward.normalized * constanteForce, ForceMode.Force);
-                //bullet
-                //targetDirection.forward
-                //activeItem = true;
-                //StartCoroutine(ActiveItemCoroutine());
-                //line.material.color = Color.green;
-
-                //RaycastHit hit;
-                //if (Physics.Raycast(targetDirection.position, targetDirection.forward, out hit, 100f)) {
-                //    var enemy = hit.transform.GetComponentInParent<AttackEnemy>();
-                //    if (enemy == null) return;
-                //    if (enemy.Dying) return;
-                //    line.material.color = Color.red;
-
-                //    if (enemy) enemy.ReduceLife(attack);
-                //}
+                if (lastAttackTime >= Time.timeSinceLevelLoad) return;
+                lastAttackTime = Time.timeSinceLevelLoad + cooldown;
+                CreateBullet();                
             }
         }    
-        
-        IEnumerator ActiveItemCoroutine()
+
+        void CreateBullet()
         {
-            yield return new WaitForSeconds(activeFloatCoolDown);
-            line.material.color = Color.white;
-            activeItem = false;
-        }
+            var currentBullet = Instantiate(bullet, targetDirection.position, Quaternion.identity);
+            currentBullet.GetComponent<Rigidbody>().AddForce(targetDirection.forward.normalized * constanteForce, ForceMode.Force);
+        }              
 
         void SelectItem() {
-            if (OnSelectedItem != null) OnSelectedItem(items[selectedItem]);
-            Debug.Log(selectedItem);
+            if (OnSelectedItem != null) OnSelectedItem(items[selectedItem]);            
         }
 
     }

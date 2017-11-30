@@ -14,6 +14,7 @@ namespace CarAdventure.Entity {
 
         float lastAttackTime;
         bool attacking;
+        bool animationDamage;
         bool dying;
         Animator animator;
 
@@ -22,18 +23,30 @@ namespace CarAdventure.Entity {
         }
 
         void Awake()
-        {            
-            //DeathController.OnUpdateGameState += ResetState;
-
+        {
             lastAttackTime = 0f;
             animator = GetComponent<Animator>();            
         }        
 
-        internal void CheckTarget(Vector3 targetDestiny, bool moveToTarget)
-        {
-            //Debug.Log(attacking + " "  + dying);
+        internal void CheckTarget(Vector3 targetDestiny)
+        {            
             if (attacking || dying) return;            
-            Motor.Move(targetDestiny, () => { animator.SetTrigger("walking"); return true; });
+            Motor.Move(targetDestiny);
+        }
+
+        void Update()
+        {
+            var velocity = Motor.GetVelocity();
+            
+            if (attacking || dying) return;
+            if (velocity > 0.05)
+            {
+                animator.SetTrigger("walking");
+            }
+            else
+            {
+                animator.SetTrigger("idle");
+            }
         }        
 
         internal void NotAttack()
@@ -68,9 +81,12 @@ namespace CarAdventure.Entity {
 
         internal void ReduceLife(float damage)
         {
+            if (animationDamage) return;
+            animationDamage = true;
+
             life -= damage;
             life = Mathf.Max(life, 0);
-            Motor.Stop();
+            Motor.Resume();
 
             if (life == 0)
             {
@@ -96,7 +112,7 @@ namespace CarAdventure.Entity {
         IEnumerator ResumeCoroutine()
         {            
             yield return new WaitForSeconds(1f);
-
+            animationDamage = false;
             Motor.Resume();            
         }
 

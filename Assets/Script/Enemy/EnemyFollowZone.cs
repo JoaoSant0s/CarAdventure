@@ -3,79 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using CarAdventure.Entity;
 
-public class EnemyFollowZone : MonoBehaviour {
-
-    public enum FollowState {
-        follingEnemy,
-        follingShip
-    }
-
-	[SerializeField]
-	AttackEnemy enemyController;
-	[SerializeField]
-	GameObject destiny;
-
-    Transform follingCar;	
-
-    FollowState state;
-
-    internal bool IsFollowing{
-		get {return follingCar != null;}
-	}
-
-	void Start(){
-        state = FollowState.follingShip;
-        if (destiny == null) destiny = GameObject.FindGameObjectWithTag("Ship").gameObject;
-        FollowShip();
-    }
-
-    void OnTriggerEnter(Collider collider)
+namespace CarAdventure.Entity.Component {
+    public class EnemyFollowZone : MonoBehaviour
     {
-        Debug.Log(collider.gameObject);
-        var auxCar = collider.gameObject.GetComponentInParent<Car>();
-
-        if (auxCar != null)
+        public enum FollowState
         {
-            follingCar = auxCar.transform;
-            state = FollowState.follingEnemy;
+            follingCar,
+            follingShip
         }
-        else
+                
+        [SerializeField]
+        float enemyFollowDistance;               
+        [SerializeField]
+        FollowState state;
+
+        AttackEnemy enemyController;
+        Transform ship;
+        Transform car;
+
+        void Awake()
+        {
+            enemyController = GetComponent<AttackEnemy>();
+        }
+
+        void Start()
+        {
+            Setup();
+            FollowShip();
+        }
+
+        void Setup()
+        {
+           
+            ship = GameObject.FindGameObjectWithTag("Ship").transform;
+            car = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        void Update()
         {            
-            state = FollowState.follingShip;
-        }
-        Debug.Log(state);
-    }
+            var currentCarDistance = Vector3.Distance(transform.position, car.position);  
 
-    void OnTriggerStay(Collider collider) {
-        Debug.Log(collider.gameObject);
-        //Debug.Log(state);
-        if (state == FollowState.follingEnemy)
+            if(currentCarDistance <= enemyFollowDistance)
+            {
+                FollowCar();
+            }
+            else
+            {
+
+            }
+        }    
+        
+        void FollowCar()
         {
-            enemyController.CheckTarget(follingCar.position, true);            
+            state = FollowState.follingCar;            
+            enemyController.CheckTarget(car.position);
         }
-        else if (state == FollowState.follingShip)
+
+        void FollowShip()
         {
-            FollowShip();
-        }                   
-	}
-
-	void OnTriggerExit(Collider collider) {
-        Debug.Log(collider.gameObject);
-        var auxCar = collider.gameObject.GetComponentInParent<Car>();
-
-        enemyController.NotAttack();
-
-        if (auxCar != null)
-        {
-            follingCar = null;
-            state = FollowState.follingShip;
-            FollowShip();
+            state = FollowState.follingShip;            
+            enemyController.CheckTarget(ship.position);            
         }
-        //Debug.Log(state);
-    }
-
-    void FollowShip()
-    {
-        enemyController.CheckTarget(destiny.transform.position, false);
     }
 }

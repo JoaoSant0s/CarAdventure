@@ -12,8 +12,7 @@ namespace CarAdventure.Entity.Component {
         float smoothDirection;
         float smoothDirectionVelocity;
 
-        Vector3 destinyPosition;
-        System.Func<bool> savedFunction;
+        Vector3 destinyPosition;        
 
         internal NavMeshAgent PathFinder{
             get{
@@ -25,41 +24,33 @@ namespace CarAdventure.Entity.Component {
         {
             pathFinder = GetComponent<NavMeshAgent>();            
             body = GetComponent<Rigidbody>();        
+        }       
+
+        internal float GetVelocity()
+        {
+            return pathFinder.velocity.magnitude;
         }
 
-        internal void Move(Vector3 targetDestiny, System.Func<bool> callback) 
+        internal void Move(Vector3 targetDestiny) 
         {
-            destinyPosition = targetDestiny;
-            savedFunction = callback;
-            MoveExtention(destinyPosition, savedFunction);
+            destinyPosition = targetDestiny;            
+            MoveExtention(destinyPosition);
         }
 
-        internal void MoveExtention(Vector3 targetDestiny, System.Func<bool> callback)
-        {
-            //Debug.Log(targetDestiny);
-            pathFinder.SetDestination(targetDestiny);
-            StartCoroutine(CheckMove(callback));
-        }
-
-        IEnumerator CheckMove(System.Func<bool> callback)
-        {
-            yield return new WaitUntil(() =>
-            {
-                return !pathFinder.pathPending;
-            });
-            callback();
-        }
+        internal void MoveExtention(Vector3 targetDestiny)
+        {            
+            pathFinder.SetDestination(targetDestiny);           
+        }        
         
         internal void Resume()
         {
             if (destinyPosition ==  null) return;
-            MoveExtention(destinyPosition, savedFunction);
+            MoveExtention(destinyPosition);
         }
 
         internal void Stop() 
         {
-            MoveExtention(transform.position, savedFunction);            
-            //pathFinder.ResetPath();
+            MoveExtention(destinyPosition);            
         }
     }
 
