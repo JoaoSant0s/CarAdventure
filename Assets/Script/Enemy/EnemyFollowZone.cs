@@ -8,35 +8,24 @@ namespace CarAdventure.Entity.Component {
     {
         public enum FollowState
         {
-            follingCar,
-            follingShip
+            FollingCar,
+            FollingShip
         }
                 
         [SerializeField]
         float enemyFollowDistance;               
         [SerializeField]
         FollowState state;
-
+        [SerializeField]
         AttackEnemy enemyController;
-        Transform ship;
-        Transform car;
 
-        void Awake()
-        {
-            enemyController = GetComponent<AttackEnemy>();
-        }
+        Transform ship;
+        Transform car;        
 
         void Start()
         {
             Setup();
             FollowShip();
-        }
-
-        void Setup()
-        {
-           
-            ship = GameObject.FindGameObjectWithTag("Ship").transform;
-            car = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         void Update()
@@ -49,19 +38,26 @@ namespace CarAdventure.Entity.Component {
             }
             else
             {
-
+                if(state == FollowState.FollingCar) FollowShip();
             }
         }    
+
+        void Setup()
+        {
+           
+            ship = GameObject.FindGameObjectWithTag("Ship").transform;
+            car = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         
         void FollowCar()
         {
-            state = FollowState.follingCar;            
+            state = FollowState.FollingCar;            
             enemyController.CheckTarget(car.position);
         }
 
         void FollowShip()
         {
-            state = FollowState.follingShip;            
+            state = FollowState.FollingShip;            
             enemyController.CheckTarget(ship.position);            
         }
     }

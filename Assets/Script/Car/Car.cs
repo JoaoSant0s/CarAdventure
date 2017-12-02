@@ -77,7 +77,7 @@ namespace CarAdventure.Entity {
 
         internal void Destroy()
         {
-            if (OnDestroyCar != null) OnDestroyCar();        
+            if (OnDestroyCar != null) OnDestroyCar();            
             
             DestroyObject(gameObject);
         }

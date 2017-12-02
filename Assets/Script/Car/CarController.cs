@@ -12,16 +12,16 @@ namespace CarAdventure.Controller {
         AudioSource audio;
 
         void Start() {
-            carMotor = GetComponent<CarMotor>();
-            audio = GetComponent<AudioSource>();
+            carMotor = GetComponent<CarMotor>();            
+            audio = GetComponent<AudioSource>();                        
         } 
-        void Update() {
+        void Update() {            
             var changeCamera = Input.GetButtonDown("ChangeCamera");
 
             if (!changeCamera) return;
 
             if (OnChangeCamera != null) OnChangeCamera();        
-        }   
+        }                   
 
         void FixedUpdate() {
             float steer = Input.GetAxis("Horizontal");        

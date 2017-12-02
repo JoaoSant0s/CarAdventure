@@ -1,0 +1,1047 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"foreach\tforeach"
+			],
+			[
+				"IEn",
+				"IEnumerator<\tIEnumerator<"
+			],
+			[
+				"view",
+				"viewAngle\tfloat"
+			],
+			[
+				"tar",
+				"target\tTransform"
+			],
+			[
+				"targe",
+				"targestInViewRadius\tCollider[]"
+			],
+			[
+				"fo",
+				"for\tfor"
+			],
+			[
+				"Uni",
+				"UnityEngine\tUnityEngine"
+			],
+			[
+				"Vie",
+				"ViewRadius\tfloat { get; }"
+			],
+			[
+				"Vec",
+				"Vector3\tVector3"
+			],
+			[
+				"Hand",
+				"Handles\tHandles"
+			],
+			[
+				"Ma",
+				"Mathf\tMathf"
+			],
+			[
+				"get",
+				"GetComponent<T>()\tT"
+			],
+			[
+				"Foll",
+				"FollowState\tFollowState"
+			],
+			[
+				"ser",
+				"serializer_class"
+			],
+			[
+				"tra",
+				"train_classes"
+			],
+			[
+				"test",
+				"test_classes"
+			],
+			[
+				"set",
+				"setScaleX"
+			],
+			[
+				"lau",
+				"launchPoint"
+			],
+			[
+				"fun",
+				"fun\tFunction"
+			],
+			[
+				"che",
+				"check1"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"bot",
+				"border-top-color"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"sel",
+				"select"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"Com",
+				"ComparativeHistograms"
+			],
+			[
+				"return",
+				"return"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"pr",
+				"primeList"
+			],
+			[
+				"se",
+				"selected"
+			],
+			[
+				"g",
+				"g"
+			],
+			[
+				"p",
+				"p"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"sace",
+				"scaleScatterplotX"
+			],
+			[
+				"va",
+				"valueOf"
+			],
+			[
+				"sca",
+				"scaleX"
+			],
+			[
+				"svg",
+				"svgGroup"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"st",
+				"style\tTag"
+			],
+			[
+				"fonts",
+				"font-size"
+			],
+			[
+				"lin",
+				"lineFunction"
+			],
+			[
+				"cir",
+				"circles"
+			],
+			[
+				"sv",
+				"svgGrounp"
+			],
+			[
+				"s",
+				"svgContainer"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"X",
+				"X"
+			],
+			[
+				"mi",
+				"minY"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"pro",
+				"proto\tPrototype"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"par",
+				"partssen"
+			],
+			[
+				"part",
+				"partscos"
+			],
+			[
+				"addC",
+				"addCheckRadio"
+			],
+			[
+				"Pi",
+				"PI"
+			],
+			[
+				"cur",
+				"curveIncrement"
+			],
+			[
+				"pA",
+				"pA"
+			],
+			[
+				"Radi",
+				"RADIUS"
+			],
+			[
+				"inde",
+				"indexOf"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Script/Car/CarController.cs",
+			"settings":
+			{
+				"buffer_size": 1718,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Car/Car.cs",
+			"settings":
+			{
+				"buffer_size": 2772,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Car/CarMotor.cs",
+			"settings":
+			{
+				"buffer_size": 3373,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Enemy/AttackEnemy.cs",
+			"settings":
+			{
+				"buffer_size": 3460,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Enemy/EnemyFollowZone.cs",
+			"settings":
+			{
+				"buffer_size": 1573,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Enemy/EnemyAttackZone.cs",
+			"settings":
+			{
+				"buffer_size": 3861,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Enemy/EnemyMotor.cs",
+			"settings":
+			{
+				"buffer_size": 1400,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 432.0
+	},
+	"console":
+	{
+		"height": 353.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/J/Development/Unity/CarAdventure/Assets",
+		"/J/Development/Unity/CarAdventure/Assets/Script",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Car",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Car/Claw"
+	],
+	"file_history":
+	[
+		"/J/Development/Unity/CarAdventure/Assets/Editor/EnemyAttackZoneEditor.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Utils/ObjectManipulation.cs",
+		"/J/Development/Unity/CarAdventure/CarAdventure.sublime-project",
+		"/J/Development/Unity/CarAdventure/carAdventure.sublime-project",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/controladorProduto.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/cadastroProduto.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/forms.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/models.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shopService/urls.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/urls.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shopService/settings.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/src/app/app.component.css",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/src/app/app.module.ts",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/serializers.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/src/app/app.component.ts",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/src/app/app.component.html",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/ShopFrontEndService/frontEndService/README.md",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/shop/admin.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/facade.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/README.md",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/src/app/app.module.ts",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/src/app/app.component.ts",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/src/app/app.component.html",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/shopService/requirements.txt",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/proxy.conf.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/src/index.html",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/shop/urls.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/naturalConcept/settings.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/shop/models.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/shop/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/cart/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/shop/templates/shop/product/list.html",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/orders/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/naturalConcept/shop/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/teste/mysite/mysite/settings.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/requirements.txt",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/teste/mysite/polls/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/naturalConcept/shop/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/naturalConcept_soa_controller/.gitignore",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/.gitignore",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_controller/teste/README-controller.md",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/README-view.mdown",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/src/app/app.component.html",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/src/app/app.component.ts",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/src/app/app.module.ts",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/src/app/app.component.css",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/package-lock.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/testando/package-lock.json",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/.gitignore",
+		"/J/ExternalDevelopment/UFPE/APS/soa/naturalConcept_soa_view/teste/frontend/.angular-cli.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/model/mysite/requirements.txt",
+		"/J/ExternalDevelopment/UFPE/APS/teste/model/mysite/Dockerfile",
+		"/J/ExternalDevelopment/UFPE/APS/teste/model/mysite/polls/views.py",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/src/app/app.module.ts",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/src/app/app.component.ts",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/proxy.conf.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/Dockerfile",
+		"/C/Users/Ricar/Desktop/app/app.module.ts",
+		"/C/Users/Ricar/Desktop/proxy.conf.json",
+		"/C/Users/Ricar/Desktop/app/app.component.ts",
+		"/C/Users/Ricar/Desktop/app/heroes/heroes.component.ts",
+		"/C/Users/Ricar/Desktop/app/heroes/heroes.component.html",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/src/app/app.component.html",
+		"/C/Users/Ricar/Desktop/app/app.component.html",
+		"/C/Users/Ricar/Desktop/app/heroes/heroes.component.spec.ts",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/frontend/.gitignore",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/Dockerfile",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/proxy.conf.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/package-lock.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/package-lock.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/@angular/cli/package.json",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/license-webpack-plugin/dist/Module.js",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/webpack/buildin/module.js",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/.bin/semver",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/@angular/cli/bin/ng",
+		"/J/ExternalDevelopment/UFPE/RedesNeurais/Projeto1/nnmammo/nnmammo.ipynb",
+		"/J/ExternalDevelopment/UFPE/RedesNeurais/Projeto1/nnmammo/train_util.py",
+		"/J/ExternalDevelopment/UFPE/RedesNeurais/Projeto1/nnmammo/nnmammo.py",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/Hook.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Enemy/AttackEnemy.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/CharacterMotor.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/CharacterController.cs",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/viewtest.build.log",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/@angular/cli/models/webpack-configs/production.js",
+		"/J/ExternalDevelopment/UFPE/APS/teste/testDocker/Dockerfile",
+		"/J/ExternalDevelopment/UFPE/APS/teste/testDocker/app.py",
+		"/J/ExternalDevelopment/UFPE/APS/teste/testDocker/requirements.txt",
+		"/J/ExternalDevelopment/UFPE/APS/teste/view/my-app/node_modules/xmlhttprequest-ssl/lib/XMLHttpRequest.js",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/ArmRightController.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/ShotController.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/PunchController.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Character/Punch.cs",
+		"/J/Development/Unity/Novo Projeto/Novo Project/Assets/Scripts/Enemy/Shoot.cs",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/cfg/resource_def.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/loading_scene.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/index.html",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/cfg/utils.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/core/managers/game_manager.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/cfg/phases/phase_1.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/hud_layer.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/start_splash_scene.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/start_scene.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/menu_scene.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/runtime/offline/index.html",
+		"/C/Users/Ricar/Downloads/oed/oed/assets/js/controller.js",
+		"/C/Users/Ricar/Downloads/oed/oed/assets/js/model.js",
+		"/C/Users/Ricar/Downloads/oed/oed/assets/css/style.css",
+		"/C/Users/Ricar/Downloads/oed/oed/data/data.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/tools/offliner/CCBoot310.js",
+		"/C/Users/Ricar/Downloads/desafio-plutontia-30-08-2017/desafio-plutontia-30-08-2017/debug.log",
+		"/J/ExternalDevelopment/UFPE/APS/Projeto/README.md",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/entity/enemy.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/entity/shot.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/main.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/activity_scene.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/race_layer.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/runtime/offline/data.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/project.json",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/facebook/cocos_fb.js",
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/facebook/fb.js",
+		"/C/Windows/System32/drivers/etc/hosts"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"J:\\ExternalDevelopment\\UFPE\\APS\\Projeto\\shopService",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\soa\\naturalConcept_soa_view\\ShopFrontEndService\\frontEndService\\src",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\Projeto\\shopService",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\Projeto\\shopService\\shop",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\soa\\naturalConcept_soa_controller\\naturalConcept_soa_controller",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\soa\\naturalConcept_soa_controller\\naturalConcept_soa_controller\\shop\\templates",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\soa\\naturalConcept_soa_controller\\naturalConcept_soa_controller",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\soa\\naturalConcept_soa_view\\teste\\frontend",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\teste\\view\\frontend",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\teste\\view\\my-app",
+			"J:\\ExternalDevelopment\\UFPE\\APS\\teste\\view",
+			"J:\\ExternalDevelopment\\Manifesto\\arcor-desafio-plutonita\\arcor-desafio-plutonita\\Desafio Plutonita\\src",
+			"J:\\ExternalDevelopment\\UFPE\\Topicos Interface\\Projeto\\PreysUpon",
+			"J:\\ExternalDevelopment\\Manifesto\\positivo-oed-lote-8\\matematica-04",
+			"J:\\ExternalDevelopment\\Manifesto\\positivo-oed-lote-5\\biologia-11\\src",
+			"J:\\ExternalDevelopment\\Manifesto\\positivo-oed-lote-8\\matematica-07\\js",
+			"J:\\ExternalDevelopment\\Manifesto\\positivo-oed-lote-8\\matematica-05\\js",
+			"J:\\ExternalDevelopment\\Manifesto\\unoi-matematica-3\\pag15_od_dig_em_mat_m9_t1\\js",
+			"J:\\ExternalDevelopment\\Manifesto\\iwin-cubis-reborn\\CubisReborn\\Assets\\Scripts",
+			"J:\\Development\\Unity\\JumpToTower\\Assets\\Script",
+			"J:\\External Development\\Manifesto\\iwin-cubis-reborn\\CubisReborn\\Assets\\Scripts\\Manager",
+			"J:\\External Development\\Manifesto\\iwin-cubis-reborn\\CubisReborn\\Assets\\Scripts",
+			"J:\\External Development\\Manifesto\\positivo-oed-lote-5\\fisica-04\\src",
+			"J:\\Development\\Manifesto\\positivo-oed-lote-5\\geografia-06\\src",
+			"J:\\Development\\HTML5\\teste",
+			"J:\\Development\\HTML5\\teste\\scripts",
+			"J:\\Development\\HTML5\\teste\\styles"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"NotAttack",
+			"eaz",
+			"ViewRadius",
+			"follingCar",
+			"image",
+			"ngForm",
+			"ProductDetailView",
+			"as_view",
+			"ProductView",
+			"product_list",
+			"ProductView",
+			"Product",
+			"Category",
+			"CategorySerializer",
+			"forms",
+			"ProductUpdateForm",
+			"listar",
+			"Fachada",
+			"listar",
+			"ControladorProduto",
+			"listar",
+			"product_detail",
+			"get_absolute_url",
+			"product_detail",
+			"QuerySet",
+			"8000",
+			"lock",
+			"strip-indent",
+			"are-we-there-yet",
+			"semver",
+			"module.js",
+			"semver",
+			"training_sampler_fold_configuration",
+			"validate_model_configurations_variations",
+			"validate_model",
+			"semver",
+			"this.isMobile",
+			"!this.isMobile",
+			"menu_background",
+			"createBoxPowerUp",
+			"progressFill",
+			"isMobile",
+			"onMuted",
+			"pauseButton",
+			"onMuted",
+			"createBoxPowerUp",
+			"definingScale",
+			"this.isMobile",
+			"definingScale",
+			"Background",
+			"background",
+			"loadingLabel",
+			"updateBackgroundFloor",
+			"update",
+			"frameRate",
+			"resume",
+			"zumbi_crash_congelado",
+			"zumbi_morrendo_defalut",
+			"extra_life_atomic_misterios",
+			"arcor_zombie3_shoe_left",
+			"arcor_zombie3_tigh_right",
+			"-JPN",
+			"addSprite",
+			"-JPN",
+			"JPN0",
+			"-JPN",
+			"bonus_level_",
+			"armatureNameRef",
+			"addSprite",
+			"armatureNameRef",
+			"armatureRef",
+			"dying",
+			"setupPhase",
+			"allCollectables",
+			"atomicMysteriesTimer",
+			"start_splash_chicletes_2",
+			"loadMenuCoroutine",
+			"levelIndex",
+			"loadMenuCoroutine",
+			"levelIndex",
+			"menuState",
+			"loadActivity",
+			"updateOrCreateReturnLevelButton",
+			"this",
+			"playAudioAdvancedLoop",
+			"HEAD",
+			"mobileShot",
+			"this.holdTime",
+			"setupCharacter",
+			"HEAD",
+			"createShot",
+			"HEAD",
+			"nextEnemiesHorder",
+			"createHorder",
+			"setupPhase",
+			"setupCharacter",
+			"nextCollectableSpawn",
+			"setupCharacter",
+			"nextCollectableSpawn",
+			"emptyInventory",
+			"nextEnemiesHorder",
+			"nextCollectableSpawn",
+			"removeCollectable",
+			"nextEnemiesHorder",
+			"createHorder",
+			"collectablesWaveIndex",
+			"obstaclesWaveIndex",
+			"collectablesWaveIndex",
+			"paused",
+			"createCollectables",
+			"nextCollectableSpawn",
+			"removeCollectable",
+			"nextCollectableSpawn",
+			"createCollectables",
+			"nextCollectableSpawn",
+			"removeSpecialArmature",
+			"beforeRemoveSpecial",
+			"removeCollectable",
+			"createShot",
+			"nextCollectableSpawn",
+			"this.currentCollectable",
+			"createCollectables",
+			"currentCollectable",
+			"completeObstacles",
+			"nextObstaclesSpawn",
+			"this.obstacles",
+			"createHorder",
+			"nextEnemiesHorder"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"ActivityScene",
+			"this.tooltipDiv",
+			"selectedIndexCarries",
+			"scaleHistogramY",
+			"scaleHistogramX",
+			"this.margin",
+			"brazilData",
+			"redPoint",
+			"this.yAxis",
+			"this.xAxis"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Script/Car/CarController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1184,
+								1184
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1256,1268": "Comparison of floating point numbers can be unequal due to the differing precision of the two values."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Script/Car/Car.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2772,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2208,
+								2208
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1313,1317": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"452,463": "The private field 'bodyGraphic' is never assigned",
+								"46,51": "Using directive is not used by code and can be removed safely.",
+								"688,704": "Convert to auto property"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 900.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Script/Car/CarMotor.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								324,
+								324
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Script/Enemy/AttackEnemy.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2921,
+								2934
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"2505,2509": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"47,52": "Using directive is not used by code and can be removed safely.",
+								"950,958": "Local variable 'velocity' hides field 'CarAdventure.Entity.Enemy.velocity'"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 183.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Script/Enemy/EnemyFollowZone.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1443,
+								1448
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"26,31": "Using directive is not used by code and can be removed safely.",
+								"360,379": "The private field 'enemyFollowDistance' is never assigned",
+								"493,508": "The private field 'enemyController' is never assigned"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Script/Enemy/EnemyAttackZone.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3594,
+								3604
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1166,1176": "The private field 'viewRadius' is never assigned",
+								"1249,1258": "The private field 'viewAngle' is never assigned",
+								"1305,1320": "The private field 'enemyController' is never assigned",
+								"2053,2080": "Method never reaches its end or a 'return' statement.",
+								"290,305": "Use 'var' keyword"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1030.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Script/Enemy/EnemyMotor.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1400,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								816,
+								820
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 153.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 251.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 102.0
+	},
+	"pinned_build_system": "",
+	"project": "CarAdventure.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 345.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

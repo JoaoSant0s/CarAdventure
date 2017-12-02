@@ -8,29 +8,29 @@ using CarAdventure.Entity.Component;
 namespace CarAdventure.Entity { 
 
     public class AttackEnemy : Enemy {
-
+        
         public delegate void NextHorder(EnemyMotor motor);
         public static event NextHorder OnNextHorder;
 
-        float lastAttackTime;
-        bool attacking;
+        float lastAttackTime;  
+        bool attacking;      
         bool animationDamage;
         bool dying;
         Animator animator;
 
         public bool Dying {
             get { return dying; }
-        }
+        }        
 
         void Awake()
-        {
+        {            
             lastAttackTime = 0f;
             animator = GetComponent<Animator>();            
         }        
 
         internal void CheckTarget(Vector3 targetDestiny)
         {            
-            if (attacking || dying) return;            
+            if (dying || attacking) return;            
             Motor.Move(targetDestiny);
         }
 
@@ -38,7 +38,7 @@ namespace CarAdventure.Entity {
         {
             var velocity = Motor.GetVelocity();
             
-            if (attacking || dying) return;
+            if (dying) return;
             if (velocity > 0.05)
             {
                 animator.SetTrigger("walking");
@@ -47,15 +47,10 @@ namespace CarAdventure.Entity {
             {
                 animator.SetTrigger("idle");
             }
-        }        
-
-        internal void NotAttack()
-        {            
-            attacking = false;
-        }
+        }                
 
         internal void Attack(Car car)
-        {
+        {            
             if (dying) return;
             AttackingTime(car.transform.position, () => { car.ReduceLife(attack); StartCoroutine(IdleCoroutine()); return true; });               
         }
@@ -67,11 +62,10 @@ namespace CarAdventure.Entity {
         }
 
         void AttackingTime(Vector3 relativePosition, System.Func<bool> callback)
-        {
-            if (dying) return;
+        {                                    
+            if (lastAttackTime >= Time.timeSinceLevelLoad) return;
             attacking = true;
             Motor.Stop();
-            if (lastAttackTime >= Time.timeSinceLevelLoad) return;
             animator.SetTrigger("attacking");            
 
             transform.forward = ObjectManipulation.ForwardNormalized(transform.position, relativePosition);
@@ -104,8 +98,8 @@ namespace CarAdventure.Entity {
 
         IEnumerator IdleCoroutine()
         {
-            yield return new WaitForSeconds(1f);
-
+            yield return new WaitForSeconds(cooldown);  
+            attacking = false;          
             animator.SetTrigger("idle");
         }
 

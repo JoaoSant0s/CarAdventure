@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace CarAdventure.Entity.Component {
 
     public class FollowCar : MonoBehaviour {
-
+        
         [SerializeField]
         Transform targetedUnit;
         [SerializeField]
@@ -15,12 +15,13 @@ namespace CarAdventure.Entity.Component {
         Image rawImage;
         Camera cam;
 
-        void Start() {
+        void Start() {            
             InitGlobalVariables();
             rawImage.color = new Color(colorPoint.r, colorPoint.g, colorPoint.b);
         }
 
         void InitGlobalVariables() {
+            
             rectTransform = (RectTransform)transform;
             cam = GameObject.FindGameObjectWithTag("MiniMapCamera").GetComponent<Camera>();
             rawImage = GetComponent<Image>();
