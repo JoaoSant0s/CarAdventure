@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CarAdventure.Controller {
     public class PauseController : MonoBehaviour {

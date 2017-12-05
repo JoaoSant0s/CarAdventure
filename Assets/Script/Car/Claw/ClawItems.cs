@@ -1,6 +1,4 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CarAdventure.Entity.Component {
@@ -26,16 +24,33 @@ namespace CarAdventure.Entity.Component {
         [SerializeField]
         float constanteForce;
         [SerializeField]
-        internal float cooldown = 2f;
+        internal float cooldown = 2f;    
+
+        [SerializeField]
+        FixedArmor armorPrefab; 
+        [SerializeField]
+        int maxFixedArmors;
+
+        int currentFixedArmors;   
 
         float lastAttackTime;
         LineRenderer line;
         Ray ray;
 
+        Transform terreno;
+
         void Start()
         {
+            FixedArmor.OnRemoveArmor += RemoveArmor;
+
             lastAttackTime = 0f;
-            line = GetComponent<LineRenderer>();            
+            line = GetComponent<LineRenderer>();  
+            terreno = GameObject.FindGameObjectWithTag("Terrain").transform;
+        }
+
+        void OnDestroy()
+        {
+            FixedArmor.OnRemoveArmor -= RemoveArmor;
         }
         
         void Update()
@@ -45,6 +60,12 @@ namespace CarAdventure.Entity.Component {
             line.SetPosition(1, ray.GetPoint(10f));            
 
             UseSelectedItem();
+        }
+
+        void RemoveArmor()
+        {
+            currentFixedArmors--;
+            currentFixedArmors = Mathf.Max(0, currentFixedArmors);
         }       
 
         void UseSelectedItem()
@@ -54,8 +75,14 @@ namespace CarAdventure.Entity.Component {
                 if (lastAttackTime >= Time.timeSinceLevelLoad) return;
                 lastAttackTime = Time.timeSinceLevelLoad + cooldown;
                 CreateBullet();                
+            }else if (Input.GetMouseButtonDown(1))
+            {
+                if(currentFixedArmors < maxFixedArmors){
+                    currentFixedArmors++;
+                    Instantiate(armorPrefab, ( new Vector3(transform.position.x, armorPrefab.transform.position.y, transform.position.z) ), Quaternion.identity, terreno);    
+                }            
             }
-        }    
+        }
 
         void CreateBullet()
         {

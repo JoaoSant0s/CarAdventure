@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CarAdventure.Entity.Component {
     public class ClawCamera : MonoBehaviour {

@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"P",
+				"P\tKeyCode"
+			],
+			[
+				"Get",
+				"GetKeyDown(KeyCode key)\tbool"
+			],
+			[
+				"Key",
+				"KeyCode\tKeyCode"
+			],
+			[
+				"GetButt",
+				"GetButtonDown(string buttonName)\tbool"
+			],
+			[
 				"IEnumer",
 				"IEnumerator\tIEnumerator"
 			],
@@ -303,7 +319,7 @@
 			"file": "Assets/Script/UI/LifeUIController.cs",
 			"settings":
 			{
-				"buffer_size": 1029,
+				"buffer_size": 1031,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Unix"
 			}
@@ -321,7 +337,16 @@
 			"file": "Assets/Script/GameManager/GameManager.cs",
 			"settings":
 			{
-				"buffer_size": 1923,
+				"buffer_size": 1921,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Ship/ShipController.cs",
+			"settings":
+			{
+				"buffer_size": 1005,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
@@ -330,18 +355,54 @@
 			"file": "Assets/Script/GameManager/SpawnController.cs",
 			"settings":
 			{
-				"buffer_size": 3858,
+				"buffer_size": 3881,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "Assets/Script/Car/Car.cs",
+			"file": "Assets/Script/GameManager/PauseController.cs",
 			"settings":
 			{
-				"buffer_size": 2909,
+				"buffer_size": 621,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Car/Claw/ClawCamera.cs",
+			"settings":
+			{
+				"buffer_size": 1460,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Car/Claw/ClawItems.cs",
+			"settings":
+			{
+				"buffer_size": 2255,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Items/Bullet.cs",
+			"settings":
+			{
+				"buffer_size": 843,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Script/Items/FixedArmor.cs",
+			"settings":
+			{
+				"buffer_size": 173,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -384,13 +445,21 @@
 	[
 		"/J/Development/Unity/CarAdventure/Assets",
 		"/J/Development/Unity/CarAdventure/Assets/Script",
-		"/J/Development/Unity/CarAdventure/Assets/Script/GameManager"
+		"/J/Development/Unity/CarAdventure/Assets/Script/GameManager",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Ship",
+		"/J/Development/Unity/CarAdventure/Assets/Script/UI"
 	],
 	"file_history":
 	[
+		"/J/Development/Unity/CarAdventure/Assets/Script/UI/PauseUIController.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Car/Car.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/UI/PauseController.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/UI/DeathController.cs",
+		"/J/Development/Unity/CarAdventure/Assets/PauseUIController.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/UI/ControlController.cs",
+		"/J/Development/Unity/CarAdventure/Assets/Script/Items/Bullet.cs",
 		"/J/Development/Unity/CarAdventure/Assets/Script/Game/GameController.cs",
 		"/J/Development/Unity/CarAdventure/Assets/Script/GameManager/GameController.cs",
-		"/J/Development/Unity/CarAdventure/Assets/Script/Car/Car.cs",
 		"/J/Development/Unity/CarAdventure/Assets/Script/Enemy/AttackEnemy.cs",
 		"/J/Development/Unity/CarAdventure/Assets/Script/Enemy/EnemyAttackZone.cs",
 		"/J/Development/Unity/CarAdventure/Assets/Script/Game/GameManager.cs",
@@ -509,13 +578,7 @@
 		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/cfg/utils.js",
 		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/core/managers/game_manager.js",
 		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/cfg/phases/phase_1.js",
-		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/hud_layer.js",
-		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/start_splash_scene.js",
-		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/start_scene.js",
-		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/menu_scene.js",
-		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/runtime/offline/index.html",
-		"/C/Users/Ricar/Downloads/oed/oed/assets/js/controller.js",
-		"/C/Users/Ricar/Downloads/oed/oed/assets/js/model.js"
+		"/J/ExternalDevelopment/Manifesto/arcor-desafio-plutonita/arcor-desafio-plutonita/Desafio Plutonita/src/race/scenes/hud_layer.js"
 	],
 	"find":
 	{
@@ -558,9 +621,11 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"currentPrefab",
+			"position",
 			"ReduceLife",
 			"Destroy",
 			"OnDestroyCar",
@@ -686,9 +751,7 @@
 			"removeSpecialArmature",
 			"beforeRemoveSpecial",
 			"removeCollectable",
-			"createShot",
-			"nextCollectableSpawn",
-			"this.currentCollectable"
+			"createShot"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -716,7 +779,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -725,33 +788,37 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1029,
+						"buffer_size": 1031,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								653,
-								664
+								514,
+								523
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"497,508": "'GameManager' does not contain a definition for 'OnRestartUI'",
-								"512,521": "Error: Int32",
-								"653,664": "'GameManager' does not contain a definition for 'OnRestartUI'",
-								"668,677": "Error: Int32"
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"243,248": "The private field 'label' is never assigned",
+								"26,31": "Using directive is not used by code and can be removed safely.",
+								"282,300": "The private field 'baseLabelFormation' is never assigned",
+								"337,350": "The private field 'baseUIElement' is never assigned",
+								"511,512": "Subscription to static events without unsubscription may cause memory leaks.",
+								"667,668": "Subscription to static events without unsubscription may cause memory leaks.",
+								"934,945": "Parameter can be IComparable"
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 171.0,
+						"translation.y": 285.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -767,8 +834,8 @@
 						"selection":
 						[
 							[
-								648,
-								648
+								394,
+								404
 							]
 						],
 						"settings":
@@ -785,10 +852,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 114.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -797,57 +864,123 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1923,
+						"buffer_size": 1921,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								743,
-								743
+								1568,
+								1579
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"1126,1136": "'SpawnController' does not contain a definition for 'StartSpawn'",
-								"1138,1139": "'SpawnController' does not contain a definition for 'StartSpawn'",
-								"1235,1244": "Cannot convert from [UnknownType Car] to UnityEngine.Object",
-								"1290,1291": "Invocation error: ArgumentTypeMismatch",
-								"1315,1324": "'Object' does not contain a definition for 'transform'",
-								"1325,1334": "'?' does not contain a definition for 'SetParent'",
-								"1356,1357": "'?' does not contain a definition for 'SetParent'",
-								"1673,1690": "'SpawnController' does not contain a definition for 'RemoveAllEnemeies'",
-								"1692,1693": "'SpawnController' does not contain a definition for 'RemoveAllEnemeies'",
-								"1730,1733": "Could not determine type",
-								"1768,1771": "'Car' is not a known identifier",
-								"1774,1775": "Invocation error: MethodConstraintsNotSatisfied",
-								"1806,1816": "Cannot convert from ? to UnityEngine.Object",
-								"1817,1818": "Invocation error: ArgumentTypeMismatch",
-								"462,465": "'Car' is not a known identifier",
-								"510,525": "'SpawnController' is not a known identifier",
-								"64,70": "Unknown Resolver Error"
+								"1740,1750": "Static method invoked via derived type",
+								"414,427": "The private field 'spawnPosition' is never assigned",
+								"466,475": "The private field 'carPrefab' is never assigned",
+								"526,541": "The private field 'spawnController' is never assigned",
+								"582,596": "The private field 'delayInitSpawn' is never assigned"
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 342.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "Assets/Script/Ship/ShipController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1005,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								857,
+								857
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"375,381": "The private field 'energy' is never assigned",
+								"782,786": "Comparison of floating point numbers can be unequal due to the differing precision of the two values."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "Assets/Script/GameManager/SpawnController.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3858,
+						"buffer_size": 3881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1357,
+								1357
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"2644,2654": "Parameter can be IComparable",
+								"410,423": "The private field 'enemiesPrefab' is never assigned",
+								"460,480": "The private field 'spawnEnemiesPosition' is never assigned",
+								"537,550": "The private field 'waitSpawnTime' is never assigned",
+								"614,624": "The private field 'minEnemies' is never assigned",
+								"688,698": "The private field 'maxEnemies' is never assigned",
+								"738,752": "The private field 'startSpawnTime' is never assigned",
+								"791,804": "The private field 'nextSpawnTime' is never assigned",
+								"850,857": "The private field 'miniMap' is never assigned",
+								"902,914": "The private field 'followPrefab' is never assigned"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Script/GameManager/PauseController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 621,
 						"regions":
 						{
 						},
@@ -860,41 +993,46 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"oops":
+							{
+								"159,171": "The private field 'uiController' is never assigned",
+								"306,312": "'UnityEngine.GameObject.active' is obsolete"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 285.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Assets/Script/Car/Car.cs",
+					"buffer": 6,
+					"file": "Assets/Script/Car/Claw/ClawCamera.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2909,
+						"buffer_size": 1460,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								115,
-								96
+								323,
+								323
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"1272,1288": "Convert to auto property",
-								"1899,1903": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
-								"569,580": "The private field 'bodyGraphic' is never assigned"
+								"1030,1046": "no known errors.",
+								"156,171": "Convert to constant",
+								"237,243": "The private field 'center' is never assigned",
+								"364,366": "Initializing field by default value is redundant",
+								"423,425": "Initializing field by default value is redundant"
 							},
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
 							"tab_size": 4,
@@ -904,7 +1042,104 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Assets/Script/Car/Claw/ClawItems.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2255,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								627,
+								627
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"868,878": "'FixedArmor' is not a known identifier"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 171.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Assets/Script/Items/Bullet.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 843,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								616,
+								616
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Assets/Script/Items/FixedArmor.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 173,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								173,
+								173
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"26,31": "Using directive is not used by code and can be removed safely."
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -995,7 +1230,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 345.0,
+	"side_bar_width": 266.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
