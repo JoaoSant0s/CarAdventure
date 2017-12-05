@@ -33,7 +33,7 @@ namespace CarAdventure.Controller.Manager
         [SerializeField]
         Transform miniMap;
         [SerializeField]
-        FollowCar followPrefab;
+        FollowCar followPrefab;        
         
         List<EnemyMotor> enemies;
         List<FollowCar> followEnemies;
@@ -48,41 +48,35 @@ namespace CarAdventure.Controller.Manager
         void OnDestroy()
         {
             AttackEnemy.OnNextHorder -= ReduceCount;
+        }        
+
+        internal void StartSpawn()
+        {
+            StartCoroutine(SpawnEnemies(startSpawnTime));
         }
 
-        void Start()
-		{
-            StartCoroutine(SpawnEnemies(startSpawnTime));
-		}	
-
         IEnumerator SpawnEnemies(int seconds)
-        {
+        {               
             for (int i = seconds - 1; i >= 0; i--)
             {
                 if (OnHorderTimeCounter != null) OnHorderTimeCounter(i);
                 yield return new WaitForSeconds(1f);
+                              
             }
             
             enemies = new List<EnemyMotor>();
             followEnemies = new List<FollowCar>();
-
-            var spawnGateNumber = Random.Range(0, spawnEnemiesPosition.Length);
+            
             var numberEnemies = Random.Range(minEnemies, maxEnemies);
-
-            var position = spawnEnemiesPosition[spawnGateNumber].position;
-            var colliderElement = spawnEnemiesPosition[spawnGateNumber].GetComponent<BoxCollider>();
-            var offsetWidth = colliderElement.size.x / 2;
-            var offsetHeight = colliderElement.size.z / 2;
-
             currentNumberEnemies = numberEnemies;
 
             for (int j = 0; j < numberEnemies; j++)
             {
-                var currentPrefab = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
-                var x = Random.Range(-offsetWidth, offsetWidth);
-                var z = Random.Range(-offsetHeight, offsetHeight);                    
-                var enemy = Instantiate(currentPrefab, spawnEnemiesPosition[spawnGateNumber]);
-                enemy.transform.localPosition = new Vector3(x, 0, z);
+                var spawnGateNumber = Random.Range(0, spawnEnemiesPosition.Length);                
+                                  
+                var enemy = Instantiate(enemiesPrefab[Random.Range(0, enemiesPrefab.Length)], spawnEnemiesPosition[spawnGateNumber]);
+                enemy.transform.localPosition = GetPosition(spawnGateNumber);
+
                 var follow = Instantiate(followPrefab, miniMap);
 
                 enemies.Add(enemy);
@@ -91,6 +85,17 @@ namespace CarAdventure.Controller.Manager
 
                 yield return new WaitForSeconds(waitSpawnTime);
             }
+        }
+
+        Vector3 GetPosition(int gateNumber)
+        {
+            var colliderElement = spawnEnemiesPosition[gateNumber].GetComponent<BoxCollider>();
+            var offsetWidth = colliderElement.size.x / 2;
+            var offsetHeight = colliderElement.size.z / 2;
+
+            var x = Random.Range(-offsetWidth, offsetWidth);
+            var z = Random.Range(-offsetHeight, offsetHeight); 
+            return new Vector3(x, 0, z);
         }
 
         void ReduceCount(EnemyMotor motor)
@@ -103,6 +108,17 @@ namespace CarAdventure.Controller.Manager
             DestroyObject(followEnemies[removedEnemy].gameObject);
             followEnemies.RemoveAt(removedEnemy);
             if (currentNumberEnemies == 0) StartCoroutine(SpawnEnemies(nextSpawnTime));
+        }
+
+        internal void RemoveAllEnemeies()
+        {
+            for(var i = 0; i < enemies.Count; i++)
+            {    
+                DestroyObject(enemies[i].gameObject);
+                DestroyObject(followEnemies[i].gameObject);                
+            }   
+            enemies.Clear();
+            followEnemies.Clear();      
         }
 
     }

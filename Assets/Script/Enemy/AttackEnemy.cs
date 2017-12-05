@@ -1,9 +1,9 @@
 ﻿
 using UnityEngine;
 using CarAdventure.Common;
-using CarAdventure.Controller.UI;
 using System.Collections;
 using CarAdventure.Entity.Component;
+using CarAdventure.Controller;
 
 namespace CarAdventure.Entity { 
 

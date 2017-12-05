@@ -1,28 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using CarAdventure.Controller.Manager;
 
-public class ShipController : MonoBehaviour {
 
-    public delegate void ReduceShipLife(float currentLife, float initialLife);
-    public static event ReduceShipLife OnReduceShipLife;
+namespace CarAdventure.Controller{
+    public class ShipController : MonoBehaviour {
 
-    [SerializeField]
-    float life;
-    [SerializeField]
-    float energy;
+        public delegate void ReduceShipLife(float currentLife, float initialLife);
+        public static event ReduceShipLife OnReduceShipLife;
 
-    float startLife;
+        [SerializeField]
+        float life;
+        [SerializeField]
+        float energy;
 
-    private void Start()
-    {
-        startLife = life;
-        if (OnReduceShipLife != null) OnReduceShipLife(life, startLife);
-    }
-    internal void ReduceLife(float damage)
-    {
-        life -= damage;
-        life = Mathf.Max(life, 0);
-        if (OnReduceShipLife != null) OnReduceShipLife(life, startLife);
+        float startLife;
+
+        private void Start()
+        {
+            startLife = life;
+            if (OnReduceShipLife != null) OnReduceShipLife(life, startLife);
+        }
+        internal void ReduceLife(float damage)
+        {
+            life -= damage;
+            life = Mathf.Max(life, 0);
+            if (OnReduceShipLife != null) OnReduceShipLife(life, startLife);
+            if(life == 0)
+            {
+                life = startLife;
+                if (OnReduceShipLife != null) OnReduceShipLife(life, startLife);
+                GameManager.Instance.RestartGame();
+            }
+        }
     }
 }

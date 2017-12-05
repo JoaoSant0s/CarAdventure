@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using CarAdventure.Controller;
 
 public class ShipUIController : MonoBehaviour {
 

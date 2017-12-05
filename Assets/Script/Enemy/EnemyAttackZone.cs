@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using CarAdventure.Entity;
 using CarAdventure.Entity.Component;
+using CarAdventure.Controller;
 
 [CustomEditor(typeof(EnemyAttackZone))]
 public class EnemyAttackZoneEditor : Editor {

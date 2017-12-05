@@ -1,7 +1,7 @@
 ﻿
 using System.Collections;
 using UnityEngine;
-using CarAdventure.Controller.UI;
+using CarAdventure.Controller.Manager;
 
 namespace CarAdventure.Entity { 
     public class Car : MonoBehaviour {
@@ -9,8 +9,11 @@ namespace CarAdventure.Entity {
         public delegate void DestroyCar();
         public static event DestroyCar OnDestroyCar;
 
-        public delegate void UpdateHUD(float newLife);
-        public static event UpdateHUD OnUpdateHUD;
+        public delegate void DamageLife(float currentLife);
+        public static event DamageLife OnDamageLife;
+
+        public delegate void ShowLife(float initLife);
+        public static event ShowLife OnShowLife;
 
         [SerializeField]
         float life = 10f;
@@ -23,6 +26,20 @@ namespace CarAdventure.Entity {
         MeshRenderer bodyTop;
         Color bodyColor;
         bool imortality;
+
+        void Awake()
+        {        
+            bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
+            bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
+            bodyColor = bodyBottom.material.color;
+            currentCharacter = new Character("Player");
+            imortality = false;            
+        }   
+
+        void Start()
+        {
+            if(OnShowLife != null) OnShowLife(life);
+        }
         
         public Character CurrentCharacter {
             get { return currentCharacter; }
@@ -46,7 +63,7 @@ namespace CarAdventure.Entity {
 
             life -= damage;
             life = Mathf.Max(life, 0f);
-            if (OnUpdateHUD != null) OnUpdateHUD(life);
+            if (OnDamageLife != null) OnDamageLife(life);
             if (life != 0f) {
                 StartCoroutine(ImortalityCoroutine());
             }else {
@@ -75,22 +92,10 @@ namespace CarAdventure.Entity {
             imortality = false;        
         }
 
-        internal void Destroy()
-        {
-            if (OnDestroyCar != null) OnDestroyCar();            
-            
-            DestroyObject(gameObject);
+        void Destroy()
+        {            
+            GameManager.Instance.RestartGame();                           
         }
-
-        void Awake()
-        {        
-            bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
-            bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
-            bodyColor = bodyBottom.material.color;
-            currentCharacter = new Character("Player");
-            imortality = false;
-            if (OnUpdateHUD != null) OnUpdateHUD(life);
-        }    
-
+        
     }
 }
