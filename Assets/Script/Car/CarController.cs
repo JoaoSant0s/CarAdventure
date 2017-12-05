@@ -27,25 +27,27 @@ namespace CarAdventure.Controller {
             float steer = Input.GetAxis("Horizontal");        
             float backCar = Input.GetAxis("Back");
             float acelerateCar = Input.GetAxis("Acelerate");
-        
 
-            if (backCar > 0) {
+            bool drag = Input.GetAxis("Drag") > 0;        
+
+            if(drag){
                 StopAceleration();
-                carMotor.BackCar(-backCar);            
-            } else {
-                if (acelerateCar > 0) {
+                carMotor.Drag();            
+            }else{
+                if (backCar > 0) 
+                {
+                    StopAceleration();
+                    carMotor.BackCar(-backCar);            
+                } 
+
+                if (acelerateCar > 0) 
+                {
                     PlayAceleration();
                     carMotor.AcelerateCar(acelerateCar);
-                }            
-
-                if (acelerateCar == 0) {
-                    StopAceleration();
-                    carMotor.changeState(CarMotor.CarState.idle);                    
-                }
+                }                        
             }
-                  
-            carMotor.RotateFrontWheels(steer);
-        
+                              
+            carMotor.RotateFrontWheels(steer);        
         }
 
         void PlayAceleration() {

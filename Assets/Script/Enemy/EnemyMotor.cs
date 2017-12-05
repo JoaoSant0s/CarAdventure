@@ -50,7 +50,7 @@ namespace CarAdventure.Entity.Component {
 
         internal void Stop() 
         {
-            MoveExtention(destinyPosition);            
+            MoveExtention(transform.position);            
         }
     }
 

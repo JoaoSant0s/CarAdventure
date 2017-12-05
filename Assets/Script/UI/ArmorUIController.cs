@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CarAdventure.Entity.Component;
+using CarAdventure.Controller.Manager;
 
 public class ArmorUIController : MonoBehaviour {
 
@@ -14,22 +16,22 @@ public class ArmorUIController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
 	{
-		/*Car.OnShowArmor += InitArmor;
+		ClawItems.OnShowArmor += InitArmor;
 		ClawItems.OnUpdateArmor += UpdateArmorText;       
-        GameManager.OnRestartUI += CloseArmor;*/
+        GameManager.OnRestartUI += CloseArmor;
     }
 
     void OnDestroy()
     {
-    	/*Car.OnShowArmor -= InitArmor;
-    	ClawItems.OnUpdateArmor += UpdateArmorText;
-        GameManager.OnRestartUI -= CloseArmor;*/
+    	ClawItems.OnShowArmor -= InitArmor;
+    	ClawItems.OnUpdateArmor -= UpdateArmorText;
+        GameManager.OnRestartUI -= CloseArmor;
     }
 
-    void InitArmor(float initLife)
-    {
+    void InitArmor(float initCount)
+    {    	
         baseUIElement.gameObject.SetActive(true);
-        UpdateText(initLife);
+        UpdateArmorText(initCount);
     }
 
     void CloseArmor()
@@ -37,8 +39,8 @@ public class ArmorUIController : MonoBehaviour {
         baseUIElement.gameObject.SetActive(false);        
     }
 
-    void UpdateText(float currentLife)
+    void UpdateArmorText(float currentCount)
     {
-        label.text = string.Format(baseLabelFormation, currentLife);
+        label.text = string.Format(baseLabelFormation, currentCount);
     }
 }

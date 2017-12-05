@@ -8,7 +8,7 @@ namespace CarAdventure.Entity.Component {
         [SerializeField]
         private Transform center;
 
-        private const float fixedRotation = -90f;
+        private const float fixedRotation = 0f;
 
         private Vector3 v;
         private float cameraRotationX = 0f;        

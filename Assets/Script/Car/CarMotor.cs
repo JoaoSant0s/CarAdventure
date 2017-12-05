@@ -8,6 +8,7 @@ namespace CarAdventure.Entity.Component {
 
         public enum CarState{
             idle,
+            drag,
             back,
             acelerate
         }
@@ -22,7 +23,7 @@ namespace CarAdventure.Entity.Component {
         [SerializeField]
         float dragTimeChange;    
         [SerializeField]
-        float dragNotInteracting;
+        float dragForce;
 
         [Header("Wheels Details")]
         [SerializeField]
@@ -66,58 +67,33 @@ namespace CarAdventure.Entity.Component {
 
         internal void AcelerateCar(float acelerate) 
         {
-            changeState(CarState.acelerate);            
-            var torque = maxTorque * acelerate;
-
-            wheelsColliders[0].motorTorque = torque;
-            wheelsColliders[1].motorTorque = torque;
+            TorqueCar(acelerate);
         }
 
         internal void BackCar(float acelerate) 
         {
-            changeState(CarState.back);
+            TorqueCar(acelerate);
+        }
+
+        void TorqueCar(float acelerate)
+        {
+            ResetDrag();
             var torque = maxTorque * acelerate;
 
             wheelsColliders[0].motorTorque = torque;
             wheelsColliders[1].motorTorque = torque;
+ 
         }
 
-        internal void ResetDrag() 
+        void ResetDrag() 
         {
-            rb.drag = 0f;
-        }
-
-        internal void changeState(CarState newSituation)
-        {
-            if(newSituation == carState) return;
-            carState = newSituation;
-
-            if(newSituation == CarState.acelerate || newSituation == CarState.back)
-            {                
-                ChangingGears();                
-            }else
-            {                                
-                Drag();
-            }               
-        }
-
-        void ChangingGears() 
-        {                               
-            StopCoroutine(DragCoroutine());            
-            Drag();
-            StartCoroutine(DragCoroutine());
+            rb.drag = dragTimeChange;
         }
 
         internal void Drag()
         {
-            rb.drag = dragNotInteracting; 
+            rb.drag = dragForce; 
         }
-        
-        IEnumerator DragCoroutine()
-        {
-            yield return new WaitForSeconds(dragTimeChange);            
-            ResetDrag();
-        }
-
+                
     }
 }

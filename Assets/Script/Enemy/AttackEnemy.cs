@@ -80,7 +80,7 @@ namespace CarAdventure.Entity {
 
             life -= damage;
             life = Mathf.Max(life, 0);
-            Motor.Resume();
+            Motor.Stop();
 
             if (life == 0)
             {
@@ -94,6 +94,12 @@ namespace CarAdventure.Entity {
                 animator.SetTrigger("damage");
                 StartCoroutine(ResumeCoroutine());
             }            
+        }
+
+        internal void ReduceScaleLife(float damage)
+        {
+            life -= damage;
+            life = Mathf.Max(life, 5);
         }
 
         IEnumerator IdleCoroutine()

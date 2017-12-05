@@ -14,7 +14,7 @@ namespace CarAdventure.Entity {
 
         public delegate void ShowLife(float initLife);
         public static event ShowLife OnShowLife;
-
+        
         [SerializeField]
         float life = 10f;
         [SerializeField]
@@ -38,7 +38,7 @@ namespace CarAdventure.Entity {
 
         void Start()
         {
-            if(OnShowLife != null) OnShowLife(life);
+            if(OnShowLife != null) OnShowLife(life);            
         }
         
         public Character CurrentCharacter {

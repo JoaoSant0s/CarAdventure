@@ -24,7 +24,7 @@ namespace CarAdventure.Controller.UI {
 
         void SelectedItem(ItemList.ItemType itemId) {
             foreach (var item in itens) {
-                item.SetSelection(item.Type == itemId);
+                item.SetSelection(item.Type == itemId);                
             }
         }
 
