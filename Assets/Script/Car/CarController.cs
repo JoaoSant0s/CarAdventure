@@ -25,11 +25,11 @@ namespace CarAdventure.Controller {
         void FixedUpdate() {
             float steer = Input.GetAxis("Horizontal");        
             float backCar = Input.GetAxis("Back");
-            float acelerateCar = Input.GetAxis("Acelerate");
+            float acelerateCar = Input.GetAxis("Acelerate");            
 
-            bool drag = Input.GetAxis("Drag") > 0;        
+            if(Input.GetAxis("Boost") > 0) carMotor.Boost();
 
-            if(drag){
+            if(Input.GetAxis("Drag") > 0){
                 StopAceleration();
                 carMotor.Drag();            
             }else{
@@ -47,13 +47,15 @@ namespace CarAdventure.Controller {
             }
                               
             carMotor.RotateFrontWheels(steer);        
-        }
+        }    
 
-        void PlayAceleration() {
+        void PlayAceleration() 
+        {
             if(!audio.isPlaying) audio.Play();
         }
 
-        void StopAceleration() {
+        void StopAceleration() 
+        {
             if (audio.isPlaying) audio.Stop();       
         }
  

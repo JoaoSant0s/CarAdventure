@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using CarAdventure.Controller.Manager;
 
-namespace CarAdventure.Entity { 
+namespace CarAdventure.Entity {
     public class Car : MonoBehaviour {
 
         public delegate void DestroyCar();
@@ -27,7 +27,7 @@ namespace CarAdventure.Entity {
         bool imortality;
 
         void Awake()
-        {        
+        {                    
             bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
             bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
             bodyColor = bodyBottom.material.color;            

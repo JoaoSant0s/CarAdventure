@@ -11,9 +11,13 @@ namespace CarAdventure.Entity.Component {
 
         [Header("Controller values")]
         [SerializeField]
-        float maxTorque;     
+        float maxTorque;
         [SerializeField]
-        float dragTimeChange;    
+        float minBoostVelocity;       
+        [SerializeField]
+        float boostMultiplier;       
+        [SerializeField]
+        float boostDelay;               
         [SerializeField]
         float dragForce;
 
@@ -24,7 +28,7 @@ namespace CarAdventure.Entity.Component {
         Transform[] wheelsGraphics = new Transform[4];
 
         Rigidbody rb;
-        bool checkDragReducing;        
+        bool boostActived;            
 
         void Awake() 
         {
@@ -55,8 +59,26 @@ namespace CarAdventure.Entity.Component {
             wheelsColliders[3].steerAngle = finalSteer;
         }
 
-        internal void AcelerateCar(float acelerate) 
+        internal void Boost()
+        {               
+            if(rb.velocity.magnitude <= minBoostVelocity) return;
+            if(boostActived) return;
+            boostActived = true;             
+
+            var force = transform.forward * maxTorque * boostMultiplier;
+            rb.AddForce(force, ForceMode.Impulse);  
+
+            StartCoroutine(StopBoostCoroutine());
+        }
+
+        IEnumerator StopBoostCoroutine()
         {
+            yield return new WaitForSeconds(boostDelay);
+            boostActived = false;                     
+        }
+
+        internal void AcelerateCar(float acelerate) 
+        {            
             TorqueCar(acelerate);
         }
 
@@ -66,22 +88,21 @@ namespace CarAdventure.Entity.Component {
         }
 
         void TorqueCar(float acelerate)
-        {
+        {            
             ResetDrag();
-            var torque = maxTorque * acelerate;
+            var torque = maxTorque * acelerate;            
 
             wheelsColliders[0].motorTorque = torque;
-            wheelsColliders[1].motorTorque = torque;
- 
+            wheelsColliders[1].motorTorque = torque; 
         }
 
         void ResetDrag() 
         {
-            rb.drag = dragTimeChange;
+            rb.drag = 0f;
         }
 
         internal void Drag()
-        {
+        {            
             rb.drag = dragForce; 
         }
                 
