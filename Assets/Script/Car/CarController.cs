@@ -2,19 +2,18 @@
 using UnityEngine;
 using CarAdventure.Entity.Component;
 
-namespace CarAdventure.Controller { 
+namespace CarAdventure.Controller {
     public class CarController : MonoBehaviour {
 
         public delegate void ChangeCamera();
         public static event ChangeCamera OnChangeCamera;
 
+        [SerializeField]        
         CarMotor carMotor;
+        
+        [SerializeField]
         AudioSource audio;
 
-        void Start() {
-            carMotor = GetComponent<CarMotor>();            
-            audio = GetComponent<AudioSource>();                        
-        } 
         void Update() {            
             var changeCamera = Input.GetButtonDown("ChangeCamera");
 

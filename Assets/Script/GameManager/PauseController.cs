@@ -9,7 +9,7 @@ namespace CarAdventure.Controller {
         void Update()
         {
             if(Input.GetKeyDown(KeyCode.P)){ 
-            	var nextState = !uiController.gameObject.active;
+            	var nextState = !uiController.gameObject.activeSelf;
             	uiController.gameObject.SetActive(nextState);
 
             	if(nextState){

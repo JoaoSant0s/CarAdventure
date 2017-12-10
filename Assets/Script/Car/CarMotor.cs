@@ -3,15 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace CarAdventure.Entity.Component {
-
-    public class CarMotor : MonoBehaviour {
-
-        public enum CarState{
-            idle,
-            drag,
-            back,
-            acelerate
-        }
+    public class CarMotor : MonoBehaviour {    
 
         [Header("Object balacing")]
         [SerializeField]
@@ -32,14 +24,12 @@ namespace CarAdventure.Entity.Component {
         Transform[] wheelsGraphics = new Transform[4];
 
         Rigidbody rb;
-        bool checkDragReducing;
-        CarState carState;
+        bool checkDragReducing;        
 
         void Awake() 
         {
             rb = GetComponent<Rigidbody>();
-            rb.centerOfMass = centerMass.localPosition;
-            carState = CarState.idle;            
+            rb.centerOfMass = centerMass.localPosition;                    
         }
 
         void Update() 

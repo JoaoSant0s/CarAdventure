@@ -2,7 +2,6 @@
 using UnityEngine;
 
 namespace CarAdventure.Entity.Component {
-
     public class ClawItems : MonoBehaviour {
 
         public delegate void SelectedItem(ItemList.ItemType itemId);
@@ -36,17 +35,13 @@ namespace CarAdventure.Entity.Component {
         int currentFixedArmors;   
 
         float lastAttackTime;
-        LineRenderer line;
-        Ray ray;
-
         Transform terreno;
 
         void Start()
         {
             FixedArmor.OnRemoveArmor += RemoveArmor;
 
-            lastAttackTime = 0f;
-            line = GetComponent<LineRenderer>();  
+            lastAttackTime = 0f;            
             terreno = GameObject.FindGameObjectWithTag("Terrain").transform;
             if(OnShowArmor != null) OnShowArmor(currentFixedArmors);
         }
@@ -57,11 +52,7 @@ namespace CarAdventure.Entity.Component {
         }
         
         void Update()
-        {            
-            ray = new Ray(targetDirection.position, targetDirection.forward);
-            line.SetPosition(0, ray.origin);
-            line.SetPosition(1, ray.GetPoint(10f));            
-
+        {
             UseSelectedItem();
         }
 

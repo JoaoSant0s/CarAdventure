@@ -2,7 +2,7 @@
 using System.Collections;
 using CarAdventure.Entity;
 
-namespace CarAdventure.Controller.Manager { 
+namespace CarAdventure.Controller.Manager {
     public class GameManager : MonoBehaviour {
         
         public delegate void HorderCounter();

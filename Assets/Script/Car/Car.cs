@@ -20,8 +20,7 @@ namespace CarAdventure.Entity {
         [SerializeField]
         Transform bodyGraphic;
 
-        const float maxLife = 10f;
-        Character currentCharacter;    
+        const float maxLife = 10f;        
         MeshRenderer bodyBottom;
         MeshRenderer bodyTop;
         Color bodyColor;
@@ -31,20 +30,14 @@ namespace CarAdventure.Entity {
         {        
             bodyBottom = bodyGraphic.Find("body_bottom").GetComponent<MeshRenderer>();
             bodyTop = bodyGraphic.Find("body_top").GetComponent<MeshRenderer>();
-            bodyColor = bodyBottom.material.color;
-            currentCharacter = new Character("Player");
+            bodyColor = bodyBottom.material.color;            
             imortality = false;            
         }   
 
         void Start()
         {
             if(OnShowLife != null) OnShowLife(life);            
-        }
-        
-        public Character CurrentCharacter {
-            get { return currentCharacter; }
-            set { currentCharacter = value; }
-        }
+        }        
 
         internal float Life {
             get { return life; }

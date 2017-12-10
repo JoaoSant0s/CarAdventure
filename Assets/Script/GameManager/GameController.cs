@@ -22,14 +22,8 @@ namespace CarAdventure.Controller {
             blockControllerCamera = false;
             topCamera = false;
             Car.OnDestroyCar += ActiveOverheadCamera;
-            CarController.OnChangeCamera += CameraController;
-            Portal.OnActivePortalCam += BlockCameraController;
-        }    
-    
-        void BlockCameraController() {
-            blockControllerCamera = true;
-            ActiveDoorCamera();
-        }   
+            CarController.OnChangeCamera += CameraController;            
+        }        
 
         void CameraController() {
             if (blockControllerCamera) return;

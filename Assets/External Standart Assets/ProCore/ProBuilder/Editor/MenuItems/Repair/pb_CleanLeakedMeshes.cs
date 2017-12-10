@@ -13,11 +13,11 @@ namespace ProBuilder2.Actions
 			// if(EditorUtility.DisplayDialog("Clean Leaked Meshes?",
 			// 	"Cleaning leaked meshes will permenantly delete any deleted pb_Objects, are you sure you don't want to undo?", "Clean Up", "Stay Dirty"))
 			// {
-				#if !UNITY_5
+				/*#if !UNITY_5
 				EditorUtility.UnloadUnusedAssetsIgnoreManagedReferences();
-				#else
+				#else*/
 				EditorUtility.UnloadUnusedAssetsImmediate();
-				#endif
+				/*#endif*/
 			// }
 		}
 	}

@@ -1,32 +1,39 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
-
 using CarAdventure.Entity;
-using CarAdventure.Entity.Component;
 using CarAdventure.Controller;
 
-[CustomEditor(typeof(EnemyAttackZone))]
-public class EnemyAttackZoneEditor : Editor {
 
-    void OnSceneGUI()
-    {   
-        EnemyAttackZone eaz = (EnemyAttackZone) target;
-        Handles.color = Color.white;
-        Handles.DrawWireArc(eaz.transform.position, Vector3.up, Vector3.forward, 360, eaz.ViewRadius);
-        Vector3 viewAngleA = eaz.DirFromAngle(-eaz.ViewAngle/2, false);
-        Vector3 viewAngleB = eaz.DirFromAngle(eaz.ViewAngle/2, false);
+#if UNITY_EDITOR
+    namespace CarAdventure.Editor {
+        using UnityEngine;
+        using UnityEditor;
+        using CarAdventure.Entity.Component;
 
-        Handles.DrawLine(eaz.transform.position, eaz.transform.position + viewAngleA * eaz.ViewRadius);
-        Handles.DrawLine(eaz.transform.position, eaz.transform.position + viewAngleB * eaz.ViewRadius);
+        [CustomEditor(typeof(EnemyAttackZone))]
+        public class EnemyAttackZoneEditor : Editor {
 
-        Handles.color = Color.red;
-        foreach(var visibleTarger in eaz.VisibleTargets){
-            Handles.DrawLine(eaz.transform.position, visibleTarger.position);
+            void OnSceneGUI()
+            {   
+                EnemyAttackZone eaz = (EnemyAttackZone) target;
+                Handles.color = Color.white;
+                Handles.DrawWireArc(eaz.transform.position, Vector3.up, Vector3.forward, 360, eaz.ViewRadius);
+                Vector3 viewAngleA = eaz.DirFromAngle(-eaz.ViewAngle/2, false);
+                Vector3 viewAngleB = eaz.DirFromAngle(eaz.ViewAngle/2, false);
+
+                Handles.DrawLine(eaz.transform.position, eaz.transform.position + viewAngleA * eaz.ViewRadius);
+                Handles.DrawLine(eaz.transform.position, eaz.transform.position + viewAngleB * eaz.ViewRadius);
+
+                Handles.color = Color.red;
+                foreach(var visibleTarger in eaz.VisibleTargets){
+                    Handles.DrawLine(eaz.transform.position, visibleTarger.position);
+                }
+            }
         }
     }
-}
+
+#endif
 
 namespace CarAdventure.Entity.Component {
 

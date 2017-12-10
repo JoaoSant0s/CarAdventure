@@ -6,8 +6,7 @@ namespace CarAdventure.Entity.Component {
 
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyMotor : MonoBehaviour {    
-
-        Rigidbody body;
+        
         NavMeshAgent pathFinder;    
         float smoothDirection;
         float smoothDirectionVelocity;
@@ -22,8 +21,7 @@ namespace CarAdventure.Entity.Component {
                 
         void Awake()
         {
-            pathFinder = GetComponent<NavMeshAgent>();            
-            body = GetComponent<Rigidbody>();        
+            pathFinder = GetComponent<NavMeshAgent>(); 
         }       
 
         internal float GetVelocity()
@@ -43,8 +41,7 @@ namespace CarAdventure.Entity.Component {
         }        
         
         internal void Resume()
-        {
-            if (destinyPosition ==  null) return;
+        {         
             MoveExtention(destinyPosition);
         }
 
