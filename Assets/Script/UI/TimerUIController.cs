@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using CarAdventure.Controller.Manager;
+using TMPro;
 
-public class TimerUIController : MonoBehaviour {
-
-    [SerializeField]    
-    Text label;
+public class TimerUIController : MonoBehaviour {	
+    [SerializeField]       
+    TextMeshProUGUI label;
     [SerializeField]
     string baseLabelFormation;
     [SerializeField]
     Transform baseUIElement;
     
     void Awake () {
-        SpawnController.OnHorderTimeCounter += UpdateText;
+        SpawnController.OnHorderTimeCounter += UpdateText;        
         GameManager.OnShowHorder += InitHorder;
         GameManager.OnRestartUI += CloseHorder;
     }
@@ -35,8 +35,8 @@ public class TimerUIController : MonoBehaviour {
     }
 
     void UpdateText(int currentTime)
-    {                    
-        label.text = string.Format(baseLabelFormation, currentTime);
+    {     
+    	label.text = string.Format(baseLabelFormation, currentTime);        
     }
 
 }

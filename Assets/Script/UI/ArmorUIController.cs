@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using CarAdventure.Entity.Component;
 using CarAdventure.Controller.Manager;
+using TMPro;
 
 public class ArmorUIController : MonoBehaviour {
 
 	[SerializeField]
-    Text label;
+    TextMeshProUGUI label; 
     [SerializeField]
     string baseLabelFormation;
     [SerializeField]

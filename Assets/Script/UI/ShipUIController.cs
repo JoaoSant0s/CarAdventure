@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using CarAdventure.Controller;
+using TMPro;
 
 public class ShipUIController : MonoBehaviour {
 
     [SerializeField]
-    Text label;
+    TextMeshProUGUI label; 
     [SerializeField]
     string baseLabelFormation;
 	// Use this for initialization
