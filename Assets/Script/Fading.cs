@@ -11,7 +11,7 @@ public class Fading : MonoBehaviour {
 	int fadeDir = -1;
 
 	void OnGUI()
-	{
+	{		
 		alpha += fadeDir * fadeSpeed * Time.deltaTime;
 
 		alpha = Mathf.Clamp01(alpha);

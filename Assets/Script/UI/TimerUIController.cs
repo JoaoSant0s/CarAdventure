@@ -36,7 +36,13 @@ public class TimerUIController : MonoBehaviour {
 
     void UpdateText(int currentTime)
     {     
-    	label.text = string.Format(baseLabelFormation, currentTime);        
+    	label.text = string.Format(baseLabelFormation, currentTime);    
+        
+        if(currentTime == 0){
+            CloseHorder();
+        }else{
+            InitHorder();       
+        }         
     }
 
 }

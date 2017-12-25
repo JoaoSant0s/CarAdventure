@@ -12,11 +12,21 @@ namespace CarAdventure.Entity.Component
         float destroyDelay;
 
         bool disabled;
+        float savedYPosition;
+
+        void Start()
+        {
+            savedYPosition = transform.position.y;
+            StartCoroutine(DestroyCoroutine());
+        }
+
+        void Update()
+        {
+            transform.position = new Vector3(transform.position.x, savedYPosition, transform.position.z);
+        }
 
         void OnCollisionEnter(Collision collision)
-        {
-            StartCoroutine(DestroyCoroutine());
-
+        {        
             if (disabled) return;
             var enemy = collision.transform.GetComponent<AttackEnemy>();
 

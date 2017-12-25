@@ -25,7 +25,7 @@ namespace CarAdventure.Controller {
         void FixedUpdate() {
             float steer = Input.GetAxis("Horizontal");        
             float backCar = Input.GetAxis("Back");
-            float acelerateCar = Input.GetAxis("Acelerate");            
+            float acelerateCar = Input.GetAxis("Acelerate");                         
 
             if(Input.GetAxis("Boost") > 0) carMotor.Boost();
 

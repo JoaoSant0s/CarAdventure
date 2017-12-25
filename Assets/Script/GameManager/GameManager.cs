@@ -18,10 +18,7 @@ namespace CarAdventure.Controller.Manager {
         [SerializeField]
         SpawnController spawnController;
         [SerializeField]
-        float delayInitSpawn;
-        
-        [SerializeField]
-        AudioSource bgAudio;        
+        float delayInitSpawn;        
 
         static GameManager instance;
 
@@ -38,8 +35,7 @@ namespace CarAdventure.Controller.Manager {
 
         void Start()
         {
-        	StartCoroutine("ActiveSpawnEnemies");
-            bgAudio.Play();
+        	StartCoroutine("ActiveSpawnEnemies");            
         }
 
         IEnumerator ActiveSpawnEnemies()
@@ -58,8 +54,7 @@ namespace CarAdventure.Controller.Manager {
         } 
 
         internal void RestartGame()
-        {            
-            if (bgAudio.isPlaying) bgAudio.Stop(); 
+        {                        
             StartCoroutine(RestartGameCoroutine());
         }
 
@@ -71,8 +66,7 @@ namespace CarAdventure.Controller.Manager {
             spawnController.RemoveAllEnemeies();                        
             var car = GameObject.FindObjectOfType<Car>();
             DestroyObject(car.gameObject);                  
-            StartCoroutine("ActiveSpawnEnemies"); 
-            if(!bgAudio.isPlaying) bgAudio.Play();               
+            StartCoroutine("ActiveSpawnEnemies");                    
         }
     }
 }

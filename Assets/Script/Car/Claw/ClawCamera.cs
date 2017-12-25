@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using CarAdventure.Controller;
 
 namespace CarAdventure.Entity.Component {
     public class ClawCamera : MonoBehaviour {
@@ -22,6 +23,7 @@ namespace CarAdventure.Entity.Component {
 
         void Update()
         {
+            if(PauseController.Instance.IsPaused) return;
             RotationCamera();
             PerformRotationCamera();
         }

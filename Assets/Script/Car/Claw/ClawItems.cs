@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using CarAdventure.Controller;
 
 namespace CarAdventure.Entity.Component {
     public class ClawItems : MonoBehaviour {
@@ -65,6 +66,7 @@ namespace CarAdventure.Entity.Component {
 
         void UseSelectedItem()
         {         
+            if(PauseController.Instance.IsPaused) return;
             if (Input.GetMouseButtonDown(0))
             {
                 if (lastAttackTime >= Time.timeSinceLevelLoad) return;
@@ -82,7 +84,7 @@ namespace CarAdventure.Entity.Component {
 
         void CreateBullet()
         {
-            var currentBullet = Instantiate(bullet, targetDirection.position, Quaternion.identity);
+            var currentBullet = Instantiate(bullet, targetDirection.position, Quaternion.identity);            
             currentBullet.GetComponent<Rigidbody>().AddForce(targetDirection.forward.normalized * constanteForce, ForceMode.Force);
         }                      
     }

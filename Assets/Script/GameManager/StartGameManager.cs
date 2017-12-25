@@ -13,8 +13,8 @@ public class StartGameManager : MonoBehaviour {
 	Slider slider;
 	
 	public void LoadGameScene()
-	{
-		StartCoroutine(LoadAsyncCoroutine());
+	{		
+		StartCoroutine(LoadAsyncCoroutine());		
 	}
 
 	IEnumerator LoadAsyncCoroutine()

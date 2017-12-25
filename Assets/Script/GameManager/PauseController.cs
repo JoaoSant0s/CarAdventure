@@ -6,13 +6,34 @@ namespace CarAdventure.Controller {
         [SerializeField]
         PauseUIController uiController;
 
+        bool paused;
+
+        public bool IsPaused
+        {
+            get{return paused;}
+        }
+
+       static PauseController instance;
+
+
+       public static PauseController Instance
+       {
+            get{return instance;}
+       }
+
+        void Awake()
+        {
+            paused = false;
+            instance = this;
+        }
+
         void Update()
         {
             if(Input.GetKeyDown(KeyCode.P)){ 
-            	var nextState = !uiController.gameObject.activeSelf;
-            	uiController.gameObject.SetActive(nextState);
+            	paused = !uiController.gameObject.activeSelf;
+            	uiController.gameObject.SetActive(paused);
 
-            	if(nextState){
+            	if(paused){
             		Cursor.visible = true;
             		Time.timeScale = 0f;
         		}else{
