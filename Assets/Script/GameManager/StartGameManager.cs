@@ -6,22 +6,40 @@ using UnityEngine.UI;
 public class StartGameManager : MonoBehaviour {	
 
 	[SerializeField]
-	GameObject loadScreen;	
+	GameObject loadScreen;		
 	[SerializeField]
-	GameObject startButton;
+	GameObject mainPanel;
 	[SerializeField]
 	Slider slider;
+
+	void Awake () {
+        TutorialUIController.OnTutorialController += UpdateMainPanel;
+    }
+
+    void OnDestroy()
+    {
+        TutorialUIController.OnTutorialController -= UpdateMainPanel;
+    }
+
+    void UpdateMainPanel(bool value)
+    {
+    	mainPanel.SetActive(value);   
+    }
 	
 	public void LoadGameScene()
 	{		
 		StartCoroutine(LoadAsyncCoroutine());		
 	}
 
+	public void ButtonQuit() {
+        Application.Quit();
+    } 
+
 	IEnumerator LoadAsyncCoroutine()
 	{
 		AsyncOperation operation = SceneManager.LoadSceneAsync("scene1", LoadSceneMode.Single);		
 
-		startButton.SetActive(false);
+		mainPanel.SetActive(false);
 		loadScreen.SetActive(true);
 
 		while(!operation.isDone)
