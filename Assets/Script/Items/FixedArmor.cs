@@ -5,19 +5,21 @@ namespace CarAdventure.Entity.Component
 {
 	public class FixedArmor : MonoBehaviour {
 
+        public delegate void RemoveArmor();
+        public static event RemoveArmor OnRemoveArmor;
+
         [SerializeField]
         float redutorLife;
         [SerializeField]
         float cooldownRedutor;
-
-		public delegate void RemoveArmor();
-        public static event RemoveArmor OnRemoveArmor;
-
 		[SerializeField]
 		float maxLifeTime;
 
+        float lastAttackTime;
+
 		void Start()
         {
+            lastAttackTime = 0f;
             StartCoroutine(DestroyEffect());
         }    
 
@@ -29,24 +31,15 @@ namespace CarAdventure.Entity.Component
         	DestroyObject(gameObject);
         }
 
-        void OnTriggerEnter(Collider collider)
+        void OnTriggerStay(Collider collider)
         {        
             var enemy = collider.GetComponentInParent<AttackEnemy>();
-            if(enemy != null)
-            {
-                StartCoroutine("StartDamageCoroutine", enemy);
-            }
-        }
+            if(enemy == null) return;
 
-        IEnumerator StartDamageCoroutine(AttackEnemy enemy)
-        {   
-            yield return new WaitForSeconds(cooldownRedutor);         
-            enemy.ReduceScaleLife(redutorLife);
-            yield return new WaitForSeconds(cooldownRedutor);         
-            enemy.ReduceScaleLife(redutorLife);
-            yield return new WaitForSeconds(cooldownRedutor);
-            enemy.ReduceScaleLife(redutorLife);
-            yield return new WaitForSeconds(cooldownRedutor);
-        }                
+            if (lastAttackTime >= Time.timeSinceLevelLoad) return;
+            lastAttackTime = Time.timeSinceLevelLoad + cooldownRedutor;
+
+            enemy.ReduceScaleLife(redutorLife);                                
+        }    
 	}
 }

@@ -1,0 +1,11 @@
+diff a/Assets/Script/GameManager/GameManager.cs b/Assets/Script/GameManager/GameManager.cs	(rejected hunks)
+@@ -54,8 +54,7 @@
+         } 
+ 
+         internal void RestartGame()
+-        {            
+-            if (bgAudio.isPlaying) bgAudio.Stop(); 
++        {                        
+             StartCoroutine(RestartGameCoroutine());
+         }
+ 

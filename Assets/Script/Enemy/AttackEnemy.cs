@@ -75,12 +75,12 @@ namespace CarAdventure.Entity {
 
         internal void ReduceLife(float damage)
         {
-            if (animationDamage) return;
+            if (animationDamage || dying) return;
             animationDamage = true;
 
             life -= damage;
             life = Mathf.Max(life, 0);
-            Motor.Stop();
+            Motor.Stop();            
 
             if (life == 0)
             {
@@ -98,8 +98,18 @@ namespace CarAdventure.Entity {
 
         internal void ReduceScaleLife(float damage)
         {
+            if (dying) return;
+
             life -= damage;
-            life = Mathf.Max(life, 5);
+            life = Mathf.Max(life, 0);            
+
+            if (life == 0)
+            {
+                dying = true;
+                animator.SetTrigger("dying");
+                if (OnNextHorder != null) OnNextHorder(Motor);
+                StartCoroutine(DestroyCoroutine());
+            }
         }
 
         IEnumerator IdleCoroutine()
